@@ -1,0 +1,308 @@
+#!/bin/bash
+#
+# Copyright (C) 2007 Joaquim Boura <x-un-@sidux.com>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this package; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+# MA 02110-1301, USA.
+#
+# On Debian GNU/Linux systems, the text of the GPL license can be
+# found in /usr/share/common-licenses/GPL.
+#-------------------------------------------------------------------
+#
+# given an usb pen, eg /dev/sdb, /dev/sdc we create ** one **  partiton on that 
+# device make it bootable, format it with ext3 (labeled sidux_from_usb)
+# install grub into it
+# copy the message file into the grub dirs
+# create directory for iso, kernel, initrd (eg sidux)
+# copy the files into there.
+# create the menu.lst file on it
+# 
+#--------------------------
+
+function usage()
+{
+        echo ""
+        echo "$(basename $0) create an fromiso installation on a USB drive"
+        echo ""
+        echo "-d|--debug                debug sh code execution"
+        echo "-D|--device </dev/sdX>    name of device where to install the \"fromiso\""
+        echo "-h|--help                 print this help"
+        echo "-I|--iso <iso_file>       iso file name to be installed"
+        echo "-L|--label <label_name>   label name to be used for the created partition"
+        echo "-p|--persist              use device as persistent storage device"
+        echo "-t|--test                 copy everything but do not copy the iso"
+        echo ""
+        echo " Use it at your own risk, it comes without any warranty."
+        echo ""
+}
+#------------------------
+function prepare_partition()
+{
+	nr_of_partitions=$(fdisk -l ${device} | \
+		awk 'BEGIN{i=0;}{if(/^\/dev/){i++}}END{print i}')
+
+	if [ ${nr_of_partitions} -eq 0 -o ${nr_of_partitions} -ne 1 ]; then
+
+		# create partition
+		fdisk ${device} << EOF 2>&1 >> /dev/null
+n
+p
+1
+
+
+t
+83
+a
+1
+p
+w
+EOF                           
+
+	fi
+
+	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
+
+	if [ ${is_bootable} -ne 1 ]; then
+		# set boot flag
+		fdisk ${device} <<EOF 2>&1 >> /dev/null
+a
+1
+p
+w
+EOF
+
+		is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
+
+		if [ ${is_bootable} -ne 1 ]; then
+			echo Could not make USB device bootable. STOP.
+			exit 1
+		fi
+	fi	
+
+	fs_type=$(fdisk -l ${device}  | \
+		awk 'BEGIN{fstype=""}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
+	if [ "${fs_type}" -ne 83 ]; then
+		# set partition type
+		fdisk ${device} <<EOF 2>&1 >> /dev/null
+t
+83
+p
+w
+EOF
+		fs_type=$(fdisk -l ${device}  | \
+			awk 'BEGIN{fstype=""}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
+
+		if [ ${fs_type} -ne 83 ]; then
+			echo Could not make create the right filesystem on the USB device. STOP.
+			exit 1
+		fi	
+	fi	
+
+	# now create the filesystem in it.
+	label=${label:-"sidux-from-USB"}
+
+	mkfs.ext3 -q -m 1 -L ${label} ${partition}
+	if [ $? -ne 0 ]; then
+		echo Error formating the USB device. STOP.
+		exit 1
+	fi
+}
+#----------------------
+function install_grub()
+{
+	local device_map
+
+	echo "Installing grub"
+
+	(grub-install --recheck --no-floppy --root-directory=$TEMPDIR  ${device} 2>&1 >/dev/null) >/dev/null
+
+	device_map=${TEMPDIR}/boot/grub/device.map
+	disk=$(echo ${device}|cut -d '/' -f 3)
+
+	old_hdmap=$(grep ${disk} ${device_map}|awk '{print $1}' | sed -e "s/[\(,\)]//g")
+
+	# fix the device.map file
+	sed -i -e "s|(hd0)|(hdX)|" -e "s|(${old_hdmap})|(hd0)|" \
+		-e "s|(hdX)|(${old_hdmap})|" ${device_map}
+
+}
+#------------------------------
+function copy_files_from_dev()
+{
+	local booted_device fll_booted_dir
+	
+	echo "Copying files"
+	booted_device=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $1}')
+	fll_booted_dir=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $3}')
+
+	cp $fll_booted_dir/boot/message ${TEMPDIR}/boot
+
+	mkdir $TEMPDIR/${FLL_DISTRO_NAME}
+	cp $fll_booted_dir/boot/initrd* \
+		$fll_booted_dir/boot/vmlinuz* $TEMPDIR/${FLL_DISTRO_NAME}
+
+	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
+ 		dd if=$booted_device of=$TEMPDIR/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+	fi
+}
+#-----------------------------------
+function copy_files_from_local_iso()
+{
+	local mounted_iso 
+	
+	echo "Copying files"
+
+	mounted_iso="$(mktemp -dp /tmp/ iso-XXXXXXXXXX)"
+
+	mount -t iso9660 -o loop,ro ${iso} $mounted_iso
+
+	cp $mounted_iso/boot/message ${TEMPDIR}/boot
+
+	mkdir $TEMPDIR/${FLL_DISTRO_NAME}
+	cp $mounted_iso/boot/initrd* \
+		$mounted_iso/boot/vmlinuz* ${TEMPDIR}/${FLL_DISTRO_NAME}
+
+	umount ${mounted_iso}
+	rmdir ${mounted_iso}
+
+	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
+ 		cp ${iso} ${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+	fi
+}
+#------------------------
+function create_menu_list()
+{
+	local initrd vmlinuz
+
+	echo "Creating menu.lst"
+	initrd=$(echo ${TEMPDIR}/${FLL_DISTRO_NAME}/initrd.img-* | sed -e "s|^.*/||")
+	vmlinuz=$(echo ${TEMPDIR}/${FLL_DISTRO_NAME}/vmlinuz-* | sed -e "s|^.*/||")
+
+	cat <<EOF > ${TEMPDIR}/boot/grub/menu.lst
+default 0
+timeout 2
+color red/black light-red/black
+foreground EE0000
+background 400000
+gfxmenu /boot/message
+
+
+##ISO boot
+title sidux 32bit from ISO
+kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll quiet vga=791 ${persist} fromiso=/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+initrd (hd0,0)/${FLL_DISTRO_NAME}/${initrd}
+
+EOF
+
+}
+
+#--------------------------------------------------------------
+# preparation
+#--------------------------------------------------------------
+
+TEMP=`getopt -o dD:I:hL:pt \
+        --long debug,drive:,iso:,help,label,persist,test, \
+        -n  "$(basename $0)" -- "$@"`
+
+if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
+
+# Note the quotes around `$TEMP': they are essential!
+eval set -- "$TEMP"
+
+while true ; do
+        case "$1" in
+                -d|--debug)
+                        set -x
+                        shift
+                        ;;
+                -D|--drive)
+                        device="$2"
+                        shift 2
+                        ;;
+                -I|--iso)
+                        iso="$2"
+                        shift 2
+                        ;;
+                -h|--help)
+                        usage
+                        exit 0
+                        ;;
+                -L|--label)
+                        label="$2"
+                        shift 2
+                        ;;
+                -p|--persist)
+			persist="persist"
+                        shift
+                        ;;
+                -t|--test)
+			nocopy="yes"
+                        shift
+                        ;;
+                --)
+                        shift
+                        break ;;
+                *)
+                        echo "Internal error!"
+                        exit 1
+                        ;;
+        esac
+done
+
+
+#--------------------------------------------------------------
+source /etc/default/distro
+
+TEMPDIR="$(mktemp -dp /tmp/ XXXXXXXXXX)"
+
+if ! stat ${device} 2>&1>/dev/null ; then 
+	echo device "${device}" not found; 
+	exit 1
+fi
+
+partition=${device}1
+
+
+if [ "${FLL_DISTRO_MODE}" = "installed" ]; then
+	if [ -z "${iso}" -o ! -r "${iso}" ]; then
+		echo can not read the iso ${iso} file
+		exit 2
+	fi
+fi
+
+echo "preparing..."
+prepare_partition
+
+mount ${partition} ${TEMPDIR}
+
+echo "install grub..."
+install_grub
+
+echo "copy files..."
+if [ "${FLL_DISTRO_MODE}" = "installed" ]; then
+	copy_files_from_local_iso 
+else
+	copy_files_from_dev
+fi
+
+create_menu_list
+
+umount ${partition}
+
+rmdir ${TEMPDIR}
+echo "done"
+
+exit 0
+
