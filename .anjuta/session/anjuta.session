@@ -1,0 +1,14 @@
+
+[Anjuta]
+Maximized=1
+Geometry=1024x716+0+0
+
+[File Loader]
+Files=file:///home/hjt/anjuta/install-usb-gui/src/main.c#178
+
+[Execution]
+Program arguments=
+Run in terminal=2
+
+[Build]
+Configure parameters=--prefix=/usr
