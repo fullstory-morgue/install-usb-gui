@@ -57,6 +57,11 @@ install: build
 	# Add here commands to install the package into debian/install-usb-gui.
 	$(MAKE) DESTDIR=$(CURDIR)/debian/install-usb-gui install
 
+	mkdir -p debian/install-usb-gui/usr/share/pixmaps
+	convert -geometry 32x32 src/sidux-usb-icon.png \
+		debian/install-usb-gui/usr/share/pixmaps/sidux-usb-icon.xpm
+	convert -geometry 16x16 src/sidux-usb-icon.png \
+		debian/install-usb-gui/usr/share/pixmaps/sidux-usb-icon-16.xpm
 
 # Build architecture-independent files here.
 binary-indep: build install

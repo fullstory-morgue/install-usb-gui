@@ -29,7 +29,7 @@ fi
 
 # exec code -----------------------------------------------------
 INSTALL_USB_GUI="$(which install-usb-gui)"			|| INSTALL_USB_GUI="/usr/bin/install-usb-gui"
-INSTALL_FROMISO_IN_USB="$(which install_fromiso_in_USB)"	|| INSTALL_FROMISO_IN_USB="/usr/bin/install_fromiso_in_USB"
+INSTALL_FROMISO_IN_USB="$(which install_fromiso_in_USB)"	|| INSTALL_FROMISO_IN_USB="/usr/sbin/install_fromiso_in_USB"
 
 
 # install_fromiso_in_USB check ----------------------------------

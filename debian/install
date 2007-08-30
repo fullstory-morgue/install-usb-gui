@@ -1,4 +1,4 @@
-#*.desktop		usr/share/applications/sidux/
+*.desktop		usr/share/applications/sidux/
 src/*.png		usr/share/install-usb-gui/src/
 src/*glade		usr/share/install-usb-gui/src/
 install-usb-gui.bash	usr/sbin/

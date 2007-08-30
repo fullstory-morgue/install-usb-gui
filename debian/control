@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: install-usb-gui
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, sidux-scripts (>= 0.1.33), x-terminal-emulator
+Depends: ${shlibs:Depends}, ${misc:Depends}, x-terminal-emulator, su-me
 Description: gui for the install_fromiso_in_USB script, see sidux-scripts package
  given an usb pen, eg /dev/sdb, /dev/sdc we create ** one **  partiton on that 
  device make it bootable, format it with ext3 (labeled sidux_from_usb)

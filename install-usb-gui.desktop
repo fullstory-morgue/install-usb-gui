@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=su-me /usr/sbin/install-usb-gui.bash
+Icon=sidux
+
+Name=install-sidux-to-usb
+Comment=Install sidux to usb stick
+
+Categories=sidux
