@@ -50,9 +50,9 @@ function usage()
 #------------------------
 function prepare_partition()
 {
-	nr_of_partitions=$(fdisk -l ${device} | \
-		awk 'BEGIN{i=0;}{if(/^\/dev/){i++}}END{print i}')
-
+	# clear the partition table
+	dd if=/dev/zero of=${device} bs=1M count=16
+	
 	if [ ${nr_of_partitions} -eq 0 -o ${nr_of_partitions} -ne 1 ]; then
 
 		# create partition
@@ -161,7 +161,7 @@ function copy_files_from_dev()
 		$fll_booted_dir/boot/vmlinuz* $TEMPDIR/${FLL_DISTRO_NAME}
 
 	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
- 		dd if=$booted_device of=$TEMPDIR/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+ 		dd if=$booted_device of=$TEMPDIR/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso
 	fi
 }
 #-----------------------------------
@@ -188,6 +188,7 @@ function copy_files_from_local_iso()
 	rmdir ${mounted_iso}
 
 	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
+		isoname=${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso
  		cp ${iso} ${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
 	fi
 }

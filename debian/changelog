@@ -14,6 +14,7 @@ install-usb-gui (001-1) unstable; urgency=low
   * After create partiton or filesystems use udevtrigger to actualize the
     kernel tables.
   * vfat partition have type non numeric
+  * use a random name for the image
 
- -- Joaquim Boura <x-un-i@sidux.com>  Fri, 31 Aug 2007 20:51:10 +0200
+ -- Joaquim Boura <x-un-i@sidux.com>  Fri, 31 Aug 2007 22:06:23 +0200
 
