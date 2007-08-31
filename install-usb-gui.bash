@@ -124,9 +124,10 @@ else
 	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device $persist -L $entry_usb -I $filechooserbutton_iso"
 fi
 
+printf "$RUN_SH\n"
 x-terminal-emulator -e $RUN_SH
 
-ssft_display_message gettext("Install to USB") gettext("Installation successful")
+ssft_display_message $(gettext "USB-Installation") $(eval_gettext "\$SELF end\n\n")
 
 # unset the variables -------------------------------------------
 count=0
