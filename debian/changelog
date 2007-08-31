@@ -13,6 +13,7 @@ install-usb-gui (001-1) unstable; urgency=low
   * Script install_fromiso_in_USB moved from sidux-scripts
   * After create partiton or filesystems use udevtrigger to actualize the
     kernel tables.
+  * vfat partition have type non numeric
 
- -- Joaquim Boura <x-un-i@sidux.com>  Fri, 31 Aug 2007 18:10:40 +0200
+ -- Joaquim Boura <x-un-i@sidux.com>  Fri, 31 Aug 2007 20:51:10 +0200
 

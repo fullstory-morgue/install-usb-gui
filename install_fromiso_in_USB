@@ -96,7 +96,7 @@ EOF
 
 	fs_type=$(fdisk -l ${device}  | \
 		awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
-	if [ ${fs_type} -ne 83 ]; then
+	if [ "${fs_type}" != 83 ]; then
 		# set partition type
 		fdisk ${device} <<EOF 2>&1 >> /dev/null
 t
@@ -109,7 +109,7 @@ EOF
 		fs_type=$(fdisk -l ${device}  | \
 			awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
 
-		if [ ${fs_type} -ne 83 ]; then
+		if [ "${fs_type}" != 83 ]; then
 			echo Could not set the right partition type on the USB device. STOP.
 			exit 2
 		fi	
