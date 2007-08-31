@@ -11,6 +11,8 @@ install-usb-gui (001-1) unstable; urgency=low
 
   [ Joaquim Boura ]
   * Script install_fromiso_in_USB moved from sidux-scripts
+  * After create partiton or filesystems use udevtrigger to actualize the
+    kernel tables.
 
- -- Horst Tritremmel <hjt@sidux.com>  Fri, 31 Aug 2007 09:31:05 +0200
+ -- Joaquim Boura <x-un-i@sidux.com>  Fri, 31 Aug 2007 18:10:40 +0200
 

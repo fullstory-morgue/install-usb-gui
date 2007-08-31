@@ -70,6 +70,7 @@ p
 w
 EOF                           
 
+	udevtrigger --subsystem-match=usb
 	fi
 
 	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
@@ -83,6 +84,8 @@ p
 w
 EOF
 
+		udevtrigger --subsystem-match=usb
+
 		is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
 
 		if [ ${is_bootable} -ne 1 ]; then
@@ -92,8 +95,8 @@ EOF
 	fi	
 
 	fs_type=$(fdisk -l ${device}  | \
-		awk 'BEGIN{fstype=""}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
-	if [ "${fs_type}" -ne 83 ]; then
+		awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
+	if [ ${fs_type} -ne 83 ]; then
 		# set partition type
 		fdisk ${device} <<EOF 2>&1 >> /dev/null
 t
@@ -101,12 +104,14 @@ t
 p
 w
 EOF
+		udevtrigger --subsystem-match=usb
+
 		fs_type=$(fdisk -l ${device}  | \
-			awk 'BEGIN{fstype=""}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
+			awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
 
 		if [ ${fs_type} -ne 83 ]; then
-			echo Could not make create the right filesystem on the USB device. STOP.
-			exit 1
+			echo Could not set the right partition type on the USB device. STOP.
+			exit 2
 		fi	
 	fi	
 
@@ -116,8 +121,10 @@ EOF
 	mkfs.ext3 -q -m 1 -L ${label} ${partition}
 	if [ $? -ne 0 ]; then
 		echo Error formating the USB device. STOP.
-		exit 1
+		exit 3
 	fi
+	udevtrigger --subsystem-match=usb
+
 }
 #----------------------
 function install_grub()
@@ -166,8 +173,11 @@ function copy_files_from_local_iso()
 
 	mounted_iso="$(mktemp -dp /tmp/ iso-XXXXXXXXXX)"
 
-	mount -t iso9660 -o loop,ro ${iso} $mounted_iso
-
+	if ! mount -t iso9660 -o loop,ro ${iso} $mounted_iso ; then
+		echo "Could not mount the iso file. STOP."	
+		exit 4
+	fi
+	
 	cp $mounted_iso/boot/message ${TEMPDIR}/boot
 
 	mkdir $TEMPDIR/${FLL_DISTRO_NAME}
@@ -216,7 +226,7 @@ TEMP=`getopt -o dD:I:hL:pt \
         --long debug,drive:,iso:,help,label,persist,test, \
         -n  "$(basename $0)" -- "$@"`
 
-if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
+if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 99; fi
 
 # Note the quotes around `$TEMP': they are essential!
 eval set -- "$TEMP"
@@ -256,7 +266,7 @@ while true ; do
                         break ;;
                 *)
                         echo "Internal error!"
-                        exit 1
+                        exit 255
                         ;;
         esac
 done
@@ -269,7 +279,7 @@ TEMPDIR="$(mktemp -dp /tmp/ XXXXXXXXXX)"
 
 if ! stat ${device} 2>&1>/dev/null ; then 
 	echo device "${device}" not found; 
-	exit 1
+	exit 10
 fi
 
 partition=${device}1
@@ -278,7 +288,7 @@ partition=${device}1
 if [ "${FLL_DISTRO_MODE}" = "installed" ]; then
 	if [ -z "${iso}" -o ! -r "${iso}" ]; then
 		echo can not read the iso ${iso} file
-		exit 2
+		exit 11
 	fi
 fi
 
