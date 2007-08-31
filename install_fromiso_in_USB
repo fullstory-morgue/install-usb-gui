@@ -53,10 +53,9 @@ function prepare_partition()
 	# clear the partition table
 	dd if=/dev/zero of=${device} bs=1M count=16
 	
-	if [ ${nr_of_partitions} -eq 0 -o ${nr_of_partitions} -ne 1 ]; then
+	# create partition
+	fdisk ${device} << EOF 2>&1 >> /dev/null
 
-		# create partition
-		fdisk ${device} << EOF 2>&1 >> /dev/null
 n
 p
 1
@@ -71,7 +70,6 @@ w
 EOF                           
 
 	udevtrigger --subsystem-match=usb
-	fi
 
 	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
 
@@ -84,15 +82,14 @@ p
 w
 EOF
 
-		udevtrigger --subsystem-match=usb
+	udevtrigger --subsystem-match=usb
 
-		is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
+	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
 
-		if [ ${is_bootable} -ne 1 ]; then
-			echo Could not make USB device bootable. STOP.
-			exit 1
-		fi
-	fi	
+	if [ ${is_bootable} -ne 1 ]; then
+		echo Could not make USB device bootable. STOP.
+		exit 1
+	fi
 
 	fs_type=$(fdisk -l ${device}  | \
 		awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
@@ -161,7 +158,7 @@ function copy_files_from_dev()
 		$fll_booted_dir/boot/vmlinuz* $TEMPDIR/${FLL_DISTRO_NAME}
 
 	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
- 		dd if=$booted_device of=$TEMPDIR/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso
+		dd if=$booted_device of=$TEMPDIR/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso
 	fi
 }
 #-----------------------------------
@@ -188,8 +185,7 @@ function copy_files_from_local_iso()
 	rmdir ${mounted_iso}
 
 	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
-		isoname=${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso
- 		cp ${iso} ${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+ 		cp ${iso} ${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso
 	fi
 }
 #------------------------
@@ -211,8 +207,8 @@ gfxmenu /boot/message
 
 
 ##ISO boot
-title sidux 32bit from ISO
-kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll quiet vga=791 ${persist} fromiso=/${FLL_DISTRO_NAME}/${FLL_MEDIA_NAME}
+title sidux from ISO
+kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll quiet vga=791 ${persist} fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso
 initrd (hd0,0)/${FLL_DISTRO_NAME}/${initrd}
 
 EOF

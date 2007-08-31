@@ -15,6 +15,7 @@ install-usb-gui (001-1) unstable; urgency=low
     kernel tables.
   * vfat partition have type non numeric
   * use a random name for the image
+  * fixed random name
 
- -- Joaquim Boura <x-un-i@sidux.com>  Fri, 31 Aug 2007 22:06:23 +0200
+ -- Joaquim Boura <x-un-i@sidux.com>  Fri, 31 Aug 2007 23:07:18 +0200
 
