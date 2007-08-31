@@ -3,13 +3,14 @@ install-usb-gui (001-1) unstable; urgency=low
   [ Horst Tritremmel ]
   * Initial release
   * do not depend on sidux-scripts
-  * su-me depend
+  * su-me, gettext, ssft depend
   * start icon added
   * language support added
-  * build-dep intltool, imagemagick added
+  * intltool, imagemagick, gettext added to build-dep
+  * RUN_SH variable bugfix
 
   [ Joaquim Boura ]
   * Script install_fromiso_in_USB moved from sidux-scripts
 
- -- Horst Tritremmel <hjt@sidux.com>  Fri, 31 Aug 2007 08:04:46 +0200
+ -- Horst Tritremmel <hjt@sidux.com>  Fri, 31 Aug 2007 09:31:05 +0200
 

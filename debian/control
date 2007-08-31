@@ -2,12 +2,13 @@ Source: install-usb-gui
 Section: unknown
 Priority: extra
 Maintainer: Horst Tritremmel <hjt@sidux.com>
-Build-Depends: debhelper (>= 5), autotools-dev, automake1.10, libgtk2.0-dev (>= 2.8.0), libglade2-dev (>= 2.6.0), intltool, imagemagick
+Build-Depends: debhelper (>= 5), autotools-dev, automake1.10, libgtk2.0-dev (>= 2.8.0), libglade2-dev (>= 2.6.0), intltool, imagemagick, gettext
 Standards-Version: 3.7.2
 
 Package: install-usb-gui
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, x-terminal-emulator, su-me
+Depends: ${shlibs:Depends}, ${misc:Depends}, x-terminal-emulator, su-me, ssft, gettext
+Suggests: xterm, zenity
 Description: gui for the install_fromiso_in_USB script, see sidux-scripts package
  given an usb pen, eg /dev/sdb, /dev/sdc we create ** one **  partiton on that 
  device make it bootable, format it with ext3 (labeled sidux_from_usb)

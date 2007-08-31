@@ -16,6 +16,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+SELF="install-usb-gui.bash"
 PERSIST_OPTION="-p"
 
 
@@ -27,9 +28,26 @@ if (($UID)); then
 fi
 
 
+# we need gettext (is loaded in ssft.sh or cloned...)
+if [ -f /usr/bin/gettext.sh ]; then
+	. /usr/bin/gettext.sh || exit 1
+else
+	exit 1
+fi
+
+TEXTDOMAIN=$SELF
+export TEXTDOMAIN
+TEXTDOMAINDIR=/usr/share/locale
+export TEXTDOMAINDIR
+
+
 # exec code -----------------------------------------------------
 INSTALL_USB_GUI="$(which install-usb-gui)"			|| INSTALL_USB_GUI="/usr/bin/install-usb-gui"
 INSTALL_FROMISO_IN_USB="$(which install_fromiso_in_USB)"	|| INSTALL_FROMISO_IN_USB="/usr/sbin/install_fromiso_in_USB"
+SSFTSH="$(which ssft.sh)"					|| SSFTSH="/usr/bin/ssft.sh"
+# initialize ssft
+. "$SSFTSH"
+[ -n "$SSFT_FRONTEND" ] ||  SSFT_FRONTEND="$(ssft_choose_frontend)"
 
 
 # install_fromiso_in_USB check ----------------------------------
@@ -101,13 +119,14 @@ done
 # 		start the installation
 # ==============================================================
 if [ "$FLL_DISTRO_MODE" = live ]; then
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $entry_usb $persist -L $entry_usb"
+	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device $persist -L $entry_usb"
 else
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $entry_usb $persist -L $entry_usb -I $filechooserbutton_iso"
+	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device $persist -L $entry_usb -I $filechooserbutton_iso"
 fi
 
 x-terminal-emulator -e $RUN_SH
 
+ssft_display_message gettext("Install to USB") gettext("Installation successful")
 
 # unset the variables -------------------------------------------
 count=0
