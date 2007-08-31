@@ -1,13 +1,15 @@
 install-usb-gui (001-1) unstable; urgency=low
 
   [ Horst Tritremmel ]
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release
   * do not depend on sidux-scripts
   * su-me depend
   * start icon added
+  * language support added
+  * build-dep intltool, imagemagick added
 
   [ Joaquim Boura ]
   * Script install_fromiso_in_USB moved from sidux-scripts
 
- -- Horst Tritremmel <hjt@sidux.com>  Thu, 30 Aug 2007 08:05:12 +0200
+ -- Horst Tritremmel <hjt@sidux.com>  Fri, 31 Aug 2007 08:04:46 +0200
 

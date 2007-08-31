@@ -1,0 +1,86 @@
+# translation of de.po to Deutsch
+# German translations for install-usb-gui package.
+# Copyright (C) 2007 THE install-usb-gui'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the install-usb-gui package.
+#
+# hjt <hjt@sidux.com>, 2007.
+# Horst Tritremmel <hjt@sidux.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: de\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-08-30 15:11+0200\n"
+"PO-Revision-Date: 2007-08-30 15:49+0200\n"
+"Last-Translator: Horst Tritremmel <hjt@sidux.com>\n"
+"Language-Team: Deutsch\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: main.c:112
+msgid "getenv HOME isn't defined"
+msgstr "getenv HOME ist nicht definiert"
+
+#: main.c:123
+msgid ""
+"getenv FLL_DISTRO_MODE isn't defined\n"
+"Please start with install-usb-gui.bash"
+msgstr ""
+"getenv FLL_DISTRO_MODE ist nicht definiert\n"
+"Bitte starten Sie install-usb-gui.bash"
+
+#: main.c:178
+#, c-format
+msgid ""
+"\n"
+" No USBDEVICE0 Variable found!\n"
+" Please start with install-usb-gui.bash\n"
+"\n"
+msgstr ""
+"\n"
+" Keine USBDEVICE0 Variable gefunden!\n"
+" Bitte starten Sie install-usb-gui.bash\n"
+"\n"
+
+#: callbacks.c:94
+msgid "No ISO selected!"
+msgstr "Kein ISO ausgewählt"
+
+#: install_warning.glade:39(property)
+msgid ""
+"<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB device "
+"will be completely erased.!</span>"
+msgstr ""
+"<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB Gerät "
+"wird komplett gelöscht.!</span>"
+
+#: install-usb-gui.glade:52(property)
+msgid "<b>USB Device</b>"
+msgstr "<b>USB Gerät</b>"
+
+#: install-usb-gui.glade:66(property)
+msgid ""
+"<b><big>This tool create a bootable sidux USB device</big>"
+"</b>"
+msgstr ""
+"<b><big>Dieses Programm erzeugt ein startbares USB Gerät</big>"
+"</b>"
+
+#: install-usb-gui.glade:108(property)
+msgid "<b>Name</b>"
+msgstr ""
+
+#: install-usb-gui.glade:122(property)
+msgid "save system changes to usb"
+msgstr "Systemänderungen am USB Gerät speichern"
+
+#: install-usb-gui.glade:123(property)
+msgid "persist"
+msgstr "Änderungen speichern"
+
+#: install-usb-gui.glade:174(property)
+msgid "<b>choose the iso file</b>"
+msgstr "<b>ISO Datei auswählen</b>"
+

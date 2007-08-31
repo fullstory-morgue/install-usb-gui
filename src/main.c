@@ -108,8 +108,7 @@ create_window (void)
 
 		// set current dir for file chooser
 		if (!getenv("HOME")) {
-			printf("getenv HOME isn't defined\n");
-			dialog_msg( window, "getenv HOME isn't defined" );
+			dialog_msg( window, gettext("getenv HOME isn't defined") );
 		}
 		else {
 			// set the current folder now
@@ -118,9 +117,8 @@ create_window (void)
 
 	
 		// hide the iso file chooser in live mode
-		if (!getenv("FLL_DISTRO_MODE")) {		
-			printf("getenv FLL_DISTRO_MODE isn't defined\n");
-			dialog_msg( window, "getenv FLL_DISTRO_MODE isn't defined\nPlease start with install-usb-gui.bash" );	
+		if (!getenv("FLL_DISTRO_MODE")) {
+			dialog_msg( window, gettext("getenv FLL_DISTRO_MODE isn't defined\nPlease start with install-usb-gui.bash" ));	
 		}
 		else {
 
@@ -175,7 +173,7 @@ main (int argc, char *argv[])
 	gtk_init (&argc, &argv);
 
 	if (!getenv("USBDEVICE0")) {
-		printf("\n No USBDEVICE0 Variable found!\n Please start with install-usb-gui.bash\n\n");	
+		printf(gettext("\n No USBDEVICE0 Variable found!\n Please start with install-usb-gui.bash\n\n"));	
 		return 1;
 	}
 	

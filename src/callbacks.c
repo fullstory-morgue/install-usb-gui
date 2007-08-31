@@ -91,7 +91,7 @@ on_button_install_clicked (GtkButton *button,
 		file_iso = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER (filechooserbutton_iso) );
 		if (! (file_iso != NULL && strlen(file_iso) > 4) ) {
 
-			dialog_msg_cb ( window, "No ISO selected!" );
+			dialog_msg_cb ( window, gettext("No ISO selected!") );
 			return;
 		}
 	}
