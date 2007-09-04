@@ -1,4 +1,4 @@
-install-usb-gui (001-1) unstable; urgency=low
+install-usb-gui (0.0.1) unstable; urgency=low
 
   [ Horst Tritremmel ]
   * Initial release
