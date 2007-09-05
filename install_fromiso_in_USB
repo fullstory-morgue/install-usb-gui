@@ -34,6 +34,7 @@ function clean_exit()
 {
 	echo $? > /tmp/.install_fromiso_in_USB
 }
+trap clean_exit exit
 #--------------------------
 
 function usage()
