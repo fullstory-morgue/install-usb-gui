@@ -31,6 +31,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <libintl.h>
 
 
 GladeXML *gxml, *gxml_install_warning;

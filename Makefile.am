@@ -3,15 +3,6 @@
 
 SUBDIRS = src po
 
-install_usb_guidocdir = ${prefix}/doc/install-usb-gui
-install_usb_guidoc_DATA = \
-	README\
-	COPYING\
-	AUTHORS\
-	ChangeLog\
-	INSTALL\
-	NEWS
-
 EXTRA_DIST = $(install_usb_guidoc_DATA)
 
 # Copy all the spec files. Of cource, only one is actually used.

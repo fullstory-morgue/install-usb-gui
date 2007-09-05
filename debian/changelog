@@ -1,14 +1,16 @@
-install-usb-gui (0.0.2) UNRELEASED; urgency=low
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+install-usb-gui (0.0.2) unstable; urgency=low
 
   [ Joaquim Boura ]
   * enhanced error handling
   * missing catch for trap
   * fixed typo
 
- -- Joaquim Boura <x-un-i@sidux.com>  Wed, 05 Sep 2007 22:42:20 +0200
+  [ Stefan Lippers-Hollmann ]
+  * fix packaging bugs.
+  * fix lintian issues.
+  * add x-un-i and me to Uploaders.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 05 Sep 2007 23:46:59 +0200
 
 install-usb-gui (0.0.1) unstable; urgency=low
 
