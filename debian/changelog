@@ -1,8 +1,12 @@
 install-usb-gui (0.0.2) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 04 Sep 2007 15:40:20 +0200
+  [ Joaquim Boura ]
+  * enhanced error handling
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Wed, 05 Sep 2007 22:01:23 +0200
 
 install-usb-gui (0.0.1) unstable; urgency=low
 

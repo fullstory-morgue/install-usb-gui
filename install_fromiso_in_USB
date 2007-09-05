@@ -30,6 +30,11 @@
 # create the menu.lst file on it
 # 
 #--------------------------
+function clean_exit()
+{
+	echo $? > /tmp/.install_fromiso_in_USB
+}
+#--------------------------
 
 function usage()
 {
@@ -68,7 +73,10 @@ a
 p
 w
 EOF                           
-
+	if [ "$?" -ne 0 ]; then
+		echo Failed to create partition on device ${device}. STOP
+		exit 1
+	fi
 	udevtrigger --subsystem-match=usb
 
 	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
@@ -82,13 +90,17 @@ p
 w
 EOF
 
+	if [ "$?" -ne 0 ]; then
+		echo Failed to make partition bootable on device ${device}. STOP
+		exit 2
+	fi
 	udevtrigger --subsystem-match=usb
 
 	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
 
 	if [ ${is_bootable} -ne 1 ]; then
 		echo Could not make USB device bootable. STOP.
-		exit 1
+		exit 3
 	fi
 
 	fs_type=$(fdisk -l ${device}  | \
@@ -101,6 +113,10 @@ t
 p
 w
 EOF
+	if [ "$?" -ne 0 ]; then
+		echo Failed to set partition type on device ${device}. STOP
+		exit 4
+	fi
 		udevtrigger --subsystem-match=usb
 
 		fs_type=$(fdisk -l ${device}  | \
@@ -108,7 +124,7 @@ EOF
 
 		if [ "${fs_type}" != 83 ]; then
 			echo Could not set the right partition type on the USB device. STOP.
-			exit 2
+			exit 5
 		fi	
 	fi	
 
@@ -118,7 +134,7 @@ EOF
 	mkfs.ext3 -q -m 1 -L ${label} ${partition}
 	if [ $? -ne 0 ]; then
 		echo Error formating the USB device. STOP.
-		exit 3
+		exit 6
 	fi
 	udevtrigger --subsystem-match=usb
 
@@ -172,7 +188,7 @@ function copy_files_from_local_iso()
 
 	if ! mount -t iso9660 -o loop,ro ${iso} $mounted_iso ; then
 		echo "Could not mount the iso file. STOP."	
-		exit 4
+		exit 7
 	fi
 	
 	cp $mounted_iso/boot/message ${TEMPDIR}/boot
@@ -276,7 +292,7 @@ TEMPDIR="$(mktemp -dp /tmp/ XXXXXXXXXX)"
 
 if ! stat ${device} 2>&1>/dev/null ; then 
 	echo device "${device}" not found; 
-	exit 10
+	exit 8 
 fi
 
 partition=${device}1
@@ -285,7 +301,7 @@ partition=${device}1
 if [ "${FLL_DISTRO_MODE}" = "installed" ]; then
 	if [ -z "${iso}" -o ! -r "${iso}" ]; then
 		echo can not read the iso ${iso} file
-		exit 11
+		exit 9
 	fi
 fi
 
