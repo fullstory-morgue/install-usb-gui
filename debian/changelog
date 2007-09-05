@@ -6,8 +6,9 @@ install-usb-gui (0.0.2) UNRELEASED; urgency=low
   [ Joaquim Boura ]
   * enhanced error handling
   * missing catch for trap
+  * fixed typo
 
- -- Joaquim Boura <x-un-i@sidux.com>  Wed, 05 Sep 2007 22:05:44 +0200
+ -- Joaquim Boura <x-un-i@sidux.com>  Wed, 05 Sep 2007 22:42:20 +0200
 
 install-usb-gui (0.0.1) unstable; urgency=low
 

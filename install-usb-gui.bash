@@ -130,7 +130,7 @@ x-terminal-emulator -e $RUN_SH
 # lookup the return code from install-fromiso-in-usb
 test -e /tmp/.install_fromiso_in_USB && rc=$(</tmp/.install_fromiso_in_USB) || rc=90
 
-ase "$rc" in
+case "$rc" in
         0) MSG="Install successful"
                 ;;
         1) MSG="Failed to create partition on device ${combo_device}\n\n**STOP**"
@@ -149,6 +149,8 @@ ase "$rc" in
                 ;;
         8) MSG="device "${combo_device}" not found!\n\n**STOP**"
                 ;;
+        90)MSG="internal error...\n\n**STOP**"
+		;;
         99)MSG="getopt internal error...\n\n**STOP**"
                 ;;
         255)MSG="bad parameter. internal error...\n\n**STOP**"
