@@ -10,7 +10,7 @@ Package: install-usb-gui
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, xterm | x-terminal-emulator, su-me, ssft, gettext
 Recommends: zenity
-Description: gui for the install_fromiso_in_USB script, see sidux-scripts package
+Description: gui for the install_fromiso_in_USB script
  given an usb pen, eg /dev/sdb, /dev/sdc we create ** one **  partiton on that 
  device make it bootable, format it with ext3 (labeled sidux_from_usb)
  install grub into it

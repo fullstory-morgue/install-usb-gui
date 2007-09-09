@@ -1,9 +1,13 @@
 install-usb-gui (0.0.3) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
   * remove .tm_project2.cache.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 05 Sep 2007 23:56:23 +0200
+  [ Horst Tritremmel ]
+  * add Joaquim Boura to copyright and AUTHORS
+
+ -- Horst Tritremmel <hjt@sidux.com>  Sun, 09 Sep 2007 21:48:20 +0200
 
 install-usb-gui (0.0.2) unstable; urgency=low
 
