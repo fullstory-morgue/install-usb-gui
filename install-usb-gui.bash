@@ -52,7 +52,7 @@ SSFTSH="$(which ssft.sh)"					|| SSFTSH="/usr/bin/ssft.sh"
 
 # install_fromiso_in_USB check ----------------------------------
 if [ ! -x "$INSTALL_FROMISO_IN_USB" ]; then
-	printf "\n$INSTALL_FROMISO_IN_USB not found\ninstall sidux-scripts package\n\n"
+	printf "\n$INSTALL_FROMISO_IN_USB not found\n\n"
 	exit 1
 fi
 

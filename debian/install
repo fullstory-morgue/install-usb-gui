@@ -1,5 +1,6 @@
 *.desktop		usr/share/applications/sidux/
 src/*.png		usr/share/install-usb-gui/src/
+src/sidux-usb-icon.png	usr/share/pixmaps/
 src/*glade		usr/share/install-usb-gui/src/
 install-usb-gui.bash	usr/sbin/
 install_fromiso_in_USB  usr/sbin/

@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Type=Application
 Exec=su-me /usr/sbin/install-usb-gui.bash
-Icon=sidux
+Icon=sidux-usb-icon
 
 Name=install-sidux-to-usb
 Comment=Install sidux to usb stick
