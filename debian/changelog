@@ -1,7 +1,6 @@
-install-usb-gui (0.0.3) UNRELEASED; urgency=low
+install-usb-gui (0.0.3) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
   * remove .tm_project2.cache.
 
   [ Horst Tritremmel ]
