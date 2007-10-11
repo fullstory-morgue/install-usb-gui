@@ -1,7 +1,6 @@
-install-usb-gui (0.0.4) UNRELEASED; urgency=low
+install-usb-gui (0.0.4) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
   * add VCS control headers.
   * update syntax for Vcs headers in debian/control
 
