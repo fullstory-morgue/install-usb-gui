@@ -1,10 +1,20 @@
 install-usb-gui (0.0.4) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
   * add VCS control headers.
   * update syntax for Vcs headers in debian/control
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 07 Oct 2007 14:44:11 +0200
+  [ Kel Modderman ]
+  * fix --drive option in help output
+  * increase default timeout to 10 seconds, user may want to change somethings
+    on cmdline sometimes, 2 seconds aint enough unless you are super quick
+  * add initial support for add a default lang= and toram cheatcodes to
+    cmdline of grub entry
+  * a live system booted with toram must behave same as in installed system,
+    there is no device it can copy from, it must have an input iso file
+
+ -- Kel Modderman <kel@otaku42.de>  Thu, 11 Oct 2007 23:59:30 +1000
 
 install-usb-gui (0.0.3) unstable; urgency=low
 

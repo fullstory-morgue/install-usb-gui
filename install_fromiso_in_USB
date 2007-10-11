@@ -43,12 +43,14 @@ function usage()
         echo "$(basename $0) create an fromiso installation on a USB drive"
         echo ""
         echo "-d|--debug                debug sh code execution"
-        echo "-D|--device </dev/sdX>    name of device where to install the \"fromiso\""
+        echo "-D|--drive </dev/sdX>     name of device where to install the \"fromiso\""
         echo "-h|--help                 print this help"
         echo "-I|--iso <iso_file>       iso file name to be installed"
         echo "-L|--label <label_name>   label name to be used for the created partition"
+	echo "-l|--lang <ll-cc>         default system language/locale"
         echo "-p|--persist              use device as persistent storage device"
         echo "-t|--test                 copy everything but do not copy the iso"
+	echo "-T|--toram                add toram boot option as default"
         echo ""
         echo " Use it at your own risk, it comes without any warranty."
         echo ""
@@ -216,7 +218,7 @@ function create_menu_list()
 
 	cat <<EOF > ${TEMPDIR}/boot/grub/menu.lst
 default 0
-timeout 2
+timeout 10
 color red/black light-red/black
 foreground EE0000
 background 400000
@@ -225,7 +227,7 @@ gfxmenu /boot/message
 
 ##ISO boot
 title sidux from ISO
-kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll quiet vga=791 ${persist} fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso
+kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename $TEMPDIR).iso quiet vga=791 ${lang} ${persist} ${toram}
 initrd (hd0,0)/${FLL_DISTRO_NAME}/${initrd}
 
 EOF
@@ -236,8 +238,8 @@ EOF
 # preparation
 #--------------------------------------------------------------
 
-TEMP=`getopt -o dD:I:hL:pt \
-        --long debug,drive:,iso:,help,label,persist,test, \
+TEMP=`getopt -o dD:I:hlL:ptT \
+        --long debug,drive:,iso:,help,label,lang,persist,test,toram \
         -n  "$(basename $0)" -- "$@"`
 
 if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 99; fi
@@ -267,6 +269,10 @@ while true ; do
                         label="$2"
                         shift 2
                         ;;
+		-l|--lang)
+			lang="lang=$2"
+			shift 2
+			;;
                 -p|--persist)
 			persist="persist"
                         shift
@@ -275,6 +281,10 @@ while true ; do
 			nocopy="yes"
                         shift
                         ;;
+		-T|--toram)
+			toram="toram"
+			shift
+			;;
                 --)
                         shift
                         break ;;
@@ -315,7 +325,8 @@ echo "install grub..."
 install_grub
 
 echo "copy files..."
-if [ "${FLL_DISTRO_MODE}" = "installed" ]; then
+if [ "${FLL_DISTRO_MODE}" = "installed" ] || \
+	grep -s -q -w toram /proc/cmdline; then
 	copy_files_from_local_iso 
 else
 	copy_files_from_dev
