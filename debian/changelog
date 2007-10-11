@@ -1,3 +1,9 @@
+install-usb-gui (0.0.5) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 11 Oct 2007 16:06:44 +0200
+
 install-usb-gui (0.0.4) unstable; urgency=low
 
   [ Stefan Lippers-Hollmann ]
