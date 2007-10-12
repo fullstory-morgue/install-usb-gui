@@ -149,7 +149,7 @@ function install_grub()
 
 	echo "Installing grub"
 
-	(grub-install --recheck --no-floppy --root-directory=${TEMPDIR}  ${device} 2>&1 >/dev/null) >/dev/null
+	grub-install --recheck --no-floppy --root-directory=${TEMPDIR}  ${device}
 
 	device_map=${TEMPDIR}/boot/grub/device.map
 	disk=$(echo ${device}|cut -d '/' -f 3)
