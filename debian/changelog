@@ -23,7 +23,13 @@ install-usb-gui (0.0.6) UNRELEASED; urgency=low
       device by unique label now, no need to obscure the iso name
     - put kernel image and initrd-img in /boot
 
- -- Kel Modderman <kel@otaku42.de>  Fri, 12 Oct 2007 16:16:11 +1000
+  [ Joaquim Boura ]
+  * handle better when running under live
+    - When booted fromiso use the own iso if no other was given
+    - when booted into toram force input from iso
+    - created a man page.
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Fri, 12 Oct 2007 19:14:55 +0200
 
 install-usb-gui (0.0.5) unstable; urgency=low
 
