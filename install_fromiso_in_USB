@@ -56,6 +56,18 @@ function usage()
         echo ""
 }
 #------------------------
+function valid_label()
+{
+	# label may contain only these characters
+	case "$1" in
+		*[!A-Za-z0-9-_]*)
+			return 1
+			;;
+	esac
+	
+	return 0
+}
+#------------------------
 function prepare_partition()
 {
 	# clear the partition table
@@ -132,7 +144,16 @@ EOF
 	fi	
 
 	# now create the filesystem in it.
-	label=${label:-"sidux-from-USB"}
+	if [ "${label}" ] && ! valid_label "${label}"; then
+		echo "WARNING: you gave an invalid label: ${label}"
+		echo "Use only characters in the rage of [A-Za-z0-9-_]"
+		echo "...and no spaces!"
+		unset label
+	fi
+	
+	# append a pseudorandom string of numbers to help avoid
+	# having a volume label conflict
+	label=${label:-"siduxUSB${RANDOM:0:5}"}
 
 	mkfs.ext3 -q -m 1 -L ${label} ${partition}
 	if [ $? -ne 0 ]; then
