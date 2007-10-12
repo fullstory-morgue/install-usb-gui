@@ -1,7 +1,4 @@
-install-usb-gui (0.0.6) UNRELEASED; urgency=low
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+install-usb-gui (0.0.6) unstable; urgency=low
 
   [ Kel Modderman ]
   * install_fromiso_in_USB:
