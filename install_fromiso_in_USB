@@ -45,11 +45,7 @@ function usage()
         echo "-D|--drive </dev/sdX>     name of device where to install the \"fromiso\""
         echo "-h|--help                 print this help"
         echo "-I|--iso <iso_file>       iso file name to be installed"
-        echo "-L|--label <label_name>   label name to be used for the created partition"
-	echo "-l|--lang <ll-cc>         default system language/locale"
-        echo "-p|--persist              use device as persistent storage device"
         echo "-t|--test                 copy everything but do not copy the iso"
-	echo "-T|--toram                add toram boot option as default"
         echo ""
 	echo "Everything after -- will be appended to the kernel cmdline in the menu.lst"
 	echo "of the siduxUSB system (extra cheatcodes)."
@@ -193,14 +189,13 @@ function copy_files_from_dev()
 	booted_device=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $1}')
 	fll_booted_dir=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $3}')
 
-	cp ${fll_booted_dir}/boot/message ${TEMPDIR}/boot
-
-	mkdir ${TEMPDIR}/${FLL_DISTRO_NAME}
-	cp ${fll_booted_dir}/boot/initrd* \
-		${fll_booted_dir}/boot/vmlinuz* ${TEMPDIR}/${FLL_DISTRO_NAME}
+	cp 	${fll_booted_dir}/boot/message \
+		${fll_booted_dir}/boot/initrd* \
+		${fll_booted_dir}/boot/vmlinuz* \
+			${TEMPDIR}/boot
 
 	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
-		dd if=${booted_device} of=${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso
+		dd if=${booted_device} of=${TEMPDIR}/${FLL_MEDIA_NAME}
 	fi
 }
 #-----------------------------------
@@ -217,17 +212,17 @@ function copy_files_from_local_iso()
 		exit 7
 	fi
 	
-	cp ${mounted_iso}/boot/message ${TEMPDIR}/boot
-
-	mkdir ${TEMPDIR}/${FLL_DISTRO_NAME}
-	cp ${mounted_iso}/boot/initrd* \
-		${mounted_iso}/boot/vmlinuz* ${TEMPDIR}/${FLL_DISTRO_NAME}
+	cp 	${fll_booted_dir}/boot/message \
+			${TEMPDIR}/boot
+	cp	${mounted_iso}/boot/initrd* \
+		${mounted_iso}/boot/vmlinuz* \
+			${TEMPDIR}/boot
 
 	umount ${mounted_iso}
 	rmdir ${mounted_iso}
 
 	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
- 		cp ${iso} ${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso
+ 		cp ${iso} ${TEMPDIR}/${FLL_MEDIA_NAME}
 	fi
 }
 #------------------------
@@ -236,8 +231,8 @@ function create_menu_list()
 	local initrd vmlinuz
 
 	echo "Creating menu.lst"
-	initrd=$(echo ${TEMPDIR}/${FLL_DISTRO_NAME}/initrd.img-* | sed -e "s|^.*/||")
-	vmlinuz=$(echo ${TEMPDIR}/${FLL_DISTRO_NAME}/vmlinuz-* | sed -e "s|^.*/||")
+	initrd=$(echo ${TEMPDIR}/boot/initrd.img-* | sed -e "s|^.*/||")
+	vmlinuz=$(echo ${TEMPDIR}/boot/vmlinuz-* | sed -e "s|^.*/||")
 
 	cat <<EOF > ${TEMPDIR}/boot/grub/menu.lst
 default 0
@@ -250,8 +245,8 @@ gfxmenu /boot/message
 
 ##ISO boot
 title sidux from ISO
-kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll fromhd=LABEL=${label} fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso quiet vga=791 ${lang} ${persist} ${toram} ${@}
-initrd (hd0,0)/${FLL_DISTRO_NAME}/${initrd}
+kernel (hd0,0)/boot/${vmlinuz} boot=fll fromhd=LABEL=${label} fromiso quiet vga=791 ${@}
+initrd (hd0,0)/boot/${initrd}
 
 EOF
 
@@ -261,8 +256,8 @@ EOF
 # preparation
 #--------------------------------------------------------------
 
-TEMP=`getopt -o dD:I:hl:L:ptT \
-        --long debug,drive:,iso:,help,label:,lang:,persist,test,toram \
+TEMP=`getopt -o dD:I:hL:pt \
+        --long debug,drive:,iso:,help,label:,persist,test \
         -n  "$(basename $0)" -- "$@"`
 
 if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 99; fi
@@ -292,10 +287,6 @@ while true ; do
                         label="$2"
                         shift 2
                         ;;
-		-l|--lang)
-			lang="lang=$2"
-			shift 2
-			;;
                 -p|--persist)
 			persist="persist"
                         shift
@@ -304,10 +295,6 @@ while true ; do
 			nocopy="yes"
                         shift
                         ;;
-		-T|--toram)
-			toram="toram"
-			shift
-			;;
                 --)
                         shift
                         break ;;
@@ -322,7 +309,12 @@ done
 trap clean_exit exit
 
 #--------------------------------------------------------------
-source /etc/default/distro
+if [ -s /etc/default/distro ]; then
+	source /etc/default/distro
+else
+	echo "Requires distro-defaults, aborting..."
+	exit 1
+fi
 
 TEMPDIR="$(mktemp -dp /tmp/ XXXXXXXXXX)"
 

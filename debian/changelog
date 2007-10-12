@@ -16,8 +16,14 @@ install-usb-gui (0.0.6) UNRELEASED; urgency=low
       volume label conflict
     - append arguments to script after -- break point to menu.lst
     - move trap statement to just before the main() part of script
+    - remove --help output for --label, --toram and --persist. All cheatcodes
+      that are wanted should be listed after --
+    - fail if no distro-defaults installed
+    - use FLL_MEDIA_NAME instead of self made string, we anchor the wanted
+      device by unique label now, no need to obscure the iso name
+    - put kernel image and initrd-img in /boot
 
- -- Kel Modderman <kel@otaku42.de>  Fri, 12 Oct 2007 15:30:05 +1000
+ -- Kel Modderman <kel@otaku42.de>  Fri, 12 Oct 2007 16:16:11 +1000
 
 install-usb-gui (0.0.5) unstable; urgency=low
 
