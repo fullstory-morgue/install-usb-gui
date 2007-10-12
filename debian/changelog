@@ -14,10 +14,10 @@ install-usb-gui (0.0.6) UNRELEASED; urgency=low
     - add valid_label() to sanitize user input
     - append a pseudorandom integer to fallback label name to help avoid
       volume label conflict
-    - exit after displaying help output
     - append arguments to script after -- break point to menu.lst
+    - move trap statement to just before the main() part of script
 
- -- Kel Modderman <kel@otaku42.de>  Fri, 12 Oct 2007 15:18:53 +1000
+ -- Kel Modderman <kel@otaku42.de>  Fri, 12 Oct 2007 15:30:05 +1000
 
 install-usb-gui (0.0.5) unstable; urgency=low
 
