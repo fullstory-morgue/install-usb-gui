@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (C) 2007 Joaquim Boura <x-un-@sidux.com>
+# Copyright (C) 2007 Joaquim Boura <x-un-i@sidux.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -227,7 +227,7 @@ gfxmenu /boot/message
 
 ##ISO boot
 title sidux from ISO
-kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso quiet vga=791 ${lang} ${persist} ${toram}
+kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll fromhd=LABEL=${label} fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso quiet vga=791 ${lang} ${persist} ${toram}
 initrd (hd0,0)/${FLL_DISTRO_NAME}/${initrd}
 
 EOF
