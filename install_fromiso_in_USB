@@ -238,8 +238,8 @@ EOF
 # preparation
 #--------------------------------------------------------------
 
-TEMP=`getopt -o dD:I:hlL:ptT \
-        --long debug,drive:,iso:,help,label,lang,persist,test,toram \
+TEMP=`getopt -o dD:I:hl:L:ptT \
+        --long debug,drive:,iso:,help,label:,lang:,persist,test,toram \
         -n  "$(basename $0)" -- "$@"`
 
 if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 99; fi
