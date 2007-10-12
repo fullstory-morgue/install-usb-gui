@@ -52,8 +52,13 @@ function usage()
         echo "-t|--test                 copy everything but do not copy the iso"
 	echo "-T|--toram                add toram boot option as default"
         echo ""
-        echo " Use it at your own risk, it comes without any warranty."
+	echo "Everything after -- will be appended to the kernel cmdline in the menu.lst"
+	echo "of the siduxUSB system (extra cheatcodes)."
+	echo ""
+        echo "Use it at your own risk, it comes without any warranty."
         echo ""
+
+	exit 0
 }
 #------------------------
 function valid_label()
@@ -248,7 +253,7 @@ gfxmenu /boot/message
 
 ##ISO boot
 title sidux from ISO
-kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll fromhd=LABEL=${label} fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso quiet vga=791 ${lang} ${persist} ${toram}
+kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll fromhd=LABEL=${label} fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso quiet vga=791 ${lang} ${persist} ${toram} ${@}
 initrd (hd0,0)/${FLL_DISTRO_NAME}/${initrd}
 
 EOF
@@ -353,7 +358,7 @@ else
 	copy_files_from_dev
 fi
 
-create_menu_list
+create_menu_list ${@}
 
 umount ${partition}
 
