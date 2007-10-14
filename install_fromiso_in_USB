@@ -118,6 +118,7 @@ a
 p
 w
 EOF   
+	
 	if [ "${?}" -ne 0 ] || [ ! -b "${partition}" ]; then
 		error "failed to create partition on device: ${device}"
 		return 1
