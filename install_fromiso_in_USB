@@ -125,7 +125,7 @@ EOF
 	
 	udevtrigger --subsystem-match=usb
 
-	is_bootable=$(fdisk -l ${device} | awk -v part=${partition} '
+	is_bootable=$(LC_ALL=C fdisk -l ${device} | awk -v part=${partition} '
 		{
 			if($1 == part && $2 == "*") {
 				print 1
@@ -151,7 +151,7 @@ EOF
 	
 		udevtrigger --subsystem-match=usb
 
-		is_bootable=$(fdisk -l ${device} | awk -v part=${partition} '
+		is_bootable=$(LC_ALL=C fdisk -l ${device} | awk -v part=${partition} '
 			{
 				if($1 == part && $2 == "*") {
 					print 1
@@ -166,7 +166,7 @@ EOF
 		fi
 	fi
 
-	part_id=$(fdisk -l ${device}  | awk -v part=${partition} '
+	part_id=$(LC_ALL=C fdisk -l ${device}  | awk -v part=${partition} '
 		{
 			if($1 == part && $6 == 83) {
 				print $6
@@ -191,7 +191,7 @@ EOF
 		
 		udevtrigger --subsystem-match=usb
 
-		part_id=$(fdisk -l ${device}  | awk -v part=${partition} '
+		part_id=$(LC_ALL=C fdisk -l ${device}  | awk -v part=${partition} '
 			{
 				if($1 == part && $6 == 83) {
 					print $6
@@ -297,8 +297,18 @@ copy_files_from_dev()
 	
 	local booted_device fll_booted_dir
 	
-	booted_device=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $1}')
-	fll_booted_dir=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $3}')
+	booted_device=$(LC_ALL=C mount | awk '
+		{
+			if(/iso9660/ && /\/fll/ && /\/dev\//)
+				print $1
+		}
+	')
+	fll_booted_dir=$(LC_ALL=C mount | awk '
+		{
+			if(/iso9660/ && /\/fll/ && /\/dev\//)
+				print $3
+		}
+	')
 
 	say "copying files to ${mountpoint}"
 	
