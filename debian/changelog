@@ -1,3 +1,9 @@
+install-usb-gui (0.0.8) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 14 Oct 2007 12:54:12 +0200
+
 install-usb-gui (0.0.7) unstable; urgency=low
 
   * Revert 11410, adjust new manpage to be in line with work done pre-r11410.
