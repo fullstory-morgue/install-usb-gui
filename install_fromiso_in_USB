@@ -172,7 +172,7 @@ EOF
 		')
 
 		if [ "${is_bootable}" -ne 1 ]; then
-			error "${ev}" "could not make USB device bootable"
+			error 1 "could not make USB device bootable"
 			return 1
 		fi
 	fi
@@ -214,7 +214,7 @@ EOF
 		')
 
 		if [ "${part_id}" -ne 83 ]; then
-			error "${ev}" "failed to set partition type 83 on ${device}"
+			error 1 "failed to set partition type 83 on ${device}"
 			return 1
 		fi	
 	fi	
