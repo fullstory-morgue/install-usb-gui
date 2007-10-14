@@ -401,7 +401,7 @@ copy_files_from_local_iso()
 #--------------------------------------------------------------
 mk_menulst()
 {
-	local device="${1}"
+	local partition="${1}"
 	local mountpoint="${2}"
 	local name="${3}"
 	shift 3
@@ -412,7 +412,7 @@ mk_menulst()
 
 	initrd=$(echo ${mountpoint}/boot/initrd.img-* | sed -e "s|^.*/||")
 	vmlinuz=$(echo ${mountpoint}/boot/vmlinuz-* | sed -e "s|^.*/||")
-	uuid=$(blkid -o value -s UUID ${device})
+	uuid=$(blkid -o value -s UUID ${partition})
 
 	cat > ${mountpoint}/boot/grub/menu.lst \
 <<EOF
@@ -540,7 +540,7 @@ else
 		"${FLL_MEDIA_NAME}" "${USBTMPDIR}" "${NOCOPY}"	|| exit 9
 fi
 
-mk_menulst "${DEVICE}" "${USBTMPDIR}" "${FLL_DISTRO_NAME}" ${@}	|| exit 10
+mk_menulst "${PARTITION}" "${USBTMPDIR}" "${FLL_DISTRO_NAME}" ${@}	|| exit 10
 
 umount_partition "${PARTITION}" "${USBTMPDIR}"			|| exit 11
 
