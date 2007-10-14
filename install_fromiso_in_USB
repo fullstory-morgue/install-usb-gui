@@ -463,9 +463,9 @@ if [ -z "${ISO}" ] && [ "${FLL_DISTRO_MODE}" = "live" ] && \
 	grep -s -q -w fromiso /proc/cmdline; then
 	# system booted fromiso, reuse the iso
 	ISO_T=$(grep -E -o 'fromiso=[^[:space:]]+' /proc/cmdline | sed 's/^fromiso=//')
-	# don't waste heaps of time for this, maxdepth of 2
+	# don't waste heaps of time for this, maxdepth of 3 for custom dir
 	if [ "${ISO_T}" ]; then
-		ISO=$(find /fll -maxdepth 2 -type f -print0 | grep -FzZ ${ISO_T})
+		ISO=$(find /fll -maxdepth 3 -type f -print0 | grep -FzZ ${ISO_T})
 	else
 		ISO=$(find /fll -maxdepth 2 -type f -name ${FLL_MEDIA_NAME})
 	fi
