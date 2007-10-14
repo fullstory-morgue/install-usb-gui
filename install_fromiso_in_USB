@@ -125,7 +125,16 @@ EOF
 	
 	udevtrigger --subsystem-match=usb
 
-	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
+	is_bootable=$(fdisk -l ${device} | awk '
+		BEGIN { i=0; }
+		{
+			if(/^\/dev.*\*/) {
+				i++
+				exit
+			}
+		}
+		END { print i; }
+	')
 
 	if [ "${is_bootable}" -ne 1 ]; then
 		# set boot flag
@@ -137,24 +146,41 @@ p
 w
 EOF
 
-	if [ "${?}" -ne 0 ]; then
-		error "fdisk stuffed up while setting device as bootable"
-		return 1
-	fi
+		if [ "${?}" -ne 0 ]; then
+			error "fdisk stuffed up while setting device as bootable"
+			return 1
+		fi
 	
-	udevtrigger --subsystem-match=usb
+		udevtrigger --subsystem-match=usb
 
-	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
+		is_bootable=$(fdisk -l ${device} | awk '
+			BEGIN { i=0; }
+			{
+				if(/^\/dev.*\*/) {
+					i++
+					exit
+				}
+			}
+			END{ print i; }
+		')
 
-	if [ "${is_bootable}" -ne 1 ]; then
-		error "could not make USB device bootable"
-		return 1
+		if [ "${is_bootable}" -ne 1 ]; then
+			error "could not make USB device bootable"
+			return 1
+		fi
 	fi
 
-	fs_type=$(fdisk -l ${device}  | \
-		awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
+	fs_type=$(fdisk -l ${device}  | awk '
+		BEGIN { fstype=0; }
+		{
+			if(/^\/dev.*\*/ && $6 ~ /[0-9]+/) {
+				fstype=$6
+			}
+		}
+		END { print fstype; }
+	')
 	
-	if [ "${fs_type}" != 83 ]; then
+	if [ "${fs_type}" -ne 83 ]; then
 		# set partition type
 		fdisk "${device}" \
 <<EOF
@@ -170,10 +196,17 @@ EOF
 		
 		udevtrigger --subsystem-match=usb
 
-		fs_type=$(fdisk -l ${device}  | \
-			awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
+		fs_type=$(fdisk -l ${device}  | awk '
+			BEGIN { fstype=0; }
+			{
+				if(/^\/dev.*\*/ && $6 ~ /[0-9]+/) {
+					fstype=$6
+				}
+			}
+			END { print fstype; }
+		')
 
-		if [ "${fs_type}" != 83 ]; then
+		if [ "${fs_type}" -ne 83 ]; then
 			error "failed to set partition type 83 on ${device}"
 			return 1
 		fi	
