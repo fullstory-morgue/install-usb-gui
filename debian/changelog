@@ -11,8 +11,9 @@ install-usb-gui (0.0.7) UNRELEASED; urgency=low
   * Expand awk code for readability.
   * Improve awk blobs used for fdisk parsing.
   * Use LC_ALL=C when parsing external program output.
+  * Remove whitespace which caused sh syntax error!
 
- -- Kel Modderman <kel@otaku42.de>  Sun, 14 Oct 2007 19:32:49 +1000
+ -- Kel Modderman <kel@otaku42.de>  Sun, 14 Oct 2007 20:19:11 +1000
 
 install-usb-gui (0.0.6) unstable; urgency=low
 
