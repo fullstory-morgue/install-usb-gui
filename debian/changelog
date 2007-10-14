@@ -1,7 +1,4 @@
-install-usb-gui (0.0.8) UNRELEASED; urgency=low
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+install-usb-gui (0.0.8) unstable; urgency=low
 
   [ Horst Tritremmel ]
   * languge selection added/frontend
