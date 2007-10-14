@@ -1,4 +1,4 @@
-install-usb-gui (0.0.7) UNRELEASED; urgency=low
+install-usb-gui (0.0.7) unstable; urgency=low
 
   * Revert 11410, adjust new manpage to be in line with work done pre-r11410.
   * Really overhaul script, mostly code style and flow.
