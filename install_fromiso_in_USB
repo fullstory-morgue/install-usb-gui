@@ -22,7 +22,7 @@
 #-------------------------------------------------------------------
 #
 # given an usb pen, eg /dev/sdb, /dev/sdc we create ** one **  partiton on that 
-# device make it bootable, format it with ext3 (labeled sidux_from_usb)
+# device make it bootable, format it with ext3
 # install grub into it
 # copy the message file into the grub dirs
 # create directory for iso, kernel, initrd (eg sidux)
@@ -34,26 +34,36 @@ function clean_exit()
 {
 	echo $? > /tmp/.install_fromiso_in_USB
 }
-trap clean_exit exit
 #--------------------------
 
 function usage()
 {
+        echo ""
+        echo "$(basename $0) create an fromiso installation on a USB drive"
+        echo ""
+        echo "-d|--debugdebug sh code execution"
+        echo "-D|--drive </dev/sdX>     name of device where to install the \"fromiso\""
+        echo "-h|--help print this help"
+        echo "-I|--iso <iso_file>       iso file name to be installed"
+        echo "-t|--test copy everything but do not copy the iso"
+        echo ""
+	echo "Everything after -- will be appended to the kernel cmdline in the menu.lst"
+	echo "of the ${FLL_DISTRO_NAME}USB system (extra cheatcodes)."
 	echo ""
-	echo "$(basename $0) create an fromiso installation on a USB drive"
-	echo ""
-	echo "-d|--debug                debug sh code execution"
-	echo "-D|--drive </dev/sdX>     name of device where to install the \"fromiso\""
-	echo "-h|--help                 print this help"
-	echo "-I|--iso <iso_file>       iso file name to be installed"
-	echo "-L|--label <label_name>   label name to be used for the created partition"
-	echo "-l|--lang <ll-cc>         default system language/locale"
-	echo "-p|--persist              use device as persistent storage device"
-	echo "-t|--test                 copy everything but do not copy the iso"
-	echo "-T|--toram                add toram boot option as default"
-	echo ""
-	echo " Use it at your own risk, it comes without any warranty."
-	echo ""
+        echo "Use it at your own risk, it comes without any warranty."
+        echo ""
+}
+#------------------------
+function valid_label()
+{
+	# label may contain only these characters
+	case "$1" in
+		*[!A-Za-z0-9-_]*)
+			return 1
+			;;
+	esac
+	
+	return 0
 }
 #------------------------
 function prepare_partition()
@@ -75,7 +85,7 @@ a
 1
 p
 w
-EOF                           
+EOF   
 	if [ "$?" -ne 0 ]; then
 		echo Failed to create partition on device ${device}. STOP
 		exit 1
@@ -132,7 +142,16 @@ EOF
 	fi	
 
 	# now create the filesystem in it.
-	label=${label:-"sidux-from-USB"}
+	if [ "${label}" ] && ! valid_label "${label}"; then
+		echo "WARNING: you gave an invalid label: ${label}"
+		echo "Use only characters in the rage of [A-Za-z0-9-_]"
+		echo "...and no spaces!"
+		unset label
+	fi
+	
+	# append a pseudorandom string of numbers to help avoid
+	# having a volume label conflict
+	label=${label:-"${FLL_DISTRO_NAME}USB"}
 
 	mkfs.ext3 -q -m 1 -L ${label} ${partition}
 	if [ $? -ne 0 ]; then
@@ -149,7 +168,7 @@ function install_grub()
 
 	echo "Installing grub"
 
-	(grub-install --recheck --no-floppy --root-directory=${TEMPDIR}  ${device} 2>&1 >/dev/null) >/dev/null
+	grub-install --recheck --no-floppy --root-directory=${TEMPDIR}  ${device}
 
 	device_map=${TEMPDIR}/boot/grub/device.map
 	disk=$(echo ${device}|cut -d '/' -f 3)
@@ -170,14 +189,13 @@ function copy_files_from_dev()
 	booted_device=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $1}')
 	fll_booted_dir=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $3}')
 
-	cp ${fll_booted_dir}/boot/message ${TEMPDIR}/boot
-
-	mkdir ${TEMPDIR}/${FLL_DISTRO_NAME}
-	cp ${fll_booted_dir}/boot/initrd* \
-		${fll_booted_dir}/boot/vmlinuz* ${TEMPDIR}/${FLL_DISTRO_NAME}
+	cp 	${fll_booted_dir}/boot/message \
+		${fll_booted_dir}/boot/initrd* \
+		${fll_booted_dir}/boot/vmlinuz* \
+			${TEMPDIR}/boot
 
 	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
-		dd if=${booted_device} of=${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso
+		dd if=${booted_device} of=${TEMPDIR}/${FLL_MEDIA_NAME}
 	fi
 }
 #-----------------------------------
@@ -194,17 +212,17 @@ function copy_files_from_local_iso()
 		exit 7
 	fi
 	
-	cp ${mounted_iso}/boot/message ${TEMPDIR}/boot
-
-	mkdir ${TEMPDIR}/${FLL_DISTRO_NAME}
-	cp ${mounted_iso}/boot/initrd* \
-		${mounted_iso}/boot/vmlinuz* ${TEMPDIR}/${FLL_DISTRO_NAME}
+	cp 	${fll_booted_dir}/boot/message \
+			${TEMPDIR}/boot
+	cp	${mounted_iso}/boot/initrd* \
+		${mounted_iso}/boot/vmlinuz* \
+			${TEMPDIR}/boot
 
 	umount ${mounted_iso}
 	rmdir ${mounted_iso}
 
 	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
- 		cp ${iso} ${TEMPDIR}/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso
+ 		cp ${iso} ${TEMPDIR}/${FLL_MEDIA_NAME}
 	fi
 }
 #------------------------
@@ -213,8 +231,8 @@ function create_menu_list()
 	local initrd vmlinuz
 
 	echo "Creating menu.lst"
-	initrd=$(echo ${TEMPDIR}/${FLL_DISTRO_NAME}/initrd.img-* | sed -e "s|^.*/||")
-	vmlinuz=$(echo ${TEMPDIR}/${FLL_DISTRO_NAME}/vmlinuz-* | sed -e "s|^.*/||")
+	initrd=$(echo ${TEMPDIR}/boot/initrd.img-* | sed -e "s|^.*/||")
+	vmlinuz=$(echo ${TEMPDIR}/boot/vmlinuz-* | sed -e "s|^.*/||")
 
 	cat <<EOF > ${TEMPDIR}/boot/grub/menu.lst
 default 0
@@ -226,9 +244,9 @@ gfxmenu /boot/message
 
 
 ##ISO boot
-title sidux from ISO
-kernel (hd0,0)/${FLL_DISTRO_NAME}/${vmlinuz} boot=fll fromiso=/${FLL_DISTRO_NAME}/${FLL_DISTRO_NAME}-$(basename ${TEMPDIR}).iso quiet vga=791 ${lang} ${persist} ${toram}
-initrd (hd0,0)/${FLL_DISTRO_NAME}/${initrd}
+title ${FLL_DISTRO_NAME} from ISO
+kernel (hd0,0)/boot/${vmlinuz} boot=fll fromhd=LABEL=${label} fromiso quiet vga=791 ${@}
+initrd (hd0,0)/boot/${initrd}
 
 EOF
 
@@ -238,8 +256,8 @@ EOF
 # preparation
 #--------------------------------------------------------------
 
-TEMP=`getopt -o dD:I:hlL:ptT \
-        --long debug,drive:,iso:,help,label,lang,persist,test,toram \
+TEMP=`getopt -o dD:I:hL:pt \
+        --long debug,drive:,iso:,help,label:,persist,test \
         -n  "$(basename $0)" -- "$@"`
 
 if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 99; fi
@@ -269,10 +287,6 @@ while true ; do
 			label="$2"
 			shift 2
 			;;
-		-l|--lang)
-			lang="lang=$2"
-			shift 2
-			;;
 		-p|--persist)
 			persist="persist"
 			shift
@@ -281,13 +295,10 @@ while true ; do
 			nocopy="yes"
 			shift
 			;;
-		-T|--toram)
-			toram="toram"
-			shift
-			;;
 		--)
 			shift
-			break ;;
+			break
+			;;
 		*)
 			echo "Internal error!"
 			exit 255
@@ -295,65 +306,30 @@ while true ; do
 	esac
 done
 
+#--------------------------------------------------------------
+trap clean_exit exit
 
 #--------------------------------------------------------------
 if [ -s /etc/default/distro ]; then
-        source /etc/default/distro
+	source /etc/default/distro
 else
-        echo "Requires distro-defaults, aborting..."
-        exit 1
+	echo "Requires distro-defaults, aborting..."
+	exit 1
 fi
 
-TEMPDIR="$(mktemp -dp /tmp/ XXXXXXXXXX)"
+TEMPDIR="$(mktemp -dp /tmp/ install-usb.XXXXX)"
 
-if [ -z "${iso}" ] || ! stat ${device} 2>&1>/dev/null ; then 
-	echo bad device "${device}"; 
+if ! stat ${device} 2>&1>/dev/null ; then 
+	echo device "${device}" not found; 
 	exit 8 
 fi
 
 partition=${device}1
 
-
 if [ "${FLL_DISTRO_MODE}" = "installed" ]; then
 	if [ -z "${iso}" -o ! -r "${iso}" ]; then
 		echo can not read the iso ${iso} file
 		exit 9
-	fi
-else
-	#
-	# booted from live fromiso and toram
-	# the second one needs an iso file
-	#
-	if grep -s -q -w fromiso /proc/cmdline; then
-		# now when no iso was given use the one from we are booted ;)
-		if [ -z "${iso}" ]; then
-			iso=$(find /fll -print0 | grep -FzZ "${booted_from}")
-			if [ -z "${iso}" ]; then
-				echo can not find an iso file
-				exit 10
-			fi
-		else
-			for opt in $(cat /proc/cmdline); do
-				case "${opt}" in
-					fromiso*)
-						case "${opt}" in
-							fromiso=*)
-								booted_from="${opt#fromiso=}"
-								;;
-						esac
-						;;
-				esac
-			done
-		fi
-	elif grep -s -q -w toram /proc/cmdline; then
-		if [ -z "${iso}" ]; then
-			echo "You are booted into toram. You must give the iso that i should use"
-			usage
-			exit 11
-		elif [ ! -r "${iso}" ]; then
-			echo can not read the iso ${iso} file
-			exit 12
-		fi
 	fi
 fi
 
@@ -373,7 +349,7 @@ else
 	copy_files_from_dev
 fi
 
-create_menu_list
+create_menu_list ${@}
 
 umount ${partition}
 
