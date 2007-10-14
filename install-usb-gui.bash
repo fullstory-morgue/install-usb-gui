@@ -143,33 +143,18 @@ printf "$RUN_SH\n"
 x-terminal-emulator -e $RUN_SH
 
 # lookup the return code from install-fromiso-in-usb
-test -e /tmp/.install_fromiso_in_USB && rc=$(</tmp/.install_fromiso_in_USB) || rc=90
+test -e /tmp/.install_fromiso_in_USB && rc=$(</tmp/.install_fromiso_in_USB) || rc=0
 
-case "$rc" in
-        0) MSG="Install successful"
-                ;;
-        1) MSG="Failed to create partition on device ${combo_device}\n\n**STOP**"
-                ;;
-        2) MSG="Failed to make partition bootable on device ${combo_device}\n\n**STOP**"
-                ;;
-        3) MSG="Could not make USB device ${combo_device} bootable\n\n**STOP**"
-                ;;
-        4) MSG="Failed to set partition type on device ${combo_device}\n\n**STOP**"
-                ;;
-        5) MSG="Could not set the right partition type on the USB device ${combo_device}\n\n**STOP**"
-                ;;
-        6) MSG="Error formating the USB device ${combo_device}\n\n**STOP**"
-                ;;
-        7) MSG="Could not mount the iso file\n\n**STOP**"
-                ;;
-        8) MSG="device "${combo_device}" not found!\n\n**STOP**"
-                ;;
-        90)MSG="internal error...\n\n**STOP**"
+case "${rc%-*}" in
+        0)
+		MSG="Install successful"
 		;;
-        99)MSG="getopt internal error...\n\n**STOP**"
-                ;;
-        255)MSG="bad parameter. internal error...\n\n**STOP**"
-                ;;
+	255)
+		MSG="internal error...\n\n**STOP**"
+		;;
+        *)
+		MSG="${rc#*-}\n\n**STOP**"
+		;;
 esac
 
 ssft_display_message $(gettext "USB-Installation") $(eval_gettext "\$MSG\n\n")

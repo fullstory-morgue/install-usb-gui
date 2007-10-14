@@ -63,7 +63,13 @@ usage()
 #--------------------------------------------------------------
 error()
 {
-	echo "E: ${1}"
+	local exitval="${1}"
+	shift
+
+	# the gui currently uses this
+	echo "${exitval}-${@}" > /tmp/.install_fromiso_in_USB
+	
+	echo "E: ${@}"
 }
 #--------------------------------------------------------------
 say()
@@ -90,6 +96,7 @@ prepare_partition()
 	local label="${3:-${FLL_DISTRO_NAME}USB}"
 	shift 3
 
+	local ev
 	local is_bootable part_id
 
 	say "preparing bootable partition on device: ${device}"
@@ -97,8 +104,9 @@ prepare_partition()
 	# clear the partition table
 	dd if=/dev/zero of=${device} bs=1M count=16
 
-	if [ "${?}" -ne 0 ]; then
-		error "failed to zero ${device}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to zero ${device}"
 		return 1
 	fi
 	
@@ -119,8 +127,9 @@ p
 w
 EOF
 	
-	if [ "${?}" -ne 0 ] || [ ! -b "${partition}" ]; then
-		error "failed to create partition on device: ${device}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ] || [ ! -b "${partition}" ]; then
+		error "${ev}" "failed to create partition on device: ${device}"
 		return 1
 	fi
 	
@@ -145,8 +154,9 @@ p
 w
 EOF
 
-		if [ "${?}" -ne 0 ]; then
-			error "fdisk stuffed up while setting device as bootable"
+		ev="${?}"
+		if [ "${ev}" -ne 0 ]; then
+			error "${ev}" "fdisk stuffed up while setting device as bootable"
 			return 1
 		fi
 	
@@ -162,7 +172,7 @@ EOF
 		')
 
 		if [ "${is_bootable}" -ne 1 ]; then
-			error "could not make USB device bootable"
+			error "${ev}" "could not make USB device bootable"
 			return 1
 		fi
 	fi
@@ -185,8 +195,10 @@ t
 p
 w
 EOF
-		if [ "${?}" -ne 0 ]; then
-			error "fdisk failed when setting partition type"
+		
+		ev="${?}"
+		if [ "${ev}" -ne 0 ]; then
+			error "${ev}" "fdisk failed when setting partition type"
 			return 1
 		fi
 		
@@ -202,15 +214,16 @@ EOF
 		')
 
 		if [ "${part_id}" -ne 83 ]; then
-			error "failed to set partition type 83 on ${device}"
+			error "${ev}" "failed to set partition type 83 on ${device}"
 			return 1
 		fi	
 	fi	
 
 	mkfs.ext3 -q -m 1 -L "${label}" "${partition}"
 	
-	if [ "${?}" -ne 0 ]; then
-		error "failed to format ${partition}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to format ${partition}"
 		return 1
 	fi
 
@@ -223,12 +236,15 @@ mount_partition()
 	local mountpoint="${2}"
 	shift 2
 
+	local ev
+
 	say "mounting ${partition} on ${mountpoint}"
 
 	mount -o rw "${partition}" "${mountpoint}"
 
-	if [ "${?}" -ne 0 ]; then
-		error "failed to mount ${partition} on ${mountpoint}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to mount ${partition} on ${mountpoint}"
 		return 1
 	fi
 
@@ -241,19 +257,23 @@ umount_partition()
 	local mountpoint="${2}"
 	shift 2
 
+	local ev
+
 	say "umounting ${partition} from ${mountpoint}"
 
 	umount "${partition}"
 
-	if [ "${?}" -ne 0 ]; then
-		error "failed to umount ${partition} from ${mountpoint}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to umount ${partition} from ${mountpoint}"
 		return 1
 	fi
 
 	rmdir "${mountpoint}"
 
-	if [ "${?}" -ne 0 ]; then
-		error "failed to remove mount point: ${mountpoint}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to remove mount point: ${mountpoint}"
 		return 1
 	fi
 
@@ -266,14 +286,16 @@ install_grub()
 	local mountpoint="${2}"
 	shift 2
 	
+	local ev
 	local device_map disk
 
 	say "installing grub on ${device}"
 
 	grub-install --recheck --no-floppy --root-directory="${mountpoint}" "${device}"
 
-	if [ "${?}" -ne 0 ]; then
-		error "grub-install failed, root-directory=${mountpoint}, device=${device}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "grub-install failed, root-directory=${mountpoint}, device=${device}"
 		return 1
 	fi
 
@@ -296,6 +318,7 @@ copy_files_from_dev()
 	local nocopy="${3}"
 	shift 3
 	
+	local ev
 	local booted_device fll_booted_dir
 	
 	booted_device=$(LC_ALL=C mount | awk '
@@ -318,8 +341,9 @@ copy_files_from_dev()
 		${fll_booted_dir}/boot/vmlinuz* \
 			${mountpoint}/boot
 	
-	if [ "${?}" -ne 0 ]; then
-		error "failed to copy files to ${mountpoint}/boot"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to copy files to ${mountpoint}/boot"
 		return 1
 	fi
 
@@ -329,8 +353,9 @@ copy_files_from_dev()
 
 	dd if="${booted_device}" of="${mountpoint}/${name}"
 
-	if [ "${?}" -ne 0 ]; then
-		error "dd failed to clone ${booted_device} to ${mountpoint}/${name}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "dd failed to clone ${booted_device} to ${mountpoint}/${name}"
 		return 1
 	fi
 
@@ -345,6 +370,7 @@ copy_files_from_local_iso()
 	local nocopy="${4}"
 	shift 4
 
+	local ev
 	local mounted_iso 
 	
 	say "mounting iso: ${iso}"
@@ -353,8 +379,9 @@ copy_files_from_local_iso()
 	
 	mount -t iso9660 -o loop,ro "${iso}" "${mounted_iso}"
 	
-	if [ "${?}" -ne 0 ]; then
-		error "failed to mount ${iso} on ${mounted_iso}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to mount ${iso} on ${mounted_iso}"
 		return 1
 	fi
 
@@ -366,22 +393,25 @@ copy_files_from_local_iso()
 		${mounted_iso}/boot/vmlinuz* \
 			${mountpoint}/boot
 	
-	if [ "${?}" -ne 0 ]; then
-		error "failed to copy files to ${mountpoint}/boot"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to copy files to ${mountpoint}/boot"
 		return 1
 	fi
 
 	umount ${mounted_iso}
 
-	if [ "${?}" -ne 0 ]; then
-		error "failed to umount ${mounted_iso}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to umount ${mounted_iso}"
 		return 1
 	fi
 
 	rmdir ${mounted_iso}
 
-	if [ "${?}" -ne 0 ]; then
-		error "failed to remove ${mounted_iso}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to remove ${mounted_iso}"
 		return 1
 	fi
 
@@ -391,8 +421,9 @@ copy_files_from_local_iso()
 
 	cp -v "${iso}" "${mountpoint}/${name}"
 
-	if [ "${?}" -ne 0 ]; then
-		error "failed to cp ${iso} to ${mountpoint}/${name}"
+	ev="${?}"
+	if [ "${ev}" -ne 0 ]; then
+		error "${ev}" "failed to cp ${iso} to ${mountpoint}/${name}"
 		return 1
 	fi
 
@@ -406,6 +437,7 @@ menulst()
 	local name="${3}"
 	shift 3
 
+	local ev
 	local initrd vmlinuz uuid
 
 	say "creating ${mountpoint}/boot/grub/menu.lst"
@@ -440,7 +472,7 @@ TEMP=$(getopt -o dD:I:hL:pt \
         -n  "$(basename ${0})" -- "${@}")
 
 if [ "${?}" -ne 0 ]; then
-	error "getopt terminated abnormally"
+	error 255 "getopt terminated abnormally"
 	exit 255
 fi
 
@@ -478,7 +510,7 @@ while true ; do
 			break
 			;;
 		*)
-			error "getopt internal error"
+			error 255 "getopt internal error"
 			exit 255
 			;;
 	esac
@@ -488,12 +520,12 @@ done
 # sanity checking and argument post-processing
 #--------------------------------------------------------------
 if [ -z "${DEVICE}" ]; then 
-	error "requires -D|--drive option"
+	error 2 "requires -D|--drive option"
 	exit 2
 fi
 
 if [ ! -b "${DEVICE}" ]; then 
-	error "device not found: ${DEVICE}"
+	error 3 "device not found: ${DEVICE}"
 	exit 3
 fi
 
@@ -514,7 +546,7 @@ if [ "${FLL_DISTRO_MODE}" = "installed" ] || \
 	# installed system or system booted with "toram"
 	# must supply iso media
 	if [ -z "${ISO}" ] || [ ! -r "${ISO}" ]; then
-		error "host/toram mode requires -I|--iso option"
+		error 4 "host/toram mode requires -I|--iso option"
 		exit 4
 	fi
 	FORCE_LOCAL_ISO="1"
