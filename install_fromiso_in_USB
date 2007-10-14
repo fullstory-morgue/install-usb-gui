@@ -399,7 +399,7 @@ copy_files_from_local_iso()
 	say "files successfully copied to ${mountpoint}"
 }
 #--------------------------------------------------------------
-mk_menulst()
+menulst()
 {
 	local partition="${1}"
 	local mountpoint="${2}"
@@ -540,7 +540,7 @@ else
 		"${FLL_MEDIA_NAME}" "${USBTMPDIR}" "${NOCOPY}"	|| exit 9
 fi
 
-mk_menulst "${PARTITION}" "${USBTMPDIR}" "${FLL_DISTRO_NAME}" ${@}	|| exit 10
+menulst "${PARTITION}" "${USBTMPDIR}" "${FLL_DISTRO_NAME}" ${@}	|| exit 10
 
 umount_partition "${PARTITION}" "${USBTMPDIR}"			|| exit 11
 
