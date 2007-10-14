@@ -1,8 +1,13 @@
 install-usb-gui (0.0.7) UNRELEASED; urgency=low
 
   * Revert 11410, adjust new manpage to be in line with work done pre-r11410.
+  * Really overhaul script, mostly code style and flow.
+  * Some ABI incompatible changes, to force improvement from gui:
+    - no more --toram, --lang or --persist options
+    - no storing of exit value in tmp file
+  * Merge in bits from 11410.
 
- -- Kel Modderman <kel@otaku42.de>  Sun, 14 Oct 2007 15:49:01 +1000
+ -- Kel Modderman <kel@otaku42.de>  Sun, 14 Oct 2007 18:45:59 +1000
 
 install-usb-gui (0.0.6) unstable; urgency=low
 

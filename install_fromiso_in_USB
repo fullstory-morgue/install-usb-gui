@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2007 Joaquim Boura <x-un-i@sidux.com>
+#           (C) 2007 Kel Modderman <kel@otaku42.de>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -28,36 +29,52 @@
 # create directory for iso, kernel, initrd (eg sidux)
 # copy the files into there.
 # create the menu.lst file on it
-# 
-#--------------------------
-function clean_exit()
-{
-	echo $? > /tmp/.install_fromiso_in_USB
-}
-#--------------------------
+#
 
-function usage()
+#--------------------------------------------------------------
+# source distro-defaults
+#--------------------------------------------------------------
+if [ -s /etc/default/distro ]; then
+	source /etc/default/distro
+else
+	echo "E: requires distro-defaults"
+	exit 1
+fi
+
+#--------------------------------------------------------------
+# functions
+#--------------------------------------------------------------
+usage()
 {
         echo ""
-        echo "$(basename $0) create an fromiso installation on a USB drive"
+        echo "Create an fromiso (frugal) installation on a USB drive"
         echo ""
-        echo "-d|--debugdebug sh code execution"
+        echo "-d|--debug                debug sh code execution"
         echo "-D|--drive </dev/sdX>     name of device where to install the \"fromiso\""
-        echo "-h|--help print this help"
-        echo "-I|--iso <iso_file>       iso file name to be installed"
-        echo "-t|--test copy everything but do not copy the iso"
+        echo "-h|--help                 print this help"
+        echo "-I|--iso   <iso_file>     iso file name to be installed"
+        echo "-t|--test                 copy everything but do not copy the iso"
         echo ""
-	echo "Everything after -- will be appended to the kernel cmdline in the menu.lst"
-	echo "of the ${FLL_DISTRO_NAME}USB system (extra cheatcodes)."
+	echo "Everything after -- will be appended to the kernel cmdline of grub menu.lst"
 	echo ""
         echo "Use it at your own risk, it comes without any warranty."
         echo ""
 }
-#------------------------
-function valid_label()
+#--------------------------------------------------------------
+error()
+{
+	echo "E: ${1}"
+}
+#--------------------------------------------------------------
+say()
+{
+	echo "O: ${1}"
+}
+#--------------------------------------------------------------
+valid_label()
 {
 	# label may contain only these characters
-	case "$1" in
+	case "${1}" in
 		*[!A-Za-z0-9-_]*)
 			return 1
 			;;
@@ -65,14 +82,29 @@ function valid_label()
 	
 	return 0
 }
-#------------------------
-function prepare_partition()
+#--------------------------------------------------------------
+prepare_partition()
 {
+	local device="${1}"
+	local partition="${2}"
+	local label="${3:-${FLL_DISTRO_NAME}USB}"
+	shift 3
+
+	local is_bootable fs_type
+
+	say "preparing bootable partition on device: ${device}"
+
 	# clear the partition table
 	dd if=/dev/zero of=${device} bs=1M count=16
+
+	if [ "${?}" -ne 0 ]; then
+		error "failed to zero ${device}"
+		return 1
+	fi
 	
 	# create partition
-	fdisk ${device} << EOF 2>&1 >> /dev/null
+	fdisk "${device}" \
+<<EOF
 
 n
 p
@@ -86,155 +118,266 @@ a
 p
 w
 EOF   
-	if [ "$?" -ne 0 ]; then
-		echo Failed to create partition on device ${device}. STOP
-		exit 1
+	if [ "${?}" -ne 0 ]; then
+		error "failed to create partition on device: ${device}"
+		return 1
 	fi
+	
 	udevtrigger --subsystem-match=usb
 
 	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
 
-	if [ ${is_bootable} -ne 1 ]; then
+	if [ "${is_bootable}" -ne 1 ]; then
 		# set boot flag
-		fdisk ${device} <<EOF 2>&1 >> /dev/null
+		fdisk "${device}" \
+<<EOF
 a
 1
 p
 w
 EOF
 
-	if [ "$?" -ne 0 ]; then
-		echo Failed to make partition bootable on device ${device}. STOP
-		exit 2
+	if [ "${?}" -ne 0 ]; then
+		error "fdisk stuffed up while setting device as bootable"
+		return 1
 	fi
+	
 	udevtrigger --subsystem-match=usb
 
 	is_bootable=$(fdisk -l ${device} | awk 'BEGIN{i=0;}{if(/^\/dev.*\*/) { i++; exit}}END{print i}')
 
-	if [ ${is_bootable} -ne 1 ]; then
-		echo Could not make USB device bootable. STOP.
-		exit 3
+	if [ "${is_bootable}" -ne 1 ]; then
+		error "could not make USB device bootable"
+		return 1
 	fi
 
 	fs_type=$(fdisk -l ${device}  | \
 		awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
+	
 	if [ "${fs_type}" != 83 ]; then
 		# set partition type
-		fdisk ${device} <<EOF 2>&1 >> /dev/null
+		fdisk "${device}" \
+<<EOF
 t
 83
 p
 w
 EOF
-	if [ "$?" -ne 0 ]; then
-		echo Failed to set partition type on device ${device}. STOP
-		exit 4
-	fi
+		if [ "${?}" -ne 0 ]; then
+			error "fdisk failed when setting partition type"
+			return 1
+		fi
+		
 		udevtrigger --subsystem-match=usb
 
 		fs_type=$(fdisk -l ${device}  | \
 			awk 'BEGIN{fstype=0}{if(/^\/dev.*\*/) { fstype=$6}}END{print fstype}')
 
 		if [ "${fs_type}" != 83 ]; then
-			echo Could not set the right partition type on the USB device. STOP.
-			exit 5
+			error "failed to set partition type 83 on ${device}"
+			return 1
 		fi	
 	fi	
 
-	# now create the filesystem in it.
-	if [ "${label}" ] && ! valid_label "${label}"; then
-		echo "WARNING: you gave an invalid label: ${label}"
-		echo "Use only characters in the rage of [A-Za-z0-9-_]"
-		echo "...and no spaces!"
-		unset label
-	fi
+	mkfs.ext3 -q -m 1 -L "${label}" "${partition}"
 	
-	# append a pseudorandom string of numbers to help avoid
-	# having a volume label conflict
-	label=${label:-"${FLL_DISTRO_NAME}USB"}
-
-	mkfs.ext3 -q -m 1 -L ${label} ${partition}
-	if [ $? -ne 0 ]; then
-		echo Error formating the USB device. STOP.
-		exit 6
+	if [ "${?}" -ne 0 ]; then
+		error "failed to format ${partition}"
+		return 1
 	fi
-	udevtrigger --subsystem-match=usb
 
+	say "prepared bootable partition: ${partition} label: ${label}"
 }
-#----------------------
-function install_grub()
+#--------------------------------------------------------------
+mount_partition()
 {
-	local device_map
+	local partition="${1}"
+	local mountpoint="${2}"
+	shift 2
 
-	echo "Installing grub"
+	say "mounting ${partition} on ${mountpoint}"
 
-	grub-install --recheck --no-floppy --root-directory=${TEMPDIR}  ${device}
+	mount -o rw "${partition}" "${mountpoint}"
 
-	device_map=${TEMPDIR}/boot/grub/device.map
-	disk=$(echo ${device}|cut -d '/' -f 3)
+	if [ "${?}" -ne 0 ]; then
+		error "failed to mount ${partition} on ${mountpoint}"
+		return 1
+	fi
 
-	old_hdmap=$(grep ${disk} ${device_map}|awk '{print $1}' | sed -e "s/[\(,\)]//g")
+	say "mount point ready: ${mountpoint}"
+}
+#--------------------------------------------------------------
+umount_partition()
+{
+	local partition="${1}"
+	local mountpoint="${2}"
+	shift 2
+
+	say "umounting ${partition} from ${mountpoint}"
+
+	umount "${partition}"
+
+	if [ "${?}" -ne 0 ]; then
+		error "failed to umount ${partition} from ${mountpoint}"
+		return 1
+	fi
+
+	rmdir "${mountpoint}"
+
+	if [ "${?}" -ne 0 ]; then
+		error "failed to remove mount point: ${mountpoint}"
+		return 1
+	fi
+
+	say "mount point destroyed: ${mountpoint}"
+}
+#--------------------------------------------------------------
+install_grub()
+{
+	local device="${1}"
+	local mountpoint="${2}"
+	shift 2
+	
+	local device_map disk
+
+	say "installing grub on ${device}"
+
+	grub-install --recheck --no-floppy --root-directory="${mountpoint}" "${device}"
+
+	if [ "${?}" -ne 0 ]; then
+		error "grub-install failed, root-directory=${mountpoint}, device=${device}"
+		return 1
+	fi
+
+	device_map="${mountpoint}/boot/grub/device.map"
+	disk=$(echo ${device} |cut -d '/' -f 3)
+
+	old_hdmap=$(grep ${disk} ${device_map}| awk '{print $1}' | sed -e "s/[\(,\)]//g")
 
 	# fix the device.map file
 	sed -i -e "s|(hd0)|(hdX)|" -e "s|(${old_hdmap})|(hd0)|" \
-		-e "s|(hdX)|(${old_hdmap})|" ${device_map}
-
+		-e "s|(hdX)|(${old_hdmap})|" "${device_map}"
+	
+	say "grub successfully installed to ${device}"
 }
-#------------------------------
-function copy_files_from_dev()
+#--------------------------------------------------------------
+copy_files_from_dev()
 {
+	local name="${1}"
+	local mountpoint="${2}"
+	local nocopy="${3}"
+	shift 3
+	
 	local booted_device fll_booted_dir
 	
-	echo "Copying files"
 	booted_device=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $1}')
 	fll_booted_dir=$(mount | awk '{if (/iso9660/ && /\/fll/ && /\/dev\//) print $3}')
 
-	cp 	${fll_booted_dir}/boot/message \
+	say "copying files to ${mountpoint}"
+	
+	cp -v	${fll_booted_dir}/boot/message \
 		${fll_booted_dir}/boot/initrd* \
 		${fll_booted_dir}/boot/vmlinuz* \
-			${TEMPDIR}/boot
-
-	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
-		dd if=${booted_device} of=${TEMPDIR}/${FLL_MEDIA_NAME}
+			${mountpoint}/boot
+	
+	if [ "${?}" -ne 0 ]; then
+		error "failed to copy files to ${mountpoint}/boot"
+		return 1
 	fi
+
+	if [ "${nocopy}" = "yes" ]; then
+ 		return 0
+	fi
+
+	dd if="${booted_device}" of="${mountpoint}/${name}"
+
+	if [ "${?}" -ne 0 ]; then
+		error "dd failed to clone ${booted_device} to ${mountpoint}/${name}"
+		return 1
+	fi
+
+	say "files successfully copied to ${mountpoint}"
 }
-#-----------------------------------
-function copy_files_from_local_iso()
+#--------------------------------------------------------------
+copy_files_from_local_iso()
 {
+	local iso="${1}"
+	local name="${2}"
+	local mountpoint="${3}"
+	local nocopy="${4}"
+	shift 4
+
 	local mounted_iso 
 	
-	echo "Copying files"
-
-	mounted_iso="$(mktemp -dp /tmp/ iso-XXXXXXXXXX)"
-
-	if ! mount -t iso9660 -o loop,ro ${iso} ${mounted_iso} ; then
-		echo "Could not mount the iso file. STOP."	
-		exit 7
-	fi
+	say "mounting iso: ${iso}"
 	
-	cp 	${fll_booted_dir}/boot/message \
-			${TEMPDIR}/boot
-	cp	${mounted_iso}/boot/initrd* \
+	mounted_iso="$(mktemp -d -p /tmp/ install-usb-iso.XXXXX)"
+	
+	mount -t iso9660 -o loop,ro "${iso}" "${mounted_iso}"
+	
+	if [ "${?}" -ne 0 ]; then
+		error "failed to mount ${iso} on ${mounted_iso}"
+		return 1
+	fi
+
+	say "iso mounted on ${mounted_iso}"
+	say "copying files to ${mountpoint}"
+	
+	cp -v	${mounted_iso}/boot/message \
+		${mounted_iso}/boot/initrd* \
 		${mounted_iso}/boot/vmlinuz* \
-			${TEMPDIR}/boot
+			${mountpoint}/boot
+	
+	if [ "${?}" -ne 0 ]; then
+		error "failed to copy files to ${mountpoint}/boot"
+		return 1
+	fi
 
 	umount ${mounted_iso}
+
+	if [ "${?}" -ne 0 ]; then
+		error "failed to umount ${mounted_iso}"
+		return 1
+	fi
+
 	rmdir ${mounted_iso}
 
-	if [ -z "${nocopy}" -o "${nocopy}" != "yes" ]; then
- 		cp ${iso} ${TEMPDIR}/${FLL_MEDIA_NAME}
+	if [ "${?}" -ne 0 ]; then
+		error "failed to remove ${mounted_iso}"
+		return 1
 	fi
+
+	if [ "${nocopy}" = "yes" ]; then
+ 		return 0
+	fi
+
+	cp -v "${iso}" "${mountpoint}/${name}"
+
+	if [ "${?}" -ne 0 ]; then
+		error "failed to cp ${iso} to ${mountpoint}/${name}"
+		return 1
+	fi
+
+	say "files successfully copied to ${mountpoint}"
 }
-#------------------------
-function create_menu_list()
+#--------------------------------------------------------------
+mk_menulst()
 {
-	local initrd vmlinuz
+	local device="${1}"
+	local mountpoint="${2}"
+	local name="${3}"
+	shift 3
 
-	echo "Creating menu.lst"
-	initrd=$(echo ${TEMPDIR}/boot/initrd.img-* | sed -e "s|^.*/||")
-	vmlinuz=$(echo ${TEMPDIR}/boot/vmlinuz-* | sed -e "s|^.*/||")
+	local initrd vmlinuz uuid
 
-	cat <<EOF > ${TEMPDIR}/boot/grub/menu.lst
+	say "creating ${mountpoint}/boot/grub/menu.lst"
+
+	initrd=$(echo ${mountpoint}/boot/initrd.img-* | sed -e "s|^.*/||")
+	vmlinuz=$(echo ${mountpoint}/boot/vmlinuz-* | sed -e "s|^.*/||")
+	uuid=$(blkid -o value -s UUID ${device})
+
+	cat > ${mountpoint}/boot/grub/menu.lst \
+<<EOF
 default 0
 timeout 10
 color red/black light-red/black
@@ -244,39 +387,40 @@ gfxmenu /boot/message
 
 
 ##ISO boot
-title ${FLL_DISTRO_NAME} from ISO
-kernel (hd0,0)/boot/${vmlinuz} boot=fll fromhd=LABEL=${label} fromiso quiet vga=791 ${@}
+title ${name} (fromISO + fromUSB) 
+kernel (hd0,0)/boot/${vmlinuz} boot=fll fromhd=UUID=${uuid} fromiso quiet vga=791 ${@}
 initrd (hd0,0)/boot/${initrd}
 
 EOF
-
 }
 
 #--------------------------------------------------------------
-# preparation
+# preparation, process cli arguments with getopt
 #--------------------------------------------------------------
+TEMP=$(getopt -o dD:I:hL:pt \
+        --long debug,drive:,iso:,help,label:,test \
+        -n  "$(basename ${0})" -- "${@}")
 
-TEMP=`getopt -o dD:I:hL:pt \
-        --long debug,drive:,iso:,help,label:,persist,test \
-        -n  "$(basename $0)" -- "$@"`
-
-if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 99; fi
+if [ "${?}" -ne 0 ]; then
+	error "getopt terminated abnormally"
+	exit 255
+fi
 
 # Note the quotes around `$TEMP': they are essential!
-eval set -- "$TEMP"
+eval set -- "${TEMP}"
 
 while true ; do
-	case "$1" in
+	case "${1}" in
 		-d|--debug)
 			set -x
 			shift
 			;;
 		-D|--drive)
-			device="$2"
+			DEVICE="${2}"
 			shift 2
 			;;
 		-I|--iso)
-			iso="$2"
+			ISO="${2}"
 			shift 2
 			;;
 		-h|--help)
@@ -284,15 +428,11 @@ while true ; do
 			exit 0
 			;;
 		-L|--label)
-			label="$2"
+			valid_label "${2}" && LABEL="${2}"
 			shift 2
 			;;
-		-p|--persist)
-			persist="persist"
-			shift
-			;;
 		-t|--test)
-			nocopy="yes"
+			NOCOPY="yes"
 			shift
 			;;
 		--)
@@ -300,61 +440,70 @@ while true ; do
 			break
 			;;
 		*)
-			echo "Internal error!"
+			error "getopt internal error"
 			exit 255
 			;;
 	esac
 done
 
 #--------------------------------------------------------------
-trap clean_exit exit
-
+# sanity checking and argument post-processing
 #--------------------------------------------------------------
-if [ -s /etc/default/distro ]; then
-	source /etc/default/distro
-else
-	echo "Requires distro-defaults, aborting..."
-	exit 1
+if [ -z "${DEVICE}" ]; then 
+	error "requires -D|--drive option"
+	exit 2
 fi
 
-TEMPDIR="$(mktemp -dp /tmp/ install-usb.XXXXX)"
-
-if ! stat ${device} 2>&1>/dev/null ; then 
-	echo device "${device}" not found; 
-	exit 8 
+if [ ! -b "${DEVICE}" ]; then 
+	error "device not found: ${DEVICE}"
+	exit 3
 fi
 
-partition=${device}1
-
-if [ "${FLL_DISTRO_MODE}" = "installed" ]; then
-	if [ -z "${iso}" -o ! -r "${iso}" ]; then
-		echo can not read the iso ${iso} file
-		exit 9
+if [ -z "${ISO}" ] && [ "${FLL_DISTRO_MODE}" = "live" ] && \
+	grep -s -q -w fromiso /proc/cmdline; then
+	# system booted fromiso, reuse the iso
+	ISO_T=$(grep -E -o 'fromiso=[^[:space:]]+' /proc/cmdline | sed 's/^fromiso=//')
+	# don't waste heaps of time for this, maxdepth of 2
+	if [ "${ISO_T}" ]; then
+		ISO=$(find /fll -maxdepth 2 -type f -print0 | grep -FzZ ${ISO_T})
+	else
+		ISO=$(find /fll -maxdepth 2 -type f -name ${FLL_MEDIA_NAME})
 	fi
-fi
+fi	
 
-echo "preparing..."
-prepare_partition
-
-mount ${partition} ${TEMPDIR}
-
-echo "install grub..."
-install_grub
-
-echo "copy files..."
 if [ "${FLL_DISTRO_MODE}" = "installed" ] || \
 	grep -s -q -w toram /proc/cmdline; then
-	copy_files_from_local_iso 
-else
-	copy_files_from_dev
+	# installed system or system booted with "toram"
+	# must supply iso media
+	if [ -z "${ISO}" ] || [ ! -r "${ISO}" ]; then
+		error "host/toram mode requires -I|--iso option"
+		exit 4
+	fi
+	FORCE_LOCAL_ISO="1"
 fi
 
-create_menu_list ${@}
+#--------------------------------------------------------------
+# main()
+#--------------------------------------------------------------
+PARTITION="${DEVICE}1"
+USBTMPDIR="$(mktemp -d -p /tmp/ install-usb.XXXXX)"
 
-umount ${partition}
+prepare_partition "${DEVICE}" "${PARTITION}" "${LABEL}"		|| exit 5
 
-rmdir ${TEMPDIR}
-echo "done"
+mount_partition "${PARTITION}" "${USBTMPDIR}"			|| exit 6
+
+install_grub "${DEVICE}" "${USBTMPDIR}"				|| exit 7
+
+if [ "${FORCE_LOCAL_ISO}" ]; then
+	copy_files_from_local_iso "${ISO}" \
+		"${FLL_MEDIA_NAME}" "${USBTMPDIR}" "${NOCOPY}"	|| exit 8
+else
+	copy_files_from_dev \
+		"${FLL_MEDIA_NAME}" "${USBTMPDIR}" "${NOCOPY}"	|| exit 9
+fi
+
+mk_menulst "${DEVICE}" "${USBTMPDIR}" "${FLL_DISTRO_NAME}" ${@}	|| exit 10
+
+umount_partition "${PARTITION}" "${USBTMPDIR}"			|| exit 11
 
 exit 0
-
