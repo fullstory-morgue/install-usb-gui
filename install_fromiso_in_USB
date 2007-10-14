@@ -35,7 +35,7 @@
 # source distro-defaults
 #--------------------------------------------------------------
 if [ -s /etc/default/distro ]; then
-	source /etc/default/distro
+	. /etc/default/distro
 else
 	echo "E: requires distro-defaults"
 	exit 1
