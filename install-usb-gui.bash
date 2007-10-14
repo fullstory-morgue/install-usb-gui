@@ -17,7 +17,6 @@
 
 
 SELF="install-usb-gui.bash"
-PERSIST_OPTION="-p"
 
 
 #################################################################
@@ -86,6 +85,18 @@ for d in /dev/disk/by-id/usb-*; do
 done
 
 
+# locale -a
+
+export LOCALE0=$(printf "$LANG\n" | sed -n 's/^\([a-z]\+_[A-Z]\+\)\..*/\1/p') # default language
+z=1
+# all other languges without default language
+for d in $(locale -a | sed -n 's/^\([a-z]\+_[A-Z]\+\)\..*/\1/p' | sed -e "/${LOCALE0}/d"); do 
+	export LOCALE${z}=$d
+	printf "$d\n"
+	((z++))
+done
+
+
 # start the gui
 result=$( exec $INSTALL_USB_GUI )
 
@@ -100,8 +111,12 @@ for i in $result; do
 	1)
 		combobox_device=$i;;
 	2)
-		[ "$i" = "persist=1" ] && persist="$PERSIST_OPTION" || persist="";;
+		combobox_lang=$(printf "$i\n" | cut -c1-2);;
 	3)
+		[ "$i" = "persist=1" ] && persist="persist" || persist="";;
+	4)
+		[ "$i" = "toram=1" ] && toram="toram" || toram="";;
+	5)
 		filechooserbutton_iso=$i;;
 	*)
 		printf "Cancel or Error with Variable\n";
@@ -119,9 +134,9 @@ done
 # 		start the installation
 # ==============================================================
 if [ "$FLL_DISTRO_MODE" = live ]; then
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device $persist -L $entry_usb"
+	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device -L $entry_usb --debug -- lang=$combobox_lang $persist $toram"
 else
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device $persist -L $entry_usb -I $filechooserbutton_iso"
+	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device -L $entry_usb -I $filechooserbutton_iso --debug -- lang=$combobox_lang $persist $toram"
 fi
 
 printf "$RUN_SH\n"

@@ -76,10 +76,6 @@ msgstr ""
 msgid "save system changes to usb"
 msgstr "Systemänderungen am USB Gerät speichern"
 
-#: install-usb-gui.glade:123(property)
-msgid "persist"
-msgstr "Änderungen speichern"
-
 #: install-usb-gui.glade:174(property)
 msgid "<b>choose the iso file</b>"
 msgstr "<b>ISO Datei auswählen</b>"

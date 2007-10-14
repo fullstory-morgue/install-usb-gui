@@ -35,9 +35,9 @@
 
 
 GladeXML *gxml, *gxml_install_warning;
-const gchar *file_iso, *entry_usb_result, *combobox_device_result;
+const gchar *file_iso, *entry_usb_result, *combobox_device_result, *combobox_lang_result;
 char glade_file_install_warn[1024];
-gboolean checkbutton_persist_result;
+gboolean checkbutton_persist_result, checkbutton_toram_result;
 
 
 void
@@ -79,12 +79,16 @@ on_button_install_clicked (GtkButton *button,
 		
 	GtkWidget *entry_usb             = glade_xml_get_widget (gxml, "entry_usb");
 	GtkWidget *combobox_device       = glade_xml_get_widget (gxml, "combobox_device");
+	GtkWidget *combobox_lang         = glade_xml_get_widget (gxml, "combobox_lang");
 	GtkWidget *filechooserbutton_iso = glade_xml_get_widget (gxml, "filechooserbutton_iso");
 	GtkWidget *checkbutton_persist   = glade_xml_get_widget (gxml, "checkbutton_persist");
+	GtkWidget *checkbutton_toram     = glade_xml_get_widget (gxml, "checkbutton_toram");
 	
 	entry_usb_result           = gtk_entry_get_text(GTK_ENTRY( entry_usb ) );
 	combobox_device_result     = gtk_combo_box_get_active_text(GTK_COMBO_BOX ( combobox_device ) );
+	combobox_lang_result       = gtk_combo_box_get_active_text(GTK_COMBO_BOX ( combobox_lang ) );
 	checkbutton_persist_result = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON( checkbutton_persist ) );
+	checkbutton_toram_result   = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON( checkbutton_toram ) );
 
 	
 	if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) != 0 ) {
@@ -106,8 +110,8 @@ on_button_install_clicked (GtkButton *button,
 
 
 void
-on_button_install_cancel_clicked(GtkButton *button, 
-						   gpointer user_data)
+on_button_install_cancel_clicked(	GtkButton *button, 
+					gpointer user_data)
 {
 	GtkWidget *window = glade_xml_get_widget (gxml, "window");
 	GtkWidget *install_warning = glade_xml_get_widget (gxml_install_warning, "install_warning");
@@ -124,13 +128,21 @@ on_button_install_accepted_clicked(GtkButton *button,
 
 	g_print("%s\n", entry_usb_result);
 	g_print("%s\n", combobox_device_result);
+	g_print("%s\n", combobox_lang_result);
 	if ( checkbutton_persist_result == TRUE ) {
 		g_print("persist=1\n");
 	}
 	else {
 		g_print("persist=0\n");
 	}
-	
+
+	if ( checkbutton_toram_result == TRUE ) {
+		g_print("toram=1\n");
+	}
+	else {
+		g_print("toram=0\n");
+	}
+
 	if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) != 0 ) {
 		// installed mode
 		g_print("%s\n", file_iso);
