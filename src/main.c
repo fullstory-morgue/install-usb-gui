@@ -86,10 +86,10 @@ create_window (void)
 {
 	GtkWidget *window;
 	GtkFileFilter *filter;
-	GtkWidget *combobox2;
+	//GtkWidget *combobox2;
 	int z = 0;
 	char USBDEVICE_VAR[BUF_LEN];
-	char LOCALE_VAR[BUF_LEN];
+	//char LOCALE_VAR[BUF_LEN];
 	
 
 	if( strncmp( getenv("USBDEVICE0"), "no_usb_found", 12 ) != 0 ) {  // usb device found
@@ -145,19 +145,9 @@ create_window (void)
 			snprintf (USBDEVICE_VAR, BUF_LEN, "USBDEVICE%d", z);
 		}
 
-		// combobox locale entrys
-		z = 0;
-
-
-		snprintf (LOCALE_VAR, BUF_LEN, "LOCALE%d", z);
-		while ( getenv( LOCALE_VAR ) ) {
-			combobox2 = glade_xml_get_widget ( gxml, "combobox_lang");
-			gtk_combo_box_append_text( GTK_COMBO_BOX (combobox2), getenv( LOCALE_VAR ) );
-
-			z++;
-			snprintf (LOCALE_VAR, BUF_LEN, "LOCALE%d", z);
-		}
-		gtk_combo_box_set_active(GTK_COMBO_BOX(combobox2), 0);
+		// default cheatcodes
+		GtkWidget *entry_cheat = glade_xml_get_widget (gxml, "entry_cheat");
+		gtk_entry_set_text( GTK_ENTRY ( entry_cheat  ), getenv( "LANG_DEFAULT" ) );
 
 	}
 	else {		//no usb device found

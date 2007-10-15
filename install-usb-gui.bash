@@ -84,42 +84,13 @@ for d in /dev/disk/by-id/usb-*; do
 	printf "$LINK\n"
 done
 
-list_lang() {
-	LC_ALL=C locale -a | gawk -F'.' -v lang="${1}" '
-		function process_lang(ll_cc,	ll)
-		{
-			split(ll_cc, l, "_")
-			i = l[1] == "en" ? 2 : 1
-			return tolower(l[i])
-		}
 
-		/^[a-z]+_[A-Z]+/ {
-			ll = process_lang($1)
-			if(ll)
-				locale[ll]++
-		}
-
-		END {
-			ll = process_lang(lang)
-			if(ll) {
-				delete locale[ll]
-				print ll
-			}
-
-			n = asorti(locale, l)
-			for (i = 1; i <= n; i++)
-				print l[i]
-		}
-	'
-}
-
-# export list of languages in two letter abrieviated form
-z=0
-for d in $(list_lang ${LANG%.*}); do 
-	export LOCALE${z}=$d
-	printf "$d\n"
-	((z++))
+# language, persist default cheatcode
+export LANG_DEFAULT=""
+for i in $(locale -a | grep _); do 
+	[ "${LANG%.*}" = "${i%.*}" ] && LANG_DEFAULT="lang=${i%_*} "
 done
+LANG_DEFAULT="${LANG_DEFAULT}persist " # ... add what you want as default cheatcode
 
 
 # start the gui
@@ -128,20 +99,16 @@ result=$( exec $INSTALL_USB_GUI )
 
 # set the variables who came back from gui
 count=0
+IFS=$'\n'
 for i in $result; do
 
 	case "$count" in
 	0)
-		entry_usb=$i;;
-	1)
 		combobox_device=$i;;
+	1)
+		[ "$i" = "_" ] && cheat="" || cheat="-- $i";;
+
 	2)
-		combobox_lang=$(printf "$i\n" | cut -c1-2);;
-	3)
-		[ "$i" = "persist=1" ] && persist="persist" || persist="";;
-	4)
-		[ "$i" = "toram=1" ] && toram="toram" || toram="";;
-	5)
 		filechooserbutton_iso=$i;;
 	*)
 		printf "Cancel or Error with Variable\n";
@@ -150,18 +117,19 @@ for i in $result; do
 
 	((count++))
 done
+IFS=$' \t\n'
 
 # Cancel Button = exit
-[ -z "$entry_usb" ] && exit
+[ -z "$combobox_device" ] && exit
 
 
 # ==============================================================
 # 		start the installation
 # ==============================================================
 if [ "$FLL_DISTRO_MODE" = live ]; then
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device -L $entry_usb --debug -- lang=$combobox_lang $persist $toram"
+	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device --debug ${cheat}"
 else
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device -L $entry_usb -I $filechooserbutton_iso --debug -- lang=$combobox_lang $persist $toram"
+	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device -I $filechooserbutton_iso --debug ${cheat}"
 fi
 
 printf "$RUN_SH\n"

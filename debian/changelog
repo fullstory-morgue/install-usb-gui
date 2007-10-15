@@ -1,8 +1,12 @@
 install-usb-gui (0.0.11) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 15 Oct 2007 13:04:36 +0200
+  [ Horst Tritremmel ]
+  * cheatcodes handling now with entry label 
+
+ -- Horst Tritremmel <hjt@sidux.com>  Mon, 15 Oct 2007 20:56:31 +0200
 
 install-usb-gui (0.0.10) unstable; urgency=low
 
