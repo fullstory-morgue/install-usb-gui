@@ -1,8 +1,8 @@
 install-usb-gui (0.0.10) UNRELEASED; urgency=low
 
-  * NOT RELEASED YET
+  * Use gawk to fetch list of languages via locale -a, depend on gawk.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 15 Oct 2007 01:12:26 +0200
+ -- Kel Modderman <kel@otaku42.de>  Mon, 15 Oct 2007 15:23:13 +1000
 
 install-usb-gui (0.0.9) unstable; urgency=low
 

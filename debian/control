@@ -10,7 +10,7 @@ Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/install-usb-gui/trunk/
 
 Package: install-usb-gui
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, xterm | x-terminal-emulator, su-me, ssft, gettext, distro-defaults
+Depends: ${shlibs:Depends}, ${misc:Depends}, xterm | x-terminal-emulator, su-me, ssft, gettext, distro-defaults, gawk
 Recommends: zenity
 Description: gui for the install_fromiso_in_USB script
  given an usb pen, eg /dev/sdb, /dev/sdc we create ** one **  partiton on that 

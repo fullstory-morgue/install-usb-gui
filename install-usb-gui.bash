@@ -84,13 +84,38 @@ for d in /dev/disk/by-id/usb-*; do
 	printf "$LINK\n"
 done
 
+list_lang() {
+	LC_ALL=C locale -a | gawk -F'.' -v lang="${1}" '
+		function process_lang(ll_cc,	ll)
+		{
+			split(ll_cc, l, "_")
+			i = l[1] == "en" ? 2 : 1
+			return tolower(l[i])
+		}
 
-# locale -a
+		/^[a-z]+_[A-Z]+/ {
+			ll = process_lang($1)
+			if(ll)
+				locale[ll]++
+		}
 
-export LOCALE0=$(printf "$LANG\n" | sed -n 's/^\([a-z]\+_[A-Z]\+\)\..*/\1/p') # default language
-z=1
-# all other languges without default language
-for d in $(locale -a | sed -n 's/^\([a-z]\+_[A-Z]\+\)\..*/\1/p' | sed -e "/${LOCALE0}/d"); do 
+		END {
+			ll = process_lang(lang)
+			if(ll) {
+				delete locale[ll]
+				print ll
+			}
+
+			n = asorti(locale, l)
+			for (i = 1; i <= n; i++)
+				print l[i]
+		}
+	'
+}
+
+# export list of languages in two letter abrieviated form
+z=0
+for d in $(list_lang ${LANG%.*}); do 
 	export LOCALE${z}=$d
 	printf "$d\n"
 	((z++))
