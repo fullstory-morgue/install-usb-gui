@@ -1,4 +1,4 @@
-install-usb-gui (0.0.10) UNRELEASED; urgency=low
+install-usb-gui (0.0.10) unstable; urgency=low
 
   * Use gawk to fetch list of languages via locale -a, depend on gawk.
 
