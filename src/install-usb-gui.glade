@@ -95,7 +95,7 @@
             <property name="justify">GTK_JUSTIFY_CENTER</property>
           </widget>
           <packing>
-            <property name="y">125</property>
+            <property name="y">123</property>
           </packing>
         </child>
         <child>
