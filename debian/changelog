@@ -4,9 +4,9 @@ install-usb-gui (0.0.11) UNRELEASED; urgency=low
   * NOT RELEASED YET
 
   [ Horst Tritremmel ]
-  * cheatcodes handling now with entry label 
+  * cheatcodes handling now with entry labe 
 
- -- Horst Tritremmel <hjt@sidux.com>  Mon, 15 Oct 2007 20:56:31 +0200
+ -- Horst Tritremmel <hjt@sidux.com>  Mon, 15 Oct 2007 21:31:56 +0200
 
 install-usb-gui (0.0.10) unstable; urgency=low
 
