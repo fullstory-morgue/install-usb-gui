@@ -136,6 +136,7 @@ on_button_install_accepted_clicked(GtkButton *button,
 	gtk_main_quit ();
 }
 
+
 void
 on_button_cheat_clicked(GtkButton *button, 
 			gpointer user_data)
