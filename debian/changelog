@@ -4,10 +4,14 @@ install-usb-gui (0.0.11) UNRELEASED; urgency=low
   * NOT RELEASED YET
 
   [ Horst Tritremmel ]
-  * cheatcodes handling now with entry labe
-  * do not depand on gawk
+  * cheatcodes handling now with entry label
+  * do not depend on gawk
 
- -- Horst Tritremmel <hjt@sidux.com>  Mon, 15 Oct 2007 21:51:06 +0200
+  [ Kel Modderman ]
+  * Replace logic for handling en_* languages correctly, this time in shell
+    and not gawk.
+
+ -- Kel Modderman <kel@otaku42.de>  Tue, 16 Oct 2007 09:49:04 +1000
 
 install-usb-gui (0.0.10) unstable; urgency=low
 

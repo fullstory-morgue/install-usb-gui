@@ -85,13 +85,19 @@ for d in /dev/disk/by-id/usb-*; do
 done
 
 
-# language, persist default cheatcode
-export LANG_DEFAULT=""
-for i in $(locale -a | grep _); do 
-	[ "${LANG%.*}" = "${i%.*}" ] && LANG_DEFAULT="lang=${i%_*} "
-done
-LANG_DEFAULT="${LANG_DEFAULT}persist " # ... add what you want as default cheatcode
+# language cheatcode, special handling of en_* lang cheatcodes
+case ${LANG%.*} in
+	en_*)
+		LANG_DEFAULT="lang=$(echo ${LANG%.*} | cut -d_ -f2 | tr [[:upper:]] [[:lower:]])"
+		;;
+	*_*)
+		LANG_DEFAULT="lang=$(echo ${LANG%.*} | cut -d_ -f1)"
+		;;
+esac
+export LANG_DEFAULT=${LANG_DEFAULT}
 
+# persist cheatcode removed from LANG_DEFAULT variable, it can be written better
+# eg, in a variable name that "describes" its purpose
 
 # start the gui
 result=$( exec $INSTALL_USB_GUI )
