@@ -1,7 +1,4 @@
-install-usb-gui (0.0.11) UNRELEASED; urgency=low
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+install-usb-gui (0.0.11) unstable; urgency=low
 
   [ Horst Tritremmel ]
   * cheatcodes handling now with entry label
