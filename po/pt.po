@@ -18,7 +18,8 @@ msgstr ""
 msgid ""
 "getenv FLL_DISTRO_MODE isn't defined\n"
 "Please start with install-usb-gui.bash"
-msgstr ""
+msgstr "FLL_DISTRO_MODE não está definida\n"
+"Lance o program usando \"install-usb-gui.bash\""
 
 #: main.c:178
 #, c-format
@@ -27,53 +28,61 @@ msgid ""
 " No USBDEVICE0 Variable found!\n"
 " Please start with install-usb-gui.bash\n"
 "\n"
-msgstr ""
+msgstr "USBDEVICE0 não está definida\n"
+"Lance o program usando \"install-usb-gui.bash\""
 
 #: callbacks.c:94
 msgid "No ISO selected!"
-msgstr ""
+msgstr "ISO-imagem não foi selecionada"
 
 #: install_warning.glade:39(property)
 msgid ""
 "<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB device "
 "will be completely erased.!</span>"
 msgstr ""
+"<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">O USB pen"
+"vai ser reformatado!!!</span>"
 
 #: install-usb-gui.glade:52(property)
 msgid "<b>USB Device</b>"
-msgstr ""
+msgstr "<b>USB pen</b>"
 
 #: install-usb-gui.glade:66(property)
 msgid ""
 "<b><big>This tool create a bootable sidux USB device</big>"
 "</b>"
 msgstr ""
+"<b><big>Este programa cria um USB-pen que contem o sidux do\n"
+" qual pode iniciar o sistema</big>"
+"</b>"
 
 #: install-usb-gui.glade:77(property)
 msgid ""
 "<b><i>Use it at your own risk, it comes without any warranty.</i></b>"
 msgstr ""
+"<b><i>Use em risco próprio. o sidux declina toda a responsabilidade\n"
+"pela perda de dados ou danos em hardware.</i></b>"
 
 #: install-usb-gui.glade:108(property)
 msgid "<b>Name</b>"
-msgstr ""
+msgstr "Nome"
 
 #: install-usb-gui.glade:108(property)
 msgid "<b>Cheatcodes</b>"
-msgstr ""
+msgstr "Cheatcodes"
 
 #: install-usb-gui.glade:144(property)
 msgid "List of cheatcodes"
-msgstr ""
+msgstr "Lista dos cheaticodes"
 
 #: install-usb-gui.glade:144(property)
 msgid "Example: <b>lang=de tz=Europe/Vienna persist toram </b>"
-msgstr ""
+msgstr "Exemplo: <b>lang=pt tz=Europe/Lisbon persist toram </b>"
 
 #: install-usb-gui.glade:174(property)
 msgid "<b>choose the iso file</b>"
-msgstr ""
+msgstr "Escolha o ficheiro iso-imagem para utilizar na cópia"
 
 msgid "Install successful"
-msgstr ""
+msgstr "Instalação bem sucedida."
 
