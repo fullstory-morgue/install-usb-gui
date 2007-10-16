@@ -458,7 +458,7 @@ gfxmenu /boot/message
 
 ##ISO boot
 title ${name} (fromISO + fromUSB) 
-kernel (hd0,0)/boot/${vmlinuz} boot=fll fromhd=UUID=${uuid} fromiso quiet vga=791 ${@}
+kernel (hd0,0)/boot/${vmlinuz} boot=fll fromhd=UUID=${uuid} fromiso nointro quiet vga=791 ${@}
 initrd (hd0,0)/boot/${initrd}
 
 EOF
