@@ -6,8 +6,9 @@ install-usb-gui (0.0.12) UNRELEASED; urgency=low
   [ Horst Tritremmel ]
   * language files added
   * de.po updated
+  * new po files fixed
 
- -- Horst Tritremmel <hjt@sidux.com>  Tue, 16 Oct 2007 13:28:10 +0200
+ -- Horst Tritremmel <hjt@sidux.com>  Tue, 16 Oct 2007 13:43:08 +0200
 
 install-usb-gui (0.0.11) unstable; urgency=low
 
