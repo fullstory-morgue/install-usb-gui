@@ -68,15 +68,32 @@ msgstr ""
 "<b><big>Dieses Programm erzeugt ein startbares USB Gerät</big>"
 "</b>"
 
+#: install-usb-gui.glade:77(property)
+msgid ""
+"<b><i>Use it at your own risk, it comes without any warranty.</i></b>"
+msgstr ""
+"<b><i>Verwendung auf eigene Gefahr, ohne Garantie.</i></b>"
+
 #: install-usb-gui.glade:108(property)
 msgid "<b>Name</b>"
 msgstr ""
 
-#: install-usb-gui.glade:122(property)
-msgid "save system changes to usb"
-msgstr "Systemänderungen am USB Gerät speichern"
+#: install-usb-gui.glade:108(property)
+msgid "<b>Cheatcodes</b>"
+msgstr "Startparameter"
+
+#: install-usb-gui.glade:144(property)
+msgid "List of cheatcodes"
+msgstr "Liste Startparameter"
+
+#: install-usb-gui.glade:144(property)
+msgid "Example: <b>lang=de tz=Europe/Vienna persist toram </b>"
+msgstr "Beispiel: <b>lang=de tz=Europe/Vienna persist toram </b>"
 
 #: install-usb-gui.glade:174(property)
 msgid "<b>choose the iso file</b>"
 msgstr "<b>ISO Datei auswählen</b>"
+
+msgid "Install successful"
+msgstr "Installation erfolgreich"
 

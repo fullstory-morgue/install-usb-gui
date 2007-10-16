@@ -16,7 +16,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-SELF="install-usb-gui.bash"
+SELF=".bash"
 
 
 #################################################################
@@ -34,7 +34,7 @@ else
 	exit 1
 fi
 
-TEXTDOMAIN=$SELF
+TEXTDOMAIN=install-usb-gui
 export TEXTDOMAIN
 TEXTDOMAINDIR=/usr/share/locale
 export TEXTDOMAINDIR
@@ -146,7 +146,7 @@ test -e /tmp/.install_fromiso_in_USB && rc=$(</tmp/.install_fromiso_in_USB) || r
 
 case "${rc%-*}" in
         0)
-		MSG="Install successful"
+		MSG=$(gettext "Install successful")
 		;;
 	255)
 		MSG="internal error...\n\n**STOP**"
@@ -156,7 +156,7 @@ case "${rc%-*}" in
 		;;
 esac
 
-ssft_display_message $(gettext "USB-Installation") $(eval_gettext "\$MSG\n\n")
+ssft_display_message $(gettext "USB-Installation") "${MSG}\n\n"
 
 # unset the variables -------------------------------------------
 count=0

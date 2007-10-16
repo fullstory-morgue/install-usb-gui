@@ -1,10 +1,9 @@
 
 [Anjuta]
-Maximized=1
-Geometry=1024x716+0+0
+Geometry=1016x708+0+0
 
 [File Loader]
-Files=file:///home/hjt/anjuta/install-usb-gui/src/main.c#178
+Files=file:///home/hjt/fullstory/install-usb-gui/trunk/src/install-usb-gui.glade
 
 [Execution]
 Program arguments=
