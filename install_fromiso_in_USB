@@ -133,7 +133,7 @@ EOF
 		return 1
 	fi
 	
-	udevtrigger --subsystem-match=usb
+	udevtrigger --subsystem-match=block
 
 	is_bootable=$(LC_ALL=C fdisk -l ${device} | awk -v part=${partition} '
 		{
@@ -160,7 +160,7 @@ EOF
 			return 1
 		fi
 	
-		udevtrigger --subsystem-match=usb
+		udevtrigger --subsystem-match=block
 
 		is_bootable=$(LC_ALL=C fdisk -l ${device} | awk -v part=${partition} '
 			{
@@ -202,7 +202,7 @@ EOF
 			return 1
 		fi
 		
-		udevtrigger --subsystem-match=usb
+		udevtrigger --subsystem-match=block
 
 		part_id=$(LC_ALL=C fdisk -l ${device}  | awk -v part=${partition} '
 			{

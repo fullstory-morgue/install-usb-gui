@@ -10,8 +10,9 @@ install-usb-gui (0.0.11) UNRELEASED; urgency=low
   [ Kel Modderman ]
   * Replace logic for handling en_* languages correctly, this time in shell
     and not gawk.
+  * Change udevtrigger coldplug subsystem-match to block from usb.
 
- -- Kel Modderman <kel@otaku42.de>  Tue, 16 Oct 2007 09:49:04 +1000
+ -- Kel Modderman <kel@otaku42.de>  Tue, 16 Oct 2007 14:40:44 +1000
 
 install-usb-gui (0.0.10) unstable; urgency=low
 
