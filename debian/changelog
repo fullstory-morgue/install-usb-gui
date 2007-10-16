@@ -1,9 +1,5 @@
-install-usb-gui (0.0.12) UNRELEASED; urgency=low
+install-usb-gui (0.0.12) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Horst Tritremmel ]
   * language files added
   * de.po updated
   * new po files fixed
