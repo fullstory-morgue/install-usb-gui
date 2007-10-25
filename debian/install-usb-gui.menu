@@ -1,5 +1,5 @@
 ?package(install-usb-gui):needs="X11" \
-	section="Apps/System" \
+	section="Applications/System/Administration" \
 	hints="sidux,Config" \
 	title="install-sidux-to-usb" \
 	icon32x32="/usr/share/pixmaps/install-usb-gui.xpm" \

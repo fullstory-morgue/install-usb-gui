@@ -5,8 +5,9 @@ install-usb-gui (0.0.13) UNRELEASED; urgency=low
 
   [ Joaquim Boura ]
   * language file pt
+  * Update debian menu section as per new subpolicy.
 
- -- Joaquim Boura <x-un-i@sidux.com>  Tue, 16 Oct 2007 19:21:23 +0200
+ -- Joaquim Boura <x-un-i@sidux.com>  Thu, 25 Oct 2007 22:12:05 +1000
 
 install-usb-gui (0.0.12) unstable; urgency=low
 
