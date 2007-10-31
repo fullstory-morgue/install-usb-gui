@@ -1,9 +1,5 @@
-install-usb-gui (0.0.14) UNRELEASED; urgency=low
+install-usb-gui (0.1.0) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Horst Tritremmel ]
   * add isofile chooser if cheatcode toram is given
 
  -- Horst Tritremmel <hjt@sidux.com>  Wed, 31 Oct 2007 08:12:53 +0100
