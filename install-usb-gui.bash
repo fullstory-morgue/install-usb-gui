@@ -66,7 +66,7 @@ fi
 
 export FLL_DISTRO_MODE
 export USBDEVICE0="no_usb_found"
-
+export CHEATCODE_TORAM=$(grep -c toram /proc/cmdline)
 
 # search the usb devices and set the result in variables (USBDEVICE${z}) for the gui
 z=0

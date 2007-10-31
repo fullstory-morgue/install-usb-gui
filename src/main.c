@@ -119,13 +119,14 @@ create_window (void)
 		}
 
 	
-		// hide the iso file chooser in live mode
+		// hide the iso file chooser in live mode and without cheatcode toram
 		if (!getenv("FLL_DISTRO_MODE")) {
 			dialog_msg( window, gettext("getenv FLL_DISTRO_MODE isn't defined\nPlease start with install-usb-gui.bash" ));	
 		}
 		else {
 
-			if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) == 0 ) {
+			if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) == 0 && \
+			    strncmp( getenv("CHEATCODE_TORAM"), "0", 1 ) == 0 ) {
 				// hide now
 				GtkWidget *label_iso = glade_xml_get_widget (gxml, "label_iso");
 				gtk_widget_destroy (label_iso);

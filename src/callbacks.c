@@ -84,8 +84,9 @@ on_button_install_clicked (GtkButton *button,
 	combobox_device_result     = gtk_combo_box_get_active_text(GTK_COMBO_BOX ( combobox_device ) );
 	entry_cheat_result         = gtk_entry_get_text( GTK_ENTRY ( entry_cheat  ) );
 
-	if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) != 0 ) {
-		// installed mode
+	if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) != 0 || \
+	    strncmp( getenv("CHEATCODE_TORAM"), "0", 1 ) != 0 ) {
+		// installed mode or cheatcode toram is given
 		file_iso = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER (filechooserbutton_iso) );
 		if (! (file_iso != NULL && strlen(file_iso) > 4) ) {
 
