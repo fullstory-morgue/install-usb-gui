@@ -133,9 +133,9 @@ IFS=$' \t\n'
 # 		start the installation
 # ==============================================================
 if [ "$FLL_DISTRO_MODE" = live ]; then
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device --debug ${cheat}"
+	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device ${cheat}"
 else
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device -I $filechooserbutton_iso --debug ${cheat}"
+	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device -I $filechooserbutton_iso ${cheat}"
 fi
 
 printf "$RUN_SH\n"

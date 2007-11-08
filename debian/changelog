@@ -1,8 +1,12 @@
 install-usb-gui (0.1.1) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 31 Oct 2007 14:04:21 +0100
+  [ Horst Tritremmel ]
+  * debug option for installation removed
+
+ -- Horst Tritremmel <hjt@sidux.com>  Thu, 08 Nov 2007 09:16:34 +0100
 
 install-usb-gui (0.1.0) unstable; urgency=low
 
