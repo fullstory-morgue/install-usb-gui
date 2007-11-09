@@ -1,9 +1,5 @@
-install-usb-gui (0.1.1) UNRELEASED; urgency=low
+install-usb-gui (0.1.1) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Horst Tritremmel ]
   * debug option for installation removed
 
  -- Horst Tritremmel <hjt@sidux.com>  Thu, 08 Nov 2007 09:16:34 +0100
