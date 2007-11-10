@@ -1,3 +1,10 @@
+install-usb-gui (0.1.2) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+  * COPYING belongs into the upstream source.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 10 Nov 2007 14:24:56 +0100
+
 install-usb-gui (0.1.1) unstable; urgency=low
 
   * debug option for installation removed

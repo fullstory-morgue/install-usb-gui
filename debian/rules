@@ -17,7 +17,7 @@ endif
 config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
-	for i in config.guess config.sub COPYING depcomp INSTALL install-sh missing; do \
+	for i in config.guess config.sub depcomp INSTALL install-sh missing; do \
 		cp -f "/usr/share/automake-1.10/$$i" $(CURDIR)/; \
 	done
 	
@@ -41,7 +41,6 @@ clean:
 	rm -f	build-stamp \
 		config.guess \
 		config.sub \
-		COPYING \
 		depcomp \
 		INSTALL \
 		install-sh \
