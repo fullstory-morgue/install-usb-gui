@@ -1,9 +1,8 @@
-install-usb-gui (0.1.2) UNRELEASED; urgency=low
+install-usb-gui (0.1.2) unstable; urgency=low
 
-  * NOT RELEASED YET
   * COPYING belongs into the upstream source.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 10 Nov 2007 14:24:56 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 10 Nov 2007 14:29:45 +0100
 
 install-usb-gui (0.1.1) unstable; urgency=low
 
