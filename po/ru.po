@@ -1,24 +1,36 @@
+# translation of ru.po to russisch
+# German translations for install-usb-gui package.
+# Copyright (C) 2007 THE install-usb-gui'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the install-usb-gui package.
+#
+# hjt <hjt@sidux.com>, 2007.
+# Horst Tritremmel <hjt@sidux.com>, 2007.
+# Roland Engert <roen@sidux.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-30 15:11+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2007-11-02 11:04+0100\n"
+"Last-Translator: Roland Engert <roen@sidux.com>\n"
+"Language-Team: russisch <roen@sidux.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: main.c:112
 msgid "getenv HOME isn't defined"
-msgstr ""
+msgstr "getenv домашний каталог HOME не определён"
 
 #: main.c:123
 msgid ""
 "getenv FLL_DISTRO_MODE isn't defined\n"
 "Please start with install-usb-gui.bash"
 msgstr ""
+"getenv FLL_DISTRO_MODE не определён\n"
+"Запускаете скрипт install-usb-gui.bash"
 
 #: main.c:178
 #, c-format
@@ -28,52 +40,46 @@ msgid ""
 " Please start with install-usb-gui.bash\n"
 "\n"
 msgstr ""
+"\n"
+" Не найден USBDEVICE0 Variable !\n"
+"Запускаете скрипт install-usb-gui.bash\n"
+"\n"
 
 #: callbacks.c:94
 msgid "No ISO selected!"
-msgstr ""
+msgstr "Не выбран ISO файл !"
 
 #: install_warning.glade:39(property)
 msgid ""
 "<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB device "
 "will be completely erased.!</span>"
-msgstr ""
+msgstr "<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">Данные полностью удаляются на устройстве USB !</span>"
 
 #: install-usb-gui.glade:52(property)
 msgid "<b>USB Device</b>"
-msgstr ""
+msgstr "<b>Устройствo USB</b>"
 
 #: install-usb-gui.glade:66(property)
 msgid ""
 "<b><big>This tool create a bootable sidux USB device</big>"
 "</b>"
 msgstr ""
-
-#: install-usb-gui.glade:77(property)
-msgid ""
-"<b><i>Use it at your own risk, it comes without any warranty.</i></b>"
-msgstr ""
+"<b><big>Приложение создает самозагружаемое устройство sidux USB </big>"
+"</b>"
 
 #: install-usb-gui.glade:108(property)
 msgid "<b>Name</b>"
-msgstr ""
+msgstr "<b>Имя</b>"
 
-#: install-usb-gui.glade:108(property)
-msgid "<b>Cheatcodes</b>"
-msgstr ""
+#: install-usb-gui.glade:122(property)
+msgid "save system changes to usb"
+msgstr "Сохранить изменения на устройство USB"
 
-#: install-usb-gui.glade:144(property)
-msgid "List of cheatcodes"
-msgstr ""
-
-#: install-usb-gui.glade:144(property)
-msgid "Example: <b>lang=de tz=Europe/Vienna persist toram </b>"
-msgstr ""
+#: install-usb-gui.glade:123(property)
+msgid "persist"
+msgstr "Сохранить изменения"
 
 #: install-usb-gui.glade:174(property)
 msgid "<b>choose the iso file</b>"
-msgstr ""
-
-msgid "Install successful"
-msgstr ""
+msgstr "<b>Выбирать ISO файл</b>"
 

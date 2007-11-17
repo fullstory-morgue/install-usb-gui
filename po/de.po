@@ -21,15 +21,15 @@ msgstr ""
 
 #: main.c:112
 msgid "getenv HOME isn't defined"
-msgstr "getenv HOME ist nicht definiert"
+msgstr ""
 
 #: main.c:123
 msgid ""
 "getenv FLL_DISTRO_MODE isn't defined\n"
-"Please start with install-usb-gui.bash"
+""
 msgstr ""
 "getenv FLL_DISTRO_MODE ist nicht definiert\n"
-"Bitte starten Sie install-usb-gui.bash"
+""
 
 #: main.c:178
 #, c-format
@@ -40,60 +40,47 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-" Keine USBDEVICE0 Variable gefunden!\n"
-" Bitte starten Sie install-usb-gui.bash\n"
+""
+""
 "\n"
 
 #: callbacks.c:94
 msgid "No ISO selected!"
-msgstr "Kein ISO ausgewählt"
+msgstr ""
 
 #: install_warning.glade:39(property)
 msgid ""
 "<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB device "
 "will be completely erased.!</span>"
 msgstr ""
-"<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB Gerät "
-"wird komplett gelöscht.!</span>"
+""
+""
 
 #: install-usb-gui.glade:52(property)
 msgid "<b>USB Device</b>"
-msgstr "<b>USB Gerät</b>"
+msgstr ""
 
 #: install-usb-gui.glade:66(property)
 msgid ""
-"<b><big>This tool create a bootable sidux USB device</big>"
+"<b><big>This tool creates a bootable sidux USB device</big>"
 "</b>"
 msgstr ""
-"<b><big>Dieses Programm erzeugt ein startbares USB Gerät</big>"
-"</b>"
-
-#: install-usb-gui.glade:77(property)
-msgid ""
-"<b><i>Use it at your own risk, it comes without any warranty.</i></b>"
-msgstr ""
-"<b><i>Verwendung auf eigene Gefahr, ohne Garantie.</i></b>"
+""
+""
 
 #: install-usb-gui.glade:108(property)
 msgid "<b>Name</b>"
 msgstr ""
 
-#: install-usb-gui.glade:108(property)
-msgid "<b>Cheatcodes</b>"
-msgstr "Startparameter"
+#: install-usb-gui.glade:122(property)
+msgid "save system changes to usb"
+msgstr ""
 
-#: install-usb-gui.glade:144(property)
-msgid "List of cheatcodes"
-msgstr "Liste Startparameter"
-
-#: install-usb-gui.glade:144(property)
-msgid "Example: <b>lang=de tz=Europe/Vienna persist toram </b>"
-msgstr "Beispiel: <b>lang=de tz=Europe/Vienna persist toram </b>"
+#: install-usb-gui.glade:123(property)
+msgid "persist"
+msgstr ""
 
 #: install-usb-gui.glade:174(property)
 msgid "<b>choose the iso file</b>"
-msgstr "<b>ISO Datei auswählen</b>"
-
-msgid "Install successful"
-msgstr "Installation erfolgreich"
+msgstr ""
 

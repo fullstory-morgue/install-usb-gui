@@ -1,8 +1,12 @@
 install-usb-gui (0.1.3) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 10 Nov 2007 14:32:10 +0100
+  [ Ferdinand Thommes ]
+  * added translated po files
+
+ -- Ferdinand Thommes <devil@sidux.com>  Sat, 17 Nov 2007 22:16:54 +0100
 
 install-usb-gui (0.1.2) unstable; urgency=low
 
