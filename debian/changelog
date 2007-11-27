@@ -1,8 +1,14 @@
 install-usb-gui (0.1.4) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 20 Nov 2007 21:10:24 +0100
+  [ Joaquim Boura ]
+  * DO NOT RELEASE 
+  * changes needed because of the new iso layout
+  * 
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Tue, 27 Nov 2007 22:00:28 +0100
 
 install-usb-gui (0.1.3) unstable; urgency=low
 
