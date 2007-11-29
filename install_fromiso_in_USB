@@ -336,18 +336,8 @@ copy_files_from_dev()
 
 	say "copying files to ${mountpoint}"
 	
-	if [ -e "${fll_booted_dir}/boot/message" ]; then
-		cp -v	${fll_booted_dir}/boot/message \
-			${mountpoint}/boot
-	elif [ -e "${fll_booted_dir}/boot/grub/message" ]; then
-		cp -v	${fll_booted_dir}/boot/grub/message \
-			${mountpoint}/boot
-	else
-		error "${ev}" "message file not found."
-		return 1
-	fi
-	
-	cp -v	${fll_booted_dir}/boot/initrd* \
+	cp -v	${fll_booted_dir}/boot/message \
+		${fll_booted_dir}/boot/initrd* \
 		${fll_booted_dir}/boot/vmlinuz* \
 			${mountpoint}/boot
 	
@@ -398,18 +388,8 @@ copy_files_from_local_iso()
 	say "iso mounted on ${mounted_iso}"
 	say "copying files to ${mountpoint}"
 	
-	if [ -e "${mounted_iso}/boot/message" ]; then
-		cp -v	${mounted_iso}/boot/message \
-			${mountpoint}/boot
-	elif [ -e "${mounted_iso}/boot/grub/message" ]; then
-		cp -v	${mounted_iso}/boot/grub/message \
-			${mountpoint}/boot
-	else
-		error "${ev}" "message file not found."
-		return 1
-	fi
-	
-	cp -v	${mounted_iso}/boot/initrd* \
+	cp -v	${mounted_iso}/boot/message \
+		${mounted_iso}/boot/initrd* \
 		${mounted_iso}/boot/vmlinuz* \
 			${mountpoint}/boot
 	
