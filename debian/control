@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Horst Tritremmel <hjt@sidux.com>
 Uploaders: Joaquim Boura <x-un-i@sidux.com>, Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Build-Depends: debhelper (>= 5), autotools-dev, automake1.10, libgtk2.0-dev (>= 2.8.0), libglade2-dev (>= 2.6.0), intltool, imagemagick, gettext
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3
 Vcs-Svn: svn://svn.berlios.de/fullstory/install-usb-gui/trunk
 Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/install-usb-gui/trunk/
 
