@@ -1,8 +1,12 @@
 install-usb-gui (0.1.5) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 08 Dec 2007 19:49:48 +0100
+  [ Joaquim Boura ]
+  * Translation thanks to RoEn
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Tue, 18 Dec 2007 13:23:51 +0100
 
 install-usb-gui (0.1.4) unstable; urgency=low
 

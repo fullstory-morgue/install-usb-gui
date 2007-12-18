@@ -5,6 +5,14 @@ Exec=su-me /usr/sbin/install-usb-gui.bash
 Icon=sidux-usb-icon
 
 Name=install-sidux-to-usb
+Name[de]=install-sidux-to-usb
+Name[pt]=Instalar em USB
+Name[pt_BR]=Instalar em USB
+Name[ru]=Инсталляция sidux на флэшк
 Comment=Install sidux to usb stick
+Comment[de]=Install sidux to usb stick
+Comment[pt]=Instalar o sidux como fromiso em USB
+Comment[pt_BR]=Instalar o sidux como fromiso em USB
+Comment[ru]=Инсталляция sidux на флэшк
 
 Categories=sidux
