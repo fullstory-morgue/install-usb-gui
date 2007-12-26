@@ -1,9 +1,5 @@
-install-usb-gui (0.1.6) UNRELEASED; urgency=low
+install-usb-gui (0.1.6) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * enhanced install_fromiso_into_USB to support multiarch
 
  -- Joaquim Boura <x-un-i@sidux.com>  Wed, 26 Dec 2007 17:16:37 +0100
