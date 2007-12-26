@@ -442,8 +442,8 @@ menulst()
 
 	say "creating ${mountpoint}/boot/grub/menu.lst"
 
-	initrd=$(echo ${mountpoint}/boot/initrd.img-* | sed -e "s|^.*/||")
-	vmlinuz=$(echo ${mountpoint}/boot/vmlinuz-* | sed -e "s|^.*/||")
+	# if more than one kernel on &{mountpoint}/boot then we have multiarch
+	kernels=$(find ${mountpoint}/boot/ -maxdepth 1 -type f -name 'vmlinuz-*' -printf '%P\n' | sed -n 's/^vmlinuz-//p')
 	uuid=$(blkid -o value -s UUID ${partition})
 
 	cat > ${mountpoint}/boot/grub/menu.lst \
@@ -455,13 +455,19 @@ foreground EE0000
 background 400000
 gfxmenu /boot/message
 
+EOF
 
+	for kernel in ${kernels}; do
+	cat >> ${mountpoint}/boot/grub/menu.lst \
+<<EOF
 ##ISO boot
-title ${name} (fromISO + fromUSB) 
-kernel (hd0,0)/boot/${vmlinuz} boot=fll fromhd=UUID=${uuid} fromiso nointro quiet vga=791 ${@}
-initrd (hd0,0)/boot/${initrd}
+title ${name} (fromISO + fromUSB) ${kernel}
+kernel (hd0,0)/boot/vmlinuz-${kernel} boot=fll fromhd=UUID=${uuid} fromiso nointro quiet vga=791 ${@}
+initrd (hd0,0)/boot/initrd.img-${kernel}
 
 EOF
+
+done
 }
 
 #--------------------------------------------------------------
