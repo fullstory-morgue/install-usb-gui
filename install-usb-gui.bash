@@ -22,10 +22,11 @@ SELF=".bash"
 #################################################################
 #			root?					#
 #################################################################
-if (($UID)); then
-	DISPLAY= exec su-me "$0 --uid $UID" "$@"
+if [ "$(id -u)" -ne 0 ]; then
+	[ -x "$(which su-to-root)" ] && exec su-to-root -X -c "$0" "$@"
+	printf "ERROR: $0 needs root capabilities, please start it as root.\n\n" >&2
+	exit 1
 fi
-
 
 # we need gettext (is loaded in ssft.sh or cloned...)
 if [ -f /usr/bin/gettext.sh ]; then

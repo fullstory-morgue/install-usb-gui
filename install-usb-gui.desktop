@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Exec=su-me /usr/sbin/install-usb-gui.bash
+Exec=su-to-root -X -c /usr/sbin/install-usb-gui.bash
 Icon=sidux-usb-icon
 
 Name=install-sidux-to-usb
@@ -15,4 +15,4 @@ Comment[pt]=Instalar o sidux como fromiso em USB
 Comment[pt_BR]=Instalar o sidux como fromiso em USB
 Comment[ru]=Инсталляция sidux на флэшк
 
-Categories=sidux
+Categories=System;
