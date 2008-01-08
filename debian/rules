@@ -56,15 +56,26 @@ install: build
 	dh_testroot
 	dh_clean -k 
 	dh_installdirs
-
+	
 	# Add here commands to install the package into debian/install-usb-gui.
 	$(MAKE) DESTDIR=$(CURDIR)/debian/install-usb-gui install
 	DESTDIR=$(CURDIR)/debian/install-usb-gui po/make_po.sh install-usb-gui.mo
-
-	mkdir -p debian/install-usb-gui/usr/share/pixmaps
-	convert -geometry 32x32 src/sidux-usb-icon.png \
+	
+	convert -geometry 16x16 icons/hicolor/48x48/sidux-usb-icon.png \
+		debian/install-usb-gui/usr/share/icons/hicolor/16x16/sidux-usb-icon.png
+	convert -geometry 22x22 icons/hicolor/48x48/sidux-usb-icon.png \
+		debian/install-usb-gui/usr/share/icons/hicolor/22x22/sidux-usb-icon.png
+	convert -geometry 32x32 icons/hicolor/48x48/sidux-usb-icon.png \
+		debian/install-usb-gui/usr/share/icons/hicolor/32x32/sidux-usb-icon.png
+	#convert -geometry 48x48 icons/hicolor/48x48/sidux-usb-icon.png \
+	#	debian/install-usb-gui/usr/share/icons/hicolor/48x48/sidux-usb-icon.png
+	convert -geometry 64x64 icons/hicolor/48x48/sidux-usb-icon.png \
+		debian/install-usb-gui/usr/share/icons/hicolor/64x64/sidux-usb-icon.png
+	convert -geometry 128x128 icons/hicolor/48x48/sidux-usb-icon.png \
+		debian/install-usb-gui/usr/share/icons/hicolor/128x128/sidux-usb-icon.png
+	convert -geometry 32x32 icons/hicolor/48x48/sidux-usb-icon.png \
 		debian/install-usb-gui/usr/share/pixmaps/sidux-usb-icon.xpm
-	convert -geometry 16x16 src/sidux-usb-icon.png \
+	convert -geometry 16x16 icons/hicolor/48x48/sidux-usb-icon.png \
 		debian/install-usb-gui/usr/share/pixmaps/sidux-usb-icon-16.xpm
 
 # Build architecture-independent files here.
