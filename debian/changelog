@@ -1,8 +1,8 @@
-install-usb-gui (0.2.2) UNRELEASED; urgency=low
+install-usb-gui (0.2.2) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * update to debhelper compat 6.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 Jan 2008 19:24:08 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 19 Jan 2008 00:01:43 +0100
 
 install-usb-gui (0.2.1) unstable; urgency=low
 
