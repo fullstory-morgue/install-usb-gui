@@ -59,7 +59,7 @@ msgid ""
 "<b><big>This tool creates a bootable sidux USB device</big>"
 "</b>"
 msgstr ""
-"<b><big>To narzędzie tworzy bootowalne urządzenie USB z siduksem</big>"
+"<b><big>To narzędzie tworzy bootowalne urządzenie USB z sidux</big>"
 "</b>"
 
 #: install-usb-gui.glade:108(property)
