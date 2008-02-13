@@ -5,8 +5,9 @@ install-usb-gui (0.2.4) UNRELEASED; urgency=low
 
   [ Bernard Gray ]
   * add kde3/4 compatible svg sidux-usb icon
+  * update copyright for new icon 
 
- -- Bernard Gray <bernard.gray@gmail.com>  Wed, 13 Feb 2008 14:31:10 +1100
+ -- Bernard Gray <bernard.gray@gmail.com>  Wed, 13 Feb 2008 14:33:43 +1100
 
 install-usb-gui (0.2.3) unstable; urgency=low
 
