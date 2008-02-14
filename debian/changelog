@@ -1,4 +1,4 @@
-install-usb-gui (0.2.4) UNRELEASED; urgency=low
+install-usb-gui (0.2.4) unstable; urgency=low
 
   [ Bernard Gray ]
   * add kde3/4 compatible svg sidux-usb icon
@@ -8,8 +8,13 @@ install-usb-gui (0.2.4) UNRELEASED; urgency=low
   * rename sidux-usb.svg to install-usb-gui.svg, use it as basename for all
     icons.
   * really remove old icon.
+  * generate PNG icons.
+  * actually install new XPM icons.
+  * we no longer convert the icons at build time, no longer depend on
+    imagemagick.
+  * final packaging fixes.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 14 Feb 2008 01:18:29 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 14 Feb 2008 01:31:00 +0100
 
 install-usb-gui (0.2.3) unstable; urgency=low
 

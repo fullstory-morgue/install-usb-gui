@@ -1,7 +1,8 @@
-install-usb-gui.bash			usr/sbin/
-install_fromiso_in_USB			usr/sbin/
-install-usb-gui.desktop			usr/share/applications/sidux/
-src/*.png				usr/share/install-usb-gui/src/
-icons/hicolor/48x48/sidux-usb-icon.png	usr/share/install-usb-gui/src/
-icons/hicolor				usr/share/icons/
-src/*glade				usr/share/install-usb-gui/src/
+install-usb-gui.bash				usr/sbin/
+install_fromiso_in_USB				usr/sbin/
+install-usb-gui.desktop				usr/share/applications/sidux/
+src/*.png					usr/share/install-usb-gui/src/
+icons/hicolor/48x48/apps/install-usb-gui.png	usr/share/install-usb-gui/src/
+icons/hicolor					usr/share/icons/
+icons/pixmaps					usr/share/
+src/*glade					usr/share/install-usb-gui/src/
