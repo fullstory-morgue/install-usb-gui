@@ -60,23 +60,6 @@ install: build
 	# Add here commands to install the package into debian/install-usb-gui.
 	$(MAKE) DESTDIR=$(CURDIR)/debian/install-usb-gui install
 	DESTDIR=$(CURDIR)/debian/install-usb-gui po/make_po.sh install-usb-gui.mo
-	
-	convert -geometry 16x16 icons/hicolor/48x48/sidux-usb-icon.png \
-		debian/install-usb-gui/usr/share/icons/hicolor/16x16/sidux-usb-icon.png
-	convert -geometry 22x22 icons/hicolor/48x48/sidux-usb-icon.png \
-		debian/install-usb-gui/usr/share/icons/hicolor/22x22/sidux-usb-icon.png
-	convert -geometry 32x32 icons/hicolor/48x48/sidux-usb-icon.png \
-		debian/install-usb-gui/usr/share/icons/hicolor/32x32/sidux-usb-icon.png
-	#convert -geometry 48x48 icons/hicolor/48x48/sidux-usb-icon.png \
-	#	debian/install-usb-gui/usr/share/icons/hicolor/48x48/sidux-usb-icon.png
-	convert -geometry 64x64 icons/hicolor/48x48/sidux-usb-icon.png \
-		debian/install-usb-gui/usr/share/icons/hicolor/64x64/sidux-usb-icon.png
-	convert -geometry 128x128 icons/hicolor/48x48/sidux-usb-icon.png \
-		debian/install-usb-gui/usr/share/icons/hicolor/128x128/sidux-usb-icon.png
-	convert -geometry 32x32 icons/hicolor/48x48/sidux-usb-icon.png \
-		debian/install-usb-gui/usr/share/pixmaps/sidux-usb-icon.xpm
-	convert -geometry 16x16 icons/hicolor/48x48/sidux-usb-icon.png \
-		debian/install-usb-gui/usr/share/pixmaps/sidux-usb-icon-16.xpm
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -102,6 +85,31 @@ binary-arch: build install
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
+
+create-icons::
+	# requires inkscape and imagemagick to be installed
+	@if [ ! -x /usr/bin/convert ]; then \
+		echo "ERROR: imagemagick not installed!" ; \
+		false ; \
+	fi
+	@if [ ! -x /usr/bin/inkscape ]; then \
+		echo "ERROR: inkscape not installed!" ; \
+		false ; \
+	fi
+	
+	# create XDG compatible icons from SVG
+	for i in 16 22 32 48 64 128; do \
+		mkdir -p "icons/hicolor/$${i}x$${i}/apps" ; \
+		inkscape --export-width=$${i} \
+			 --export-height=$${i} \
+			 --export-png="$(CURDIR)/icons/hicolor/$${i}x$${i}/apps/install-usb-gui.png" \
+				$(CURDIR)/icons/install-usb-gui.svg ; \
+	done
+	
+	# create XPM icons for the debian menu system
+	mkdir -p icons/pixmaps
+	convert icons/hicolor/32x32/apps/install-usb-gui.png icons/pixmaps/install-usb-gui.xpm
+	convert icons/hicolor/16x16/apps/install-usb-gui.png icons/pixmaps/install-usb-gui-16.xpm
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install 

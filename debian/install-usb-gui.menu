@@ -2,6 +2,6 @@
 	section="Applications/System/Administration" \
 	hints="sidux,Config" \
 	title="install-sidux-to-usb" \
-	icon32x32="/usr/share/pixmaps/sidux-usb-icon.xpm" \
-	icon16x16="/usr/share/pixmaps/sidux-usb-icon-16.xpm" \
+	icon32x32="/usr/share/pixmaps/install-usb-gui.xpm" \
+	icon16x16="/usr/share/pixmaps/install-usb-gui-16.xpm" \
 	command="su-to-root -X -c /usr/sbin/install-usb-gui.bash"

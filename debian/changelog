@@ -1,13 +1,15 @@
 install-usb-gui (0.2.4) UNRELEASED; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
   [ Bernard Gray ]
   * add kde3/4 compatible svg sidux-usb icon
-  * update copyright for new icon 
+  * update copyright for new icon
 
- -- Bernard Gray <bernard.gray@gmail.com>  Wed, 13 Feb 2008 14:33:43 +1100
+  [ Stefan Lippers-Hollmann ]
+  * rename sidux-usb.svg to install-usb-gui.svg, use it as basename for all
+    icons.
+  * really remove old icon.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 14 Feb 2008 01:18:29 +0100
 
 install-usb-gui (0.2.3) unstable; urgency=low
 

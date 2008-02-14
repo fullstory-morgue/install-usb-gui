@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Type=Application
 Exec=su-to-root -X -c /usr/sbin/install-usb-gui.bash
-Icon=sidux-usb-icon
+Icon=install-usb-gui
 
 Name=install-sidux-to-usb
 Name[de]=install-sidux-to-usb

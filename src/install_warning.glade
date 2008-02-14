@@ -10,7 +10,7 @@
     <property name="window_position">GTK_WIN_POS_CENTER_ALWAYS</property>
     <property name="default_width">500</property>
     <property name="default_height">400</property>
-    <property name="icon">sidux-usb-icon.png</property>
+    <property name="icon">install-usb-gui.png</property>
     <signal name="delete_event" handler="gtk_main_quit"/>
     <child>
       <widget class="GtkFixed" id="fixed1">
