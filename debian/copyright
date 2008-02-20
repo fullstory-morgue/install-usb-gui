@@ -7,18 +7,18 @@ Copyright: Horst Tritremmel <hjt@sidux.com>, Joaquim Boura <x-un-i@sidux.com>
 
 License:
 
-The Debian packaging is (C) 2007, Horst Tritremmel <hjt@sidux.com> and
+The Debian packaging is © 2007, Horst Tritremmel <hjt@sidux.com> and
 is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
 
 Files: icons/*
-Copyright: (C) 2008 Bernard Gray <bernard.gray@gmail.com>
-           (C) 2008 David Creedy <djcreedy@iinet.net.au>
-           (C) 2007 David Vignoni <david@icon-king.com>
-           (C) 2007 Johann Ollivier Lapeyre <johann@oxygen-icons.org>
-           (C) 2007 Kenneth Wimer <kwwii@bootsplash.org>
-           (C) 2007 Nuno Fernades Pinheiro <nf.pinheiro@gmail.com>
-           (C) 2007 Riccardo Iaconelli <riccardo@oxygen-icons.org>
-           (C) 2007 David Miller <miller@oxygen-icons.org>
+Copyright: © 2008 Bernard Gray <bernard.gray@gmail.com>
+           © 2008 David Creedy <djcreedy@iinet.net.au>
+           © 2007 David Vignoni <david@icon-king.com>
+           © 2007 Johann Ollivier Lapeyre <johann@oxygen-icons.org>
+           © 2007 Kenneth Wimer <kwwii@bootsplash.org>
+           © 2007 Nuno Fernades Pinheiro <nf.pinheiro@gmail.com>
+           © 2007 Riccardo Iaconelli <riccardo@oxygen-icons.org>
+           © 2007 David Miller <miller@oxygen-icons.org>
 License: CC-ASA-3.0 | LGPL-2+
   ceni.svg also includes elements from The Oxygen Icon Theme.
   Licensed under the Creative Common Attribution-ShareAlike 3.0
