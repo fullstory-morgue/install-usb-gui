@@ -1,9 +1,5 @@
-install-usb-gui (0.2.6) UNRELEASED; urgency=low
+install-usb-gui (0.2.6) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * translation by muchan
 
  -- Joaquim Boura <x-un-i@sidux.com>  Tue, 26 Feb 2008 21:16:07 +0100
