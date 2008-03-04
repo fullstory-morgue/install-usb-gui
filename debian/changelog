@@ -1,8 +1,13 @@
 install-usb-gui (0.2.7) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 27 Feb 2008 10:58:39 +0100
+  [ Joaquim Boura ]
+  * on live dont use /fll directly but get that directory from the default
+    mountpoint.
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Tue, 04 Mar 2008 07:39:19 +0100
 
 install-usb-gui (0.2.6) unstable; urgency=low
 
