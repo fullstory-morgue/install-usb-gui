@@ -1,8 +1,12 @@
 install-usb-gui (0.2.8) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 04 Mar 2008 12:56:15 +0100
+  [ Joaquim Boura ]
+  * fixed fr translation. thanks to alphad.
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Sun, 09 Mar 2008 11:54:14 +0100
 
 install-usb-gui (0.2.7) unstable; urgency=low
 

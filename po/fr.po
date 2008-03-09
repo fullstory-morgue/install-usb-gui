@@ -3,22 +3,24 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-30 15:11+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-03-09 01:53+0100\n"
+"Last-Translator: "Alpha Diakite <alphadi@aim.com>\n"
+"Language-Team: French\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: main.c:112
 msgid "getenv HOME isn't defined"
-msgstr ""
+msgstr "getenv HOME n'est pas défini"
 
 #: main.c:123
 msgid ""
 "getenv FLL_DISTRO_MODE isn't defined\n"
 "Please start with install-usb-gui.bash"
 msgstr ""
+"getenv HOME n'est pas défini"
+"S'il vous plaît lancez install-usb-gui.bash"
 
 #: main.c:178
 #, c-format
@@ -28,52 +30,61 @@ msgid ""
 " Please start with install-usb-gui.bash\n"
 "\n"
 msgstr ""
+"\n"
+" Pas de variable USBDEVICE0 trouvé!\n"
+" S'il vous plaît lancez install-usb-gui.bash\n"
+"\n"
 
 #: callbacks.c:94
 msgid "No ISO selected!"
-msgstr ""
+msgstr "Pas d'image ISO selectionnée"
 
 #: install_warning.glade:39(property)
 msgid ""
 "<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB device "
 "will be completely erased.!</span>"
 msgstr ""
+"<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">Dispositif USB "
+"sera complètement effacé!</span>"
 
 #: install-usb-gui.glade:52(property)
 msgid "<b>USB Device</b>"
-msgstr ""
+msgstr "Dispositif USB"
 
 #: install-usb-gui.glade:66(property)
 msgid ""
 "<b><big>This tool create a bootable sidux USB device</big>"
 "</b>"
 msgstr ""
+"<b><big>Ce outil crée un dispostif usb sidux bootable</big>"
+"</b>"
 
 #: install-usb-gui.glade:77(property)
 msgid ""
 "<b><i>Use it at your own risk, it comes without any warranty.</i></b>"
 msgstr ""
+"<b><i>Utilisez le à vos propres risques, il n'y a aucune garantie</i></b>"
 
 #: install-usb-gui.glade:108(property)
 msgid "<b>Name</b>"
-msgstr ""
+msgstr "<b>Nom</b>"
 
 #: install-usb-gui.glade:108(property)
 msgid "<b>Cheatcodes</b>"
-msgstr ""
+msgstr "<b>Codes de démarrage</b>"
 
 #: install-usb-gui.glade:144(property)
 msgid "List of cheatcodes"
-msgstr ""
+msgstr "la liste des codes de démarrage"
 
 #: install-usb-gui.glade:144(property)
 msgid "Example: <b>lang=de tz=Europe/Vienna persist toram </b>"
-msgstr ""
+msgstr "Exemple: <b>lang=fr tz=Europe/Paris persist toram </b>"
 
 #: install-usb-gui.glade:174(property)
 msgid "<b>choose the iso file</b>"
-msgstr ""
+msgstr "<b>choisir l'image ISO</b>"
 
 msgid "Install successful"
-msgstr ""
+msgstr "Installation réussie"
 
