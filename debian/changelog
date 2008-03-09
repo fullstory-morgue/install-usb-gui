@@ -1,9 +1,5 @@
-install-usb-gui (0.2.8) UNRELEASED; urgency=low
+install-usb-gui (0.2.8) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * fixed fr translation. thanks to alphad.
   * corrected the pt language files. Thanks to Rui Umbelino (VaMPiRiC_CRoW)
 
