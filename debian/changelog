@@ -1,9 +1,5 @@
-install-usb-gui (0.2.9) UNRELEASED; urgency=low
+install-usb-gui (0.2.9) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * fixed the way as booted_device and fll_booted_dir as gotten on the live CD
 
  -- Joaquim Boura <x-un-i@sidux.com>  Mon, 17 Mar 2008 21:54:39 +0100
