@@ -321,15 +321,16 @@ copy_files_from_dev()
 	local ev
 	local booted_device fll_booted_dir
 	
+	FLL_BASE_DIR_AWK=$(echo $FLL_BASE_DIR | sed -e 's|\/|\\\/|g')
 	booted_device=$(LC_ALL=C mount | awk '
 		{
-			if(/iso9660/ && /${FLL_BASE_DIR}/ && /\/dev\//)
+			if(/iso9660/ && /'${FLL_BASE_DIR_AWK}'/ && /\/dev\//)
 				print $1
 		}
 	')
 	fll_booted_dir=$(LC_ALL=C mount | awk '
 		{
-			if(/iso9660/ && /${FLL_BASE_DIR}/ && /\/dev\//)
+			if(/iso9660/ && /'${FLL_BASE_DIR_AWK}'/ && /\/dev\//)
 				print $3
 		}
 	')
