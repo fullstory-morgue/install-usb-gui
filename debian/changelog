@@ -1,9 +1,5 @@
-install-usb-gui (0.2.10) UNRELEASED; urgency=low
+install-usb-gui (0.2.10) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Horst Tritremmel ]
   * install-usb-title.png changed for nyx
 
  -- Horst Tritremmel <hjt@sidux.com>  Thu, 20 Mar 2008 21:26:06 +0100
