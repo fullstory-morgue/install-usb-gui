@@ -89,6 +89,17 @@ valid_label()
 	return 0
 }
 #--------------------------------------------------------------
+refresh_block_devices()
+{
+	if which udevadm >/dev/null; then
+		udevadm trigger --subsystem-match=block
+		udevadm settle --timeout=30
+	elif which udevtrigger >/dev/null; then
+		udevtrigger --subsystem-match=block
+		udevsettle --timeout=30
+	fi
+}
+#--------------------------------------------------------------
 prepare_partition()
 {
 	local device="${1}"
@@ -133,7 +144,7 @@ EOF
 		return 1
 	fi
 	
-	udevtrigger --subsystem-match=block
+	refresh_block_devices
 
 	is_bootable=$(LC_ALL=C fdisk -l ${device} | awk -v part=${partition} '
 		{
@@ -160,7 +171,7 @@ EOF
 			return 1
 		fi
 	
-		udevtrigger --subsystem-match=block
+		refresh_block_devices
 
 		is_bootable=$(LC_ALL=C fdisk -l ${device} | awk -v part=${partition} '
 			{
@@ -202,7 +213,7 @@ EOF
 			return 1
 		fi
 		
-		udevtrigger --subsystem-match=block
+		refresh_block_devices
 
 		part_id=$(LC_ALL=C fdisk -l ${device}  | awk -v part=${partition} '
 			{

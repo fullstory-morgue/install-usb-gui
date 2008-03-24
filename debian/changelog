@@ -1,8 +1,10 @@
 install-usb-gui (0.2.11) UNRELEASED; urgency=low
 
-  * NOT RELEASED YET
+  * Provide compatibility code for when udetrigger/settle is replaced with
+    udevadm. Add refresh_block_devices() function to take care of refresh of
+    device nodes.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 21 Mar 2008 09:47:29 +0100
+ -- Kel Modderman <kel@otaku42.de>  Mon, 24 Mar 2008 16:44:51 +1000
 
 install-usb-gui (0.2.10) unstable; urgency=low
 
