@@ -1,4 +1,4 @@
-install-usb-gui (0.2.11) UNRELEASED; urgency=low
+install-usb-gui (0.2.11) unstable; urgency=low
 
   * Provide compatibility code for when udetrigger/settle is replaced with
     udevadm. Add refresh_block_devices() function to take care of refresh of
