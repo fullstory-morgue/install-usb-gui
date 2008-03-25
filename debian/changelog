@@ -1,3 +1,9 @@
+install-usb-gui (0.2.12) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 25 Mar 2008 01:46:29 +0100
+
 install-usb-gui (0.2.11) unstable; urgency=low
 
   * Provide compatibility code for when udetrigger/settle is replaced with
