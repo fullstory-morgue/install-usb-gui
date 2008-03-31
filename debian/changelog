@@ -1,8 +1,9 @@
 install-usb-gui (0.2.13) UNRELEASED; urgency=low
 
-  * NOT RELEASED YET
+  * Have a go at adding /dev/cdrom* and /dev/dvd* as gtk file chooser filters
+    for iso -> usb install option.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 31 Mar 2008 14:35:28 +0200
+ -- Kel Modderman <kel@otaku42.de>  Tue, 01 Apr 2008 03:51:34 +1000
 
 install-usb-gui (0.2.12) unstable; urgency=low
 

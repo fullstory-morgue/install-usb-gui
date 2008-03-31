@@ -106,6 +106,8 @@ create_window (void)
 		filter = gtk_file_filter_new ();
 		gtk_file_filter_add_pattern (filter, "*.iso");
 		gtk_file_filter_add_pattern (filter, "*.ISO");
+		gtk_file_filter_add_pattern (filter, "/dev/cdrom*");
+		gtk_file_filter_add_pattern (filter, "/dev/dvd*");
 
 		gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (filechooserbutton_iso), filter);
 
