@@ -1,4 +1,4 @@
-install-usb-gui (0.2.12) UNRELEASED; urgency=low
+install-usb-gui (0.2.12) unstable; urgency=low
 
   * Shorten grub menu description.
 
