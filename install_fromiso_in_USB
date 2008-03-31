@@ -473,7 +473,7 @@ EOF
 	cat >> ${mountpoint}/boot/grub/menu.lst \
 <<EOF
 ##ISO boot
-title ${name} (fromISO + fromUSB) ${kernel}
+title ${name} (USB) ${kernel}
 kernel (hd0,0)/boot/vmlinuz-${kernel} boot=fll fromhd=UUID=${uuid} fromiso nointro quiet vga=791 ${@}
 initrd (hd0,0)/boot/initrd.img-${kernel}
 

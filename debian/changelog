@@ -1,8 +1,8 @@
 install-usb-gui (0.2.12) UNRELEASED; urgency=low
 
-  * NOT RELEASED YET
+  * Shorten grub menu description.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 25 Mar 2008 01:46:29 +0100
+ -- Kel Modderman <kel@otaku42.de>  Mon, 31 Mar 2008 16:53:29 +1000
 
 install-usb-gui (0.2.11) unstable; urgency=low
 
