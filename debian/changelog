@@ -1,3 +1,9 @@
+install-usb-gui (0.2.14) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 02 Apr 2008 02:43:35 +0200
+
 install-usb-gui (0.2.13) unstable; urgency=low
 
   * Have a go at adding cdrom* and dvd* as gtk file chooser filters
