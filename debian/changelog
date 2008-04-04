@@ -2,8 +2,11 @@ install-usb-gui (0.2.14) UNRELEASED; urgency=low
 
   * trap umount_partition partition function to ensure used mointpoints are
     cleaned up in event of failure.
+  * If using script from environment other than stock live-cd, the iso media
+    can be provided by cd media, if mount of cd fails, prompt for cd to be
+    insterted.
 
- -- Kel Modderman <kel@otaku42.de>  Fri, 04 Apr 2008 10:46:00 +1000
+ -- Kel Modderman <kel@otaku42.de>  Fri, 04 Apr 2008 10:48:11 +1000
 
 install-usb-gui (0.2.13) unstable; urgency=low
 

@@ -388,9 +388,20 @@ copy_files_from_local_iso()
 	say "mounting iso: ${iso}"
 	
 	mounted_iso="$(mktemp -d -p /tmp/ install-usb-iso.XXXXX)"
-	
-	mount -t iso9660 -o loop,ro "${iso}" "${mounted_iso}"
-	
+
+	while :; do
+		if mount -t iso9660 -o loop,ro "${iso}" "${mounted_iso}"; then
+			break
+		elif [[ -b ${iso} ]]; then
+			echo
+			echo "Please load iso media into ${iso#/dev/} tray."
+			echo "Press Enter to continue or Ctrl+c to cancel."
+			echo
+			read x
+			continue
+		fi
+	done
+
 	ev="${?}"
 	if [ "${ev}" -ne 0 ]; then
 		error "${ev}" "failed to mount ${iso} on ${mounted_iso}"
