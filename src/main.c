@@ -112,13 +112,7 @@ create_window (void)
 		gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (filechooserbutton_iso), filter);
 
 		// set current dir for file chooser
-		if (!getenv("HOME")) {
-			dialog_msg( window, gettext("getenv HOME isn't defined") );
-		}
-		else {
-			// set the current folder now
-			gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (filechooserbutton_iso), getenv("HOME"));
-		}
+		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (filechooserbutton_iso), "/");
 
 	
 		// hide the iso file chooser in live mode and without cheatcode toram

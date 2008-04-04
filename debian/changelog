@@ -1,5 +1,6 @@
 install-usb-gui (0.2.14) UNRELEASED; urgency=low
 
+  [ Kel Modderman ]
   * trap umount_partition partition function to ensure used mointpoints are
     cleaned up in event of failure.
   * If using script from environment other than stock live-cd, the iso media
@@ -10,7 +11,10 @@ install-usb-gui (0.2.14) UNRELEASED; urgency=low
   * Return something from filechooser is running in toram mode, as well as
     installed mode.
 
- -- Kel Modderman <kel@otaku42.de>  Fri, 04 Apr 2008 10:57:01 +1000
+  [ Horst Tritremmel ]
+  * file_chooser default dir changed to /
+
+ -- Horst Tritremmel <hjt@sidux.com>  Fri, 04 Apr 2008 11:34:05 +0200
 
 install-usb-gui (0.2.13) unstable; urgency=low
 
