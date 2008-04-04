@@ -5,8 +5,12 @@ install-usb-gui (0.2.14) UNRELEASED; urgency=low
   * If using script from environment other than stock live-cd, the iso media
     can be provided by cd media, if mount of cd fails, prompt for cd to be
     insterted.
+  * If iso file chooser returned a value, use it if valid file or block
+    device.
+  * Return something from filechooser is running in toram mode, as well as
+    installed mode.
 
- -- Kel Modderman <kel@otaku42.de>  Fri, 04 Apr 2008 10:48:11 +1000
+ -- Kel Modderman <kel@otaku42.de>  Fri, 04 Apr 2008 10:57:01 +1000
 
 install-usb-gui (0.2.13) unstable; urgency=low
 
