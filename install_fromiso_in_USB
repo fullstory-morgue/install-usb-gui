@@ -581,6 +581,8 @@ prepare_partition "${DEVICE}" "${PARTITION}" "${LABEL}"		|| exit 5
 
 mount_partition "${PARTITION}" "${USBTMPDIR}"			|| exit 6
 
+trap "{ [[ -d ${USBTMPDIR} ]] && umount_partition ${PARTITION} ${USBTMPDIR}; }" exit
+
 install_grub "${DEVICE}" "${USBTMPDIR}"				|| exit 7
 
 if [ "${FORCE_LOCAL_ISO}" ]; then
@@ -592,7 +594,5 @@ else
 fi
 
 menulst "${PARTITION}" "${USBTMPDIR}" "${FLL_DISTRO_NAME}" ${@}	|| exit 10
-
-umount_partition "${PARTITION}" "${USBTMPDIR}"			|| exit 11
 
 exit 0
