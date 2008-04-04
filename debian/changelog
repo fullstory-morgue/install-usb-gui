@@ -1,4 +1,4 @@
-install-usb-gui (0.2.14) UNRELEASED; urgency=low
+install-usb-gui (0.2.14) unstable; urgency=low
 
   [ Kel Modderman ]
   * trap umount_partition partition function to ensure used mointpoints are
