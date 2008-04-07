@@ -39,7 +39,7 @@ msgstr ""
 
 #: callbacks.c:94
 msgid "No ISO selected!"
-msgstr "Nenhum ficheiro ISO foi seleccionado!"
+msgstr "Nenhum ISO foi seleccionado!"
 
 #: install_warning.glade:39(property)
 msgid ""
@@ -51,14 +51,14 @@ msgstr ""
 
 #: install-usb-gui.glade:52(property)
 msgid "<b>USB Device</b>"
-msgstr "<b>Dispositivo USB</b>"
+msgstr "<b>Dispositivo USB:</b>"
 
 #: install-usb-gui.glade:66(property)
 msgid ""
 "<b><big>This tool create a bootable sidux USB device</big>"
 "</b>"
 msgstr ""
-"<b><big>Esta ferramenta cria um dispositivo USB com o sidux</big>"
+"<b><big>Esta ferramenta cria um dispositivo USB com o sidux.</big>"
 "</b>"
 
 #: install-usb-gui.glade:77(property)
