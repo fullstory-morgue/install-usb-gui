@@ -1,9 +1,5 @@
-install-usb-gui (0.2.15) UNRELEASED; urgency=low
+install-usb-gui (0.2.15) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * fixed pt language file.
 
  -- Joaquim Boura <x-un-i@sidux.com>  Mon, 07 Apr 2008 22:45:48 +0200
