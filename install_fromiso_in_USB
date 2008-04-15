@@ -46,19 +46,19 @@ fi
 #--------------------------------------------------------------
 usage()
 {
-        echo ""
-        echo "Create an fromiso (frugal) installation on a USB drive"
-        echo ""
-        echo "-d|--debug                debug sh code execution"
-        echo "-D|--drive </dev/sdX>     name of device where to install the \"fromiso\""
-        echo "-h|--help                 print this help"
-        echo "-I|--iso   <iso_file>     iso file name to be installed"
-        echo "-t|--test                 copy everything but do not copy the iso"
-        echo ""
+	echo ""
+	echo "Create an fromiso (frugal) installation on a USB drive"
+	echo ""
+	echo "-d|--debug                debug sh code execution"
+	echo "-D|--drive </dev/sdX>     name of device where to install the \"fromiso\""
+	echo "-h|--help                 print this help"
+	echo "-I|--iso   <iso_file>     iso file name to be installed"
+	echo "-t|--test                 copy everything but do not copy the iso"
+	echo ""
 	echo "Everything after -- will be appended to the kernel cmdline of grub menu.lst"
 	echo ""
-        echo "Use it at your own risk, it comes without any warranty."
-        echo ""
+	echo "Use it at your own risk, it comes without any warranty."
+	echo ""
 }
 #--------------------------------------------------------------
 error()
@@ -351,6 +351,7 @@ copy_files_from_dev()
 	cp -v	${fll_booted_dir}/boot/message \
 		${fll_booted_dir}/boot/initrd* \
 		${fll_booted_dir}/boot/vmlinuz* \
+		${fll_booted_dir}/boot/memtest86+.bin \
 			${mountpoint}/boot
 	
 	ev="${?}"
@@ -414,6 +415,7 @@ copy_files_from_local_iso()
 	cp -v	${mounted_iso}/boot/message \
 		${mounted_iso}/boot/initrd* \
 		${mounted_iso}/boot/vmlinuz* \
+		${mounted_iso}/boot/memtest86+.bin \
 			${mountpoint}/boot
 	
 	ev="${?}"
@@ -453,6 +455,8 @@ copy_files_from_local_iso()
 	say "files successfully copied to ${mountpoint}"
 }
 #--------------------------------------------------------------
+
+#--------------------------------------------------------------
 menulst()
 {
 	local partition="${1}"
@@ -487,6 +491,9 @@ EOF
 title ${name} (USB) ${kernel}
 kernel (hd0,0)/boot/vmlinuz-${kernel} boot=fll fromhd=UUID=${uuid} fromiso nointro quiet vga=791 ${@}
 initrd (hd0,0)/boot/initrd.img-${kernel}
+
+title memtest86+
+kernel /boot/memtest86+.bin
 
 EOF
 
