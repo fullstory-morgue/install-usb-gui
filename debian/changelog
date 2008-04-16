@@ -1,9 +1,5 @@
-install-usb-gui (0.2.16) UNRELEASED; urgency=low
+install-usb-gui (0.2.16) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * copy memtest86+.bin into the usb device, and make an entry in the grub
 
  -- Joaquim Boura <x-un-i@sidux.com>  Tue, 15 Apr 2008 22:45:03 +0200
