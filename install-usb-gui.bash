@@ -42,17 +42,17 @@ export TEXTDOMAINDIR
 
 
 # exec code -----------------------------------------------------
-INSTALL_USB_GUI="$(which install-usb-gui)"			|| INSTALL_USB_GUI="/usr/bin/install-usb-gui"
-INSTALL_FROMISO_IN_USB="$(which fll-iso2usb)"	|| INSTALL_FROMISO_IN_USB="/usr/sbin/fll-iso2usb"
-SSFTSH="$(which ssft.sh)"					|| SSFTSH="/usr/bin/ssft.sh"
+INSTALL_USB_GUI="$(which install-usb-gui)" || INSTALL_USB_GUI="/usr/bin/install-usb-gui"
+INSTALL_ISO2USB="$(which fll-iso2usb)"     || INSTALL_ISO2USB="/usr/sbin/fll-iso2usb"
+SSFTSH="$(which ssft.sh)"                  || SSFTSH="/usr/bin/ssft.sh"
 # initialize ssft
 . "$SSFTSH"
 [ -n "$SSFT_FRONTEND" ] ||  SSFT_FRONTEND="$(ssft_choose_frontend)"
 
 
 # fll-iso2usb check ----------------------------------
-if [ ! -x "$INSTALL_FROMISO_IN_USB" ]; then
-	printf "\n$INSTALL_FROMISO_IN_USB not found\n\n"
+if [ ! -x "$INSTALL_ISO2USB" ]; then
+	printf "\n$INSTALL_ISO2USB not found\n\n"
 	exit 1
 fi
 
@@ -134,9 +134,9 @@ IFS=$' \t\n'
 # 		start the installation
 # ==============================================================
 if [ -f "$filechooserbutton_iso" ] || [ -b "$filechooserbutton_iso" ]; then
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device -I $filechooserbutton_iso ${cheat}"
+	RUN_SH="$INSTALL_ISO2USB -D $combobox_device -I $filechooserbutton_iso ${cheat}"
 elif [ "$FLL_DISTRO_MODE" = live ]; then
-	RUN_SH="$INSTALL_FROMISO_IN_USB -D $combobox_device ${cheat}"
+	RUN_SH="$INSTALL_ISO2USB -D $combobox_device ${cheat}"
 else
 	printf "Error with Mode of operation\n";
 	exit 1
