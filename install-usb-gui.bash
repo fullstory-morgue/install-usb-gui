@@ -43,14 +43,14 @@ export TEXTDOMAINDIR
 
 # exec code -----------------------------------------------------
 INSTALL_USB_GUI="$(which install-usb-gui)"			|| INSTALL_USB_GUI="/usr/bin/install-usb-gui"
-INSTALL_FROMISO_IN_USB="$(which install_fromiso_in_USB)"	|| INSTALL_FROMISO_IN_USB="/usr/sbin/install_fromiso_in_USB"
+INSTALL_FROMISO_IN_USB="$(which fll-iso2usb)"	|| INSTALL_FROMISO_IN_USB="/usr/sbin/fll-iso2usb"
 SSFTSH="$(which ssft.sh)"					|| SSFTSH="/usr/bin/ssft.sh"
 # initialize ssft
 . "$SSFTSH"
 [ -n "$SSFT_FRONTEND" ] ||  SSFT_FRONTEND="$(ssft_choose_frontend)"
 
 
-# install_fromiso_in_USB check ----------------------------------
+# fll-iso2usb check ----------------------------------
 if [ ! -x "$INSTALL_FROMISO_IN_USB" ]; then
 	printf "\n$INSTALL_FROMISO_IN_USB not found\n\n"
 	exit 1
@@ -146,7 +146,7 @@ printf "$RUN_SH\n"
 x-terminal-emulator -e $RUN_SH
 
 # lookup the return code from install-fromiso-in-usb
-test -e /tmp/.install_fromiso_in_USB && rc=$(</tmp/.install_fromiso_in_USB) || rc=0
+test -e /tmp/.fll-iso2usb && rc=$(</tmp/.fll-iso2usb) || rc=0
 
 case "${rc%-*}" in
         0)

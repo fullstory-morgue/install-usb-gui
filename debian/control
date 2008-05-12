@@ -10,13 +10,8 @@ Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/install-usb-gui/trunk/
 
 Package: install-usb-gui
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, xterm | x-terminal-emulator, ssft, gettext, distro-defaults
+Depends: ${shlibs:Depends}, ${misc:Depends}, xterm | x-terminal-emulator, ssft, gettext, fll-iso2usb
 Recommends: menu, zenity
-Description: gui for the install_fromiso_in_USB script
- given an usb pen, eg /dev/sdb, /dev/sdc we create ** one **  partiton on that 
- device make it bootable, format it with ext3 (labeled sidux_from_usb)
- install grub into it
- copy the message file into the grub dirs
- create directory for iso, kernel, initrd (eg sidux)
- copy the files into there.
- create the menu.lst file on it
+Description: gui for fll-iso2usb
+ A user interface for fll-iso2usb, for easy installation of a FULLSTORY
+ Live Linux distribution to a usb disk drive.
