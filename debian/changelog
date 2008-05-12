@@ -1,3 +1,9 @@
+install-usb-gui (0.2.18) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 12 May 2008 18:45:42 +0200
+
 install-usb-gui (0.2.17) unstable; urgency=low
 
   * Remove install_fromiso_in_USB from source package.
