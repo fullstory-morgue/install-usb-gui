@@ -36,7 +36,7 @@
 
 GladeXML *gxml, *gxml_install_warning;
 const gchar *file_iso,  *combobox_device_result, *entry_cheat_result; //*entry_usb_result , *combobox_lang_result
-char glade_file_install_warn[1024];
+char glade_file_install_warn[1024], device_string[1024];
 //gboolean checkbutton_persist_result, checkbutton_toram_result;
 
 
@@ -71,15 +71,43 @@ create_install_warning (void)
 
 
 void
+do_install()
+{
+	char entry_cheat[1024];
+
+	g_print("%s\n", device_string);
+
+	// if cheatcode entrybox is empty
+        strncpy ( entry_cheat, entry_cheat_result, 1024 );
+	if( strncmp( entry_cheat, "", 1 ) == 0 ) {
+		strncpy ( entry_cheat , "_", 1);
+	}
+	g_print("%s\n", entry_cheat);
+
+	if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) != 0  || \
+	    strncmp( getenv("CHEATCODE_TORAM"), "0", 1 ) != 0 ) {
+		// installed mode or toram mode
+		g_print("%s\n", file_iso);
+	}
+
+
+	gtk_main_quit ();
+}
+
+
+void
 on_button_install_clicked (GtkButton *button, 
 				gpointer user_data)
 {
 
 	GtkWidget *window = glade_xml_get_widget (gxml, "window");
-		
+
+
 	GtkWidget *combobox_device       = glade_xml_get_widget (gxml, "combobox_device");
 	GtkWidget *entry_cheat           = glade_xml_get_widget (gxml, "entry_cheat");
 	GtkWidget *filechooserbutton_iso = glade_xml_get_widget (gxml, "filechooserbutton_iso");
+	GtkWidget *no_format_option      = glade_xml_get_widget (gxml, "no_format_option");
+	GtkWidget *persist_option        = glade_xml_get_widget (gxml, "persist_option");
 
 	combobox_device_result     = gtk_combo_box_get_active_text(GTK_COMBO_BOX ( combobox_device ) );
 	entry_cheat_result         = gtk_entry_get_text( GTK_ENTRY ( entry_cheat  ) );
@@ -99,7 +127,23 @@ on_button_install_clicked (GtkButton *button,
 	// start the install warning
 	GtkWidget *install_warning = create_install_warning ();
 	gtk_widget_hide (window);
-	gtk_widget_show (install_warning);
+
+	strncpy( device_string, combobox_device_result, 1024);
+	if ( gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (persist_option)) ) {
+		// persist checkbox selected
+		strncat( device_string, " -p", 1024);
+	}
+
+	if ( gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (no_format_option)) ) {
+		// no_format_option checkbox selected
+		strncat( device_string, " -n", 1024);
+		do_install();
+	}
+        else {
+		gtk_widget_show (install_warning);
+	}
+
+
 }
 
 
@@ -119,23 +163,7 @@ void
 on_button_install_accepted_clicked(GtkButton *button, 
 						   gpointer user_data)
 {
-
-	g_print("%s\n", combobox_device_result);
-
-	// if cheatcode entrybox is empty
-	if( strncmp( entry_cheat_result, "", 1 ) == 0 ) {
-		strncpy ( entry_cheat_result , "_", 1);
-	}
-	g_print("%s\n", entry_cheat_result);
-
-	if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) != 0  || \
-	    strncmp( getenv("CHEATCODE_TORAM"), "0", 1 ) != 0 ) {
-		// installed mode or toram mode
-		g_print("%s\n", file_iso);
-	}
-
-
-	gtk_main_quit ();
+	do_install();
 }
 
 
