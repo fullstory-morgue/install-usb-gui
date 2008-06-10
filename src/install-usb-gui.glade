@@ -241,11 +241,12 @@
         </child>
         <child>
           <widget class="GtkCheckButton" id="no_format_option">
-            <property name="width_request">174</property>
+            <property name="width_request">150</property>
             <property name="height_request">36</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="label" translatable="yes">do not format partition</property>
+            <property name="tooltip" translatable="yes">Do not format partition!</property>
+            <property name="label" translatable="yes">noformat</property>
             <property name="use_underline">True</property>
             <property name="response_id">0</property>
             <property name="draw_indicator">True</property>
@@ -257,18 +258,20 @@
         </child>
         <child>
           <widget class="GtkCheckButton" id="persist_option">
-            <property name="width_request">394</property>
+            <property name="width_request">150</property>
             <property name="height_request">36</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="label" translatable="yes">Initializing persistent overlay
-(file using 50% of the available size)</property>
+            <property name="tooltip" translatable="yes">Initializing persistent overlay file 
+using 50% of the available size.
+Persist wants at least 200MB free.</property>
+            <property name="label" translatable="yes">persist</property>
             <property name="use_underline">True</property>
             <property name="response_id">0</property>
             <property name="draw_indicator">True</property>
           </widget>
           <packing>
-            <property name="x">198</property>
+            <property name="x">170</property>
             <property name="y">370</property>
           </packing>
         </child>

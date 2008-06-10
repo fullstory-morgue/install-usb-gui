@@ -6,11 +6,13 @@ install-usb-gui (0.2.18) UNRELEASED; urgency=low
   [ Horst Tritremmel ]
   * checkbox do not format added
   * checkbox persist added
+  * shorter name for the new checkboxes
+  * tooltip's added to the checkboxes
 
   [ Stefan Lippers-Hollmann ]
   * bump standards version to 3.8.0, no changes necessary.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 08 Jun 2008 16:21:36 +0200
+ -- Horst Tritremmel <hjt@sidux.com>  Tue, 10 Jun 2008 11:02:31 +0200
 
 install-usb-gui (0.2.17) unstable; urgency=low
 
