@@ -101,15 +101,16 @@ on_button_install_clicked (GtkButton *button,
 {
 
 	GtkWidget *window = glade_xml_get_widget (gxml, "window");
-
+	const gchar *combobox_format_result;
 
 	GtkWidget *combobox_device       = glade_xml_get_widget (gxml, "combobox_device");
 	GtkWidget *entry_cheat           = glade_xml_get_widget (gxml, "entry_cheat");
 	GtkWidget *filechooserbutton_iso = glade_xml_get_widget (gxml, "filechooserbutton_iso");
-	GtkWidget *no_format_option      = glade_xml_get_widget (gxml, "no_format_option");
+	GtkWidget *combobox_format       = glade_xml_get_widget (gxml, "combobox_format");
 	GtkWidget *persist_option        = glade_xml_get_widget (gxml, "persist_option");
 
 	combobox_device_result     = gtk_combo_box_get_active_text(GTK_COMBO_BOX ( combobox_device ) );
+	combobox_format_result     = gtk_combo_box_get_active_text(GTK_COMBO_BOX ( combobox_format ) );
 	entry_cheat_result         = gtk_entry_get_text( GTK_ENTRY ( entry_cheat  ) );
 
 	if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) != 0 || \
@@ -134,13 +135,14 @@ on_button_install_clicked (GtkButton *button,
 		strncat( device_string, " -p", 1024);
 	}
 
-	if ( gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (no_format_option)) ) {
-		// no_format_option checkbox selected
-		strncat( device_string, " -n", 1024);
-		do_install();
+	// format combobox
+	strncat( device_string, " -f ", 1024);
+	strncat( device_string, combobox_format_result, 1024);
+	if( strncmp( combobox_format_result, "none", 4 ) != 0 ) {
+		gtk_widget_show (install_warning);
 	}
         else {
-		gtk_widget_show (install_warning);
+		do_install();
 	}
 
 

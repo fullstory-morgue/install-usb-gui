@@ -157,6 +157,14 @@ create_window (void)
 		window = glade_xml_get_widget (gxml, "window");
 	}
 	
+	// combobox_format entrys
+	GtkWidget *combobox_format = glade_xml_get_widget ( gxml, "combobox_format");
+	gtk_combo_box_append_text( GTK_COMBO_BOX (combobox_format), "none" );
+	gtk_combo_box_append_text( GTK_COMBO_BOX (combobox_format), "vfat" );
+	gtk_combo_box_append_text( GTK_COMBO_BOX (combobox_format), "ext3" );
+	gtk_combo_box_append_text( GTK_COMBO_BOX (combobox_format), "ext2" );
+	gtk_combo_box_set_active(GTK_COMBO_BOX   (combobox_format), 0 );
+
 	return window;
 }
 
