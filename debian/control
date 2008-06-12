@@ -10,7 +10,7 @@ Vcs-Browser: http://svn.berlios.de/wsvn/fullstory/install-usb-gui/trunk/
 
 Package: install-usb-gui
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, xterm | x-terminal-emulator, ssft, gettext, fll-iso2usb (>= 0.3.15)
+Depends: ${shlibs:Depends}, ${misc:Depends}, xterm | x-terminal-emulator, ssft, gettext, fll-iso2usb (>= 0.3.16)
 Recommends: menu, zenity
 Description: gui for fll-iso2usb
  A user interface for fll-iso2usb, for easy installation of a FULLSTORY

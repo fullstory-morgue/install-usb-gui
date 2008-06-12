@@ -1,7 +1,4 @@
-install-usb-gui (0.2.18) UNRELEASED; urgency=low
-
-  * NOT RELEASED YET
-  * DO NOT RELEASE, before x-un-i check in new fll-installer
+install-usb-gui (0.2.18) unstable; urgency=low
 
   [ Horst Tritremmel ]
   * checkbox do not format added
