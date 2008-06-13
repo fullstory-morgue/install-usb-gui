@@ -6,8 +6,9 @@ install-usb-gui (0.2.19) UNRELEASED; urgency=low
   [ Horst Tritremmel ]
   * typos, text changed
   * po file fixes
+  * typos again 
 
- -- Horst Tritremmel <hjt@sidux.com>  Fri, 13 Jun 2008 10:05:38 +0200
+ -- Horst Tritremmel <hjt@sidux.com>  Fri, 13 Jun 2008 19:59:31 +0200
 
 install-usb-gui (0.2.18) unstable; urgency=low
 

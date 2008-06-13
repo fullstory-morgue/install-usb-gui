@@ -270,12 +270,12 @@ is allowed on vfat) or 100MB as that does is of no use (too small) </property>
             <property name="height_request">32</property>
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="tooltip" translatable="yes">The device is formated (or not) with the choosen filesystem.
-When no filesystem formatting is performed,
+            <property name="tooltip" translatable="yes">The device is formatted (or not) with the chosen filesystem.
+If no filesystem formatting is performed,
 the first partition on the target device will be used as long as
-it is of ext2, ext3 or vfat filesystem type.
-When the device is formatted the choosen filesystem is used
-and a single partition will be created on the target device.
+it is a ext2, ext3 or vfat filesystem type.
+If the device is formated, the chosen filesystem is used
+and a single partition is created on the target device.
 Everything on the target device will be erased.</property>
             <property name="xalign">0</property>
             <property name="label" translatable="yes">&lt;b&gt;format:&lt;/b&gt;</property>
@@ -302,12 +302,12 @@ Everything on the target device will be erased.</property>
             <property name="height_request">32</property>
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="tooltip" translatable="yes">The device is formated (or not) with the choosen filesystem.
-When no filesystem formatting is performed,
+            <property name="tooltip" translatable="yes">The device is formatted (or not) with the chosen filesystem.
+If no filesystem formatting is performed,
 the first partition on the target device will be used as long as
-it is of ext2, ext3 or vfat filesystem type.
-When the device is formatted the choosen filesystem is used
-and a single partition will be created on the target device.
+it is a ext2, ext3 or vfat filesystem type.
+If the device is formated, the chosen filesystem is used
+and a single partition is created on the target device.
 Everything on the target device will be erased.</property>
             <property name="items" translatable="yes"></property>
           </widget>
