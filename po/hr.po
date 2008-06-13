@@ -22,7 +22,7 @@ msgstr ""
 #: main.c:112
 msgid "getenv HOME isn't defined"
 msgstr ""
-"getenv HOME nije definiran\n"
+"getenv HOME nije definiran"
 
 #: main.c:123
 msgid ""
@@ -81,6 +81,6 @@ msgid "persist"
 msgstr "trajno"
 
 #: install-usb-gui.glade:174(property)
-msgid "<b>choose the iso file</b>"
+msgid "<b>choose an iso file</b>"
 msgstr "<b>Izaberite iso datoteku</b>"
 

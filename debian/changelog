@@ -1,8 +1,13 @@
 install-usb-gui (0.2.19) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 12 Jun 2008 03:14:20 +0200
+  [ Horst Tritremmel ]
+  * typos, text changed
+  * po file fixes
+
+ -- Horst Tritremmel <hjt@sidux.com>  Fri, 13 Jun 2008 10:05:38 +0200
 
 install-usb-gui (0.2.18) unstable; urgency=low
 

@@ -45,7 +45,7 @@ msgstr ""
 
 #: install-usb-gui.glade:66(property)
 msgid ""
-"<b><big>This tool create a bootable sidux USB device</big>"
+"<b><big>This tool creates a bootable sidux USB device</big>"
 "</b>"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgid "Example: <b>lang=de tz=Europe/Vienna persist toram </b>"
 msgstr ""
 
 #: install-usb-gui.glade:174(property)
-msgid "<b>choose the iso file</b>"
+msgid "<b>choose an iso file</b>"
 msgstr ""
 
 msgid "Install successful"

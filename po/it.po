@@ -1,5 +1,5 @@
-ï»¿# translation of de.po to Deutsch
-# Italian translations for install-usb-gui package.
+# translation of de.po to Deutsch
+# German translations for install-usb-gui package.
 # Copyright (C) 2007 THE install-usb-gui'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the install-usb-gui package.
 #
@@ -40,7 +40,7 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"Non è stata trovata nessuna Variabile USBDEVICE0!\n"
+"Non _ stata trovata nessuna Variabile USBDEVICE0!\n"
 "Avviare con install-usb-gui.bash\n"
 "\n"
 
@@ -54,7 +54,7 @@ msgid ""
 "will be completely erased.!</span>"
 msgstr ""
 "<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">Il dispositivo USB "
-"sarà svuotato completamente!"
+"sar_ svuotato completamente!"
 
 #: install-usb-gui.glade:52(property)
 msgid "<b>USB Device</b>"
@@ -81,6 +81,6 @@ msgid "persist"
 msgstr "persistente"
 
 #: install-usb-gui.glade:174(property)
-msgid "<b>choose the iso file</b>"
+msgid "<b>choose an iso file</b>"
 msgstr "<b>seleziona il file iso</b>"
 

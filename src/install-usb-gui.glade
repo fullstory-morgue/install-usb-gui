@@ -64,7 +64,7 @@
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="yalign">0</property>
-            <property name="label" translatable="yes">&lt;b&gt;&lt;big&gt;This tool create a bootable sidux USB device&lt;/big&gt;&lt;/b&gt;</property>
+            <property name="label" translatable="yes">&lt;b&gt;&lt;big&gt;This tool creates a bootable sidux USB device&lt;/big&gt;&lt;/b&gt;</property>
             <property name="use_markup">True</property>
             <property name="justify">GTK_JUSTIFY_CENTER</property>
             <property name="wrap">True</property>
@@ -141,7 +141,7 @@
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="xalign">0</property>
-            <property name="label" translatable="yes">&lt;b&gt;choose the iso file&lt;/b&gt;</property>
+            <property name="label" translatable="yes">&lt;b&gt;choose an iso file&lt;/b&gt;</property>
             <property name="use_markup">True</property>
           </widget>
           <packing>
@@ -185,7 +185,7 @@
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
-                        <property name="label" translatable="yes">Example: &lt;b&gt;lang=de tz=Europe/Vienna persist toram &lt;/b&gt;</property>
+                        <property name="label" translatable="yes">Example: &lt;b&gt;lang=de tz=Europe/Vienna toram &lt;/b&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="selectable">True</property>
                       </widget>
@@ -274,7 +274,7 @@ is allowed on vfat) or 100MB as that does is of no use (too small) </property>
 When no filesystem formatting is performed,
 the first partition on the target device will be used as long as
 it is of ext2, ext3 or vfat filesystem type.
-When the device is formatted the choosed filesystem is used
+When the device is formatted the choosen filesystem is used
 and a single partition will be created on the target device.
 Everything on the target device will be erased.</property>
             <property name="xalign">0</property>
@@ -306,7 +306,7 @@ Everything on the target device will be erased.</property>
 When no filesystem formatting is performed,
 the first partition on the target device will be used as long as
 it is of ext2, ext3 or vfat filesystem type.
-When the device is formatted the choosed filesystem is used
+When the device is formatted the choosen filesystem is used
 and a single partition will be created on the target device.
 Everything on the target device will be erased.</property>
             <property name="items" translatable="yes"></property>

@@ -21,7 +21,7 @@ msgstr ""
 
 #: main.c:112
 msgid "getenv HOME isn't defined"
-msgstr ""
+msgstr "HOME Variable nicht definiert"
 
 #: main.c:123
 msgid ""
@@ -40,33 +40,33 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-""
-""
+" USBDEVICE0 Variable ist nicht definiert\n"
+" Bitte mit dem Befehl install-usb-gui.bas starten\n"
 "\n"
 
 #: callbacks.c:94
 msgid "No ISO selected!"
-msgstr ""
+msgstr "Keine ISO Datei ausgewählt!"
 
 #: install_warning.glade:39(property)
 msgid ""
 "<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB device "
 "will be completely erased.!</span>"
 msgstr ""
-""
-""
+"<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB Stick "
+"wird komplett gelöscht!</span>"
 
 #: install-usb-gui.glade:52(property)
 msgid "<b>USB Device</b>"
-msgstr ""
+msgstr "USB Stick"
 
 #: install-usb-gui.glade:66(property)
 msgid ""
 "<b><big>This tool creates a bootable sidux USB device</big>"
 "</b>"
 msgstr ""
-""
-""
+"<b><big>Dieses Programm erstellt einen bootbaren USB Stick</big>"
+"</b>"
 
 #: install-usb-gui.glade:108(property)
 msgid "<b>Name</b>"
@@ -74,13 +74,13 @@ msgstr ""
 
 #: install-usb-gui.glade:122(property)
 msgid "save system changes to usb"
-msgstr ""
+msgstr "Systemänderungen am Stick speichern"
 
 #: install-usb-gui.glade:123(property)
 msgid "persist"
 msgstr ""
 
 #: install-usb-gui.glade:174(property)
-msgid "<b>choose the iso file</b>"
-msgstr ""
+msgid "<b>choose an iso file</b>"
+msgstr "ISO Datei auswählen"
 

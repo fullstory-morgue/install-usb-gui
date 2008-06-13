@@ -76,6 +76,6 @@ msgid "persist"
 msgstr "persister"
 
 #: install-usb-gui.glade:174(property)
-msgid "<b>choose the iso file</b>"
+msgid "<b>choose an iso file</b>"
 msgstr "<b>vælg iso filen</b>"
 
