@@ -164,10 +164,11 @@
         <child>
           <widget class="GtkFrame" id="frame1">
             <property name="width_request">600</property>
-            <property name="height_request">145</property>
+            <property name="height_request">155</property>
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="label_xalign">0</property>
+            <property name="shadow_type">GTK_SHADOW_OUT</property>
             <child>
               <widget class="GtkAlignment" id="alignment1">
                 <property name="visible">True</property>
@@ -180,17 +181,17 @@
                     <child>
                       <widget class="GtkLabel" id="label2">
                         <property name="width_request">580</property>
-                        <property name="height_request">30</property>
+                        <property name="height_request">24</property>
                         <property name="visible">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0</property>
-                        <property name="label" translatable="yes">Example: &lt;b&gt;lang=de tz=Europe/Vienna toram &lt;/b&gt;</property>
+                        <property name="label" translatable="yes">Example: &lt;b&gt;lang=de tz=Europe/Vienna toram&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="selectable">True</property>
                       </widget>
                       <packing>
-                        <property name="y">58</property>
+                        <property name="y">46</property>
                       </packing>
                     </child>
                     <child>
@@ -202,7 +203,7 @@
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                       </widget>
                       <packing>
-                        <property name="y">87</property>
+                        <property name="y">92</property>
                       </packing>
                     </child>
                     <child>
@@ -219,7 +220,23 @@
                         <signal name="clicked" handler="on_button_cheat_clicked"/>
                       </widget>
                       <packing>
-                        <property name="y">12</property>
+                        <property name="y">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="label3">
+                        <property name="width_request">576</property>
+                        <property name="height_request">26</property>
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
+                        <property name="label" translatable="yes">netbook users please use cheatcode &lt;b&gt;vga=788&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                        <property name="selectable">True</property>
+                      </widget>
+                      <packing>
+                        <property name="y">67</property>
                       </packing>
                     </child>
                   </widget>
@@ -261,7 +278,7 @@ is allowed on vfat) or 100MB as that does is of no use (too small) </property>
           </widget>
           <packing>
             <property name="x">280</property>
-            <property name="y">378</property>
+            <property name="y">381</property>
           </packing>
         </child>
         <child>
@@ -283,7 +300,7 @@ Everything on the target device will be erased.</property>
           </widget>
           <packing>
             <property name="x">15</property>
-            <property name="y">378</property>
+            <property name="y">382</property>
           </packing>
         </child>
         <child>
@@ -313,7 +330,7 @@ Everything on the target device will be erased.</property>
           </widget>
           <packing>
             <property name="x">117</property>
-            <property name="y">378</property>
+            <property name="y">382</property>
           </packing>
         </child>
       </widget>

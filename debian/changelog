@@ -1,8 +1,13 @@
 install-usb-gui (0.2.20) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 14 Jun 2008 00:27:44 +0200
+  [ Horst Tritremmel ]
+  * de.po fix
+  * netbook user info (cheatcode vga=788) added 
+
+ -- Horst Tritremmel <hjt@sidux.com>  Tue, 16 Dec 2008 08:51:31 +0100
 
 install-usb-gui (0.2.19) unstable; urgency=low
 

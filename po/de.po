@@ -41,7 +41,7 @@ msgid ""
 msgstr ""
 "\n"
 " USBDEVICE0 Variable ist nicht definiert\n"
-" Bitte mit dem Befehl install-usb-gui.bas starten\n"
+" Bitte mit dem Befehl install-usb-gui.bash starten\n"
 "\n"
 
 #: callbacks.c:94
