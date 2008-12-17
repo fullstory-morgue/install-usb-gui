@@ -1,9 +1,5 @@
-install-usb-gui (0.2.20) UNRELEASED; urgency=low
+install-usb-gui (0.2.20) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Horst Tritremmel ]
   * de.po fix
   * netbook user info (cheatcode vga=788) added 
 
