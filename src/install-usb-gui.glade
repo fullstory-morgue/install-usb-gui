@@ -39,7 +39,7 @@
           </widget>
           <packing>
             <property name="x">155</property>
-            <property name="y">170</property>
+            <property name="y">163</property>
           </packing>
         </child>
         <child>
@@ -54,7 +54,7 @@
           </widget>
           <packing>
             <property name="x">15</property>
-            <property name="y">170</property>
+            <property name="y">163</property>
           </packing>
         </child>
         <child>
@@ -164,7 +164,7 @@
         <child>
           <widget class="GtkFrame" id="frame1">
             <property name="width_request">600</property>
-            <property name="height_request">155</property>
+            <property name="height_request">147</property>
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="label_xalign">0</property>
@@ -256,7 +256,7 @@
             </child>
           </widget>
           <packing>
-            <property name="y">220</property>
+            <property name="y">241</property>
           </packing>
         </child>
         <child>
@@ -277,15 +277,14 @@ is allowed on vfat) or 100MB as that does is of no use (too small) </property>
             <property name="draw_indicator">True</property>
           </widget>
           <packing>
-            <property name="x">280</property>
-            <property name="y">381</property>
+            <property name="x">19</property>
+            <property name="y">387</property>
           </packing>
         </child>
         <child>
           <widget class="GtkLabel" id="label_device1">
             <property name="width_request">104</property>
             <property name="height_request">32</property>
-            <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="tooltip" translatable="yes">The device is formatted (or not) with the chosen filesystem.
 If no filesystem formatting is performed,
@@ -299,8 +298,8 @@ Everything on the target device will be erased.</property>
             <property name="use_markup">True</property>
           </widget>
           <packing>
-            <property name="x">15</property>
-            <property name="y">382</property>
+            <property name="x">386</property>
+            <property name="y">387</property>
           </packing>
         </child>
         <child>
@@ -317,7 +316,6 @@ Everything on the target device will be erased.</property>
           <widget class="GtkComboBox" id="combobox_format">
             <property name="width_request">121</property>
             <property name="height_request">32</property>
-            <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="tooltip" translatable="yes">The device is formatted (or not) with the chosen filesystem.
 If no filesystem formatting is performed,
@@ -329,8 +327,23 @@ Everything on the target device will be erased.</property>
             <property name="items" translatable="yes"></property>
           </widget>
           <packing>
-            <property name="x">117</property>
-            <property name="y">382</property>
+            <property name="x">471</property>
+            <property name="y">387</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkLabel" id="label_device2">
+            <property name="width_request">580</property>
+            <property name="height_request">30</property>
+            <property name="visible">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <property name="xalign">0</property>
+            <property name="label" translatable="yes">&lt;span foreground="red" font_desc="10"&gt;Please format your device with ext2 or fat32 before using this tool!&lt;/span&gt;</property>
+            <property name="use_markup">True</property>
+          </widget>
+          <packing>
+            <property name="x">15</property>
+            <property name="y">205</property>
           </packing>
         </child>
       </widget>

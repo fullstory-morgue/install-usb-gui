@@ -1,8 +1,12 @@
 install-usb-gui (0.2.21) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 17 Dec 2008 01:31:06 +0100
+  [ Horst Tritremmel ]
+  * format combobox hidden, format info added instead
+
+ -- Horst Tritremmel <hjt@sidux.com>  Wed, 17 Dec 2008 14:27:25 +0100
 
 install-usb-gui (0.2.20) unstable; urgency=low
 
