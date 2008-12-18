@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-08-30 15:11+0200\n"
+"PO-Revision-Date: 2008-12-18 0300 CETn"
+"Last-Translator: Nikolas Poniros edhunter@sidux.gr\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: main.c:112
+msgid "getenv HOME isn't defined"
+msgstr "η HOME δεν είναι ορισμένη"
+
+#: main.c:123
+msgid ""
+"getenv FLL_DISTRO_MODE isn't defined\n"
+"Please start with install-usb-gui.bash"
+msgstr ""
+"η FLL_DISTRO_MODE δεν είναι ορισμένη\n"
+"Παρακαλώ τρέξτε το install-usb-gui.bash"
+
+#: main.c:178
+#, c-format
+msgid ""
+"\n"
+" No USBDEVICE0 Variable found!\n"
+" Please start with install-usb-gui.bash\n"
+"\n"
+msgstr ""
+"\n"
+" Ανύπαρκτη μεταβλητή USBDEVICE0 !\n"
+" Παρακαλώ τρέξτε το install-usb-gui.bash\n"
+"\n"
+
+#: callbacks.c:94
+msgid "No ISO selected!"
+msgstr "Δεν επιλέξατε ISO!"
+
+#: install_warning.glade:39(property)
+msgid ""
+"<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">USB device "
+"will be completely erased.!</span>"
+msgstr ""
+"<span foreground=\"#ff0000\" font_desc=\"Sans Bold 14\">Η συσκευή "
+"USB θα διαγραφή εντελώς!</span>"
+
+#: install-usb-gui.glade:52(property)
+msgid "<b>USB Device</b>"
+msgstr "<b>USB Συσκευή</b>"
+
+#: install-usb-gui.glade:66(property)
+msgid ""
+"<b><big>This tool creates a bootable sidux USB device</big>"
+"</b>"
+msgstr ""
+"<b><big>Το εργαλείο δημιουργεί εκκινήσιμη sidux USB συσκευή</big>"
+"</b>"
+
+#: install-usb-gui.glade:77(property)
+msgid ""
+"<b><i>Use it at your own risk, it comes without any warranty.</i></b>"
+msgstr "<b><i>Χρήση με δική σας ευθύνη, έρχεται χωρίς εγγύηση.</i></b>"
+
+#: install-usb-gui.glade:108(property)
+msgid "<b>Name</b>"
+msgstr "<b>Όνομα</b>"
+
+#: install-usb-gui.glade:108(property)
+msgid "<b>Cheatcodes</b>"
+msgstr "<b>Cheatcodes</b>"
+
+#: install-usb-gui.glade:144(property)
+msgid "List of cheatcodes"
+msgstr "Λίστα με cheatcodes"
+
+#: install-usb-gui.glade:144(property)
+msgid "Example: <b>lang=de tz=Europe/Vienna persist toram </b>"
+msgstr "Παράδειγμα: <b>lang=de tz=Europe/Vienna persist toram </b>"
+
+#: install-usb-gui.glade:174(property)
+msgid "<b>choose an iso file</b>"
+msgstr "<b>επιλέξτε αρχείο iso</b>"
+
+msgid "Install successful"
+msgstr "Επιτυχής εγκατάσταση"
+
