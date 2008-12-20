@@ -1,15 +1,8 @@
-install-usb-gui (0.2.22+nmu1) UNRELEASED; urgency=low
+install-usb-gui (0.2.22) unstable; urgency=low
 
-  * Non-maintainer upload.
   * el.po added
 
  -- Chris Hildebrandt <slam@sidux.com>  Thu, 18 Dec 2008 10:29:02 +0100
-
-install-usb-gui (0.2.22) UNRELEASED; urgency=low
-
-  * NOT RELEASED YET
-
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 18 Dec 2008 00:22:56 +0100
 
 install-usb-gui (0.2.21) unstable; urgency=low
 
