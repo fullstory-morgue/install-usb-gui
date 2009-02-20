@@ -1,8 +1,9 @@
-install-usb-gui (0.2.24) UNRELEASED; urgency=low
+install-usb-gui (0.2.24) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * fix desktop-entry-contains-encoding-key.
+  * clarify licensing.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 27 Jan 2009 17:29:26 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 20 Feb 2009 16:05:06 +0100
 
 install-usb-gui (0.2.23) unstable; urgency=low
 

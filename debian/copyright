@@ -8,7 +8,7 @@ Copyright: Horst Tritremmel <hjt@sidux.com>, Joaquim Boura <x-un-i@sidux.com>
 License:
 
 The Debian packaging is © 2007, Horst Tritremmel <hjt@sidux.com> and
-is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
+is licensed under the GPL, see `/usr/share/common-licenses/GPL-2'.
 
 Files: icons/*
 Copyright: © 2008 Bernard Gray <bernard.gray@gmail.com>
