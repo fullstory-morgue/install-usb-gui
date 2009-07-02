@@ -1,7 +1,4 @@
-install-usb-gui (0.2.25) UNRELEASED; urgency=low
-
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
+install-usb-gui (0.2.25) unstable; urgency=low
 
   [ Bernard Gray ]
   * update art for 2009-02
@@ -9,9 +6,12 @@ install-usb-gui (0.2.25) UNRELEASED; urgency=low
   * update copyright for new art
   * vacuum defs for svg icons 
 
-  * ready for release
+  [ Stefan Lippers-Hollmann ]
+  * generate binary artwork.
+  * bump compats level to 7, we already require dh7 anyways.
+  * bump standards version to 3.8.2, no changes necessary.
 
- -- Bernard Gray <bernard.gray@gmail.com>  Thu, 02 Jul 2009 21:47:30 +1000
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 02 Jul 2009 23:23:54 +0200
 
 install-usb-gui (0.2.24) unstable; urgency=low
 
