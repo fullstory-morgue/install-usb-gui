@@ -6,10 +6,11 @@ install-usb-gui (0.2.25) UNRELEASED; urgency=low
   [ Bernard Gray ]
   * update art for 2009-02
   * convert all bitmaps to new svg art
-  * update copyright for new art -- do not release
- 
+  * update copyright for new art
+  * vacuum defs for svg icons -- do not release
 
- -- Bernard Gray <bernard.gray@gmail.com>  Thu, 02 Jul 2009 20:22:47 +1000
+
+ -- Bernard Gray <bernard.gray@gmail.com>  Thu, 02 Jul 2009 20:40:36 +1000
 
 install-usb-gui (0.2.24) unstable; urgency=low
 
