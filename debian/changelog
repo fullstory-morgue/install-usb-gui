@@ -1,3 +1,9 @@
+install-usb-gui (0.2.27) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 19 Jul 2009 16:08:38 +0200
+
 install-usb-gui (0.2.26) unstable; urgency=low
 
   * remove deprecated dh_desktop call.
