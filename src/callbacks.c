@@ -87,7 +87,7 @@ do_install()
 	if( strncmp( getenv("FLL_DISTRO_MODE"), "live", 4 ) != 0  || \
 	    strncmp( getenv("CHEATCODE_TORAM"), "0", 1 ) != 0 ) {
 		// installed mode or toram mode
-		g_print("%s\n", file_iso);
+		g_print("\"%s\"\n", file_iso);
 	}
 
 

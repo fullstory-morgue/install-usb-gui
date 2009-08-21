@@ -1,8 +1,14 @@
 install-usb-gui (0.2.27) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 19 Jul 2009 16:08:38 +0200
+  [ Joaquim Boura ]
+  * protect iso name against spaces in the pathname.
+    start terminal with dbus-launch, otherwise call  of fll-iso2usb can fail 
+    if install-usb-gui.bash is called in a root terminal.
+
+ -- Joaquim Boura <x-un-i@sidux.com>  Fri, 21 Aug 2009 22:38:25 +0200
 
 install-usb-gui (0.2.26) unstable; urgency=low
 

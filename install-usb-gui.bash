@@ -143,7 +143,10 @@ else
 fi
 
 printf "$RUN_SH\n"
-x-terminal-emulator -e $RUN_SH
+dbus-launch x-terminal-emulator -e $RUN_SH
+
+# loop until fll-iso2usb is done
+while true; do  gg=$(ps ax | grep -v grep |grep -e iso2usb  |wc -l); if [ $gg -eq  0 ]; then  break; else sleep 5; sync; fi; done
 
 # lookup the return code from install-fromiso-in-usb
 test -e /tmp/.fll-iso2usb && rc=$(</tmp/.fll-iso2usb) || rc=0
