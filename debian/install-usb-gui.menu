@@ -4,4 +4,4 @@
 	title="install-sidux-to-usb" \
 	icon32x32="/usr/share/pixmaps/install-usb-gui.xpm" \
 	icon16x16="/usr/share/pixmaps/install-usb-gui-16.xpm" \
-	command="su-to-root -X -c /usr/sbin/install-usb-gui.bash"
+	command="/usr/bin/install-usb-gui.bash"

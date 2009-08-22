@@ -1,6 +1,7 @@
 #!/bin/bash
 # install-usb-gui.bash
 # Copyright (C) Horst Tritremmel 2007 <hjt@sidux.com>
+#           (C) Joaquim Boura    2009 <x-un-i@sidux.com>
 # 
 # install-usb-gui.bash is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the
@@ -18,15 +19,6 @@
 
 SELF=".bash"
 
-
-#################################################################
-#			root?					#
-#################################################################
-if [ "$(id -u)" -ne 0 ]; then
-	[ -x "$(which su-to-root)" ] && exec su-to-root -X -c "$0" "$@"
-	printf "ERROR: $0 needs root capabilities, please start it as root.\n\n" >&2
-	exit 1
-fi
 
 # we need gettext (is loaded in ssft.sh or cloned...)
 if [ -f /usr/bin/gettext.sh ]; then
@@ -133,8 +125,8 @@ IFS=$' \t\n'
 # ==============================================================
 # 		start the installation
 # ==============================================================
-if [ -f "$filechooserbutton_iso" ] || [ -b "$filechooserbutton_iso" ]; then
-	RUN_SH="$INSTALL_ISO2USB -D $combobox_device -I $filechooserbutton_iso ${cheat}"
+if [ -f "${filechooserbutton_iso}" ] || [ -b "${filechooserbutton_iso}" ]; then
+	RUN_SH="$INSTALL_ISO2USB -D $combobox_device -I '${filechooserbutton_iso}' ${cheat}"
 elif [ "$FLL_DISTRO_MODE" = live ]; then
 	RUN_SH="$INSTALL_ISO2USB -D $combobox_device ${cheat}"
 else
@@ -142,14 +134,36 @@ else
 	exit 1
 fi
 
-printf "$RUN_SH\n"
-dbus-launch x-terminal-emulator -e $RUN_SH
+# create tempfile
+tmpfil="$(mktemp -p /tmp/ .XXXXXXXXXX)"
+
+# prepare shell script
+cat >>${tmpfil} <<EOF
+#!/bin/bash
+
+echo enter the root password
+su -c "$RUN_SH"
+
+EOF
+
+# make it executable
+chmod 755 ${tmpfil}
+
+# remove file with the return code from previous runs
+test -e /tmp/.fll-iso2usb && rm -f /tmp/.fll-iso2usb
+
+# launch terminal and the backend
+x-terminal-emulator -e ${tmpfil}
 
 # loop until fll-iso2usb is done
-while true; do  gg=$(ps ax | grep -v grep |grep -e iso2usb  |wc -l); if [ $gg -eq  0 ]; then  break; else sleep 5; sync; fi; done
+while true; do  cnt=$(ps ax | grep -v grep |grep -e iso2usb  |wc -l); if [ $cnt -eq  0 ]; then  break; else sleep 3; sync; fi; done
 
-# lookup the return code from install-fromiso-in-usb
-test -e /tmp/.fll-iso2usb && rc=$(</tmp/.fll-iso2usb) || rc=0
+#remove temp file
+test -e ${tmpfil} && rm -f ${tmpfil}
+
+# lookup the return code from the backend
+# when user entered wrong root password the file with the return code does not exist
+test -e /tmp/.fll-iso2usb && rc=$(</tmp/.fll-iso2usb) || rc="user abort"
 
 case "${rc%-*}" in
         0)

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=su-to-root -X -c /usr/sbin/install-usb-gui.bash
+Exec=/usr/bin/install-usb-gui.bash
 Icon=install-usb-gui
 
 Name=install-sidux-to-usb
