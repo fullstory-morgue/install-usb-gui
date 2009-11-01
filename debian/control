@@ -1,8 +1,8 @@
 Source: install-usb-gui
 Section: admin
 Priority: extra
-Maintainer: Horst Tritremmel <hjt@sidux.com>
-Uploaders: Joaquim Boura <x-un-i@sidux.com>, Stefan Lippers-Hollmann <s.l-h@gmx.de>
+Maintainer: Joaquim Boura <x-un-i@sidux.com>
+Uploaders: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Build-Depends: debhelper (>= 7),
  autotools-dev,
  automake1.10,
