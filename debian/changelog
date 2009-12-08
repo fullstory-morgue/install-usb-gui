@@ -1,8 +1,9 @@
-install-usb-gui (0.2.30) UNRELEASED; urgency=low
+install-usb-gui (0.2.30) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * rebuild gcc-4.4.
+  * remove unused tarball.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 01 Nov 2009 13:48:12 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 Dec 2009 18:58:45 +0100
 
 install-usb-gui (0.2.29) unstable; urgency=low
 
