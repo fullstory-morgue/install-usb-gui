@@ -1,3 +1,9 @@
+install-usb-gui (0.2.31) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 Dec 2009 19:00:05 +0100
+
 install-usb-gui (0.2.30) unstable; urgency=low
 
   * rebuild gcc-4.4.
