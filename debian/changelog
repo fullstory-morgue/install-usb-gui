@@ -1,9 +1,5 @@
-install-usb-gui (0.2.31) UNRELEASED; urgency=low
+install-usb-gui (0.2.31) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * actualized the debian/copyright file with all bits.
 
  -- Joaquim Boura <x-un-i@sidux.com>  Sun, 13 Dec 2009 22:05:27 +0100
