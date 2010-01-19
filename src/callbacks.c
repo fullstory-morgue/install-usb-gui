@@ -177,5 +177,14 @@ on_button_cheat_clicked(GtkButton *button,
 	system("[ -f \"/usr/share/sidux-manual/en/cheatcodes-en.htm\" ] && \
 		LINK=\"file:///usr/share/sidux-manual/en/cheatcodes-en.htm#cheatcodes\" || \
 		LINK=\"http://manual.sidux.com/en/cheatcodes-en.htm\"; \
-		x-www-browser ${LINK} &");
+		su `#!/bin/sh\n \
+		    PID=$PPID\n \
+		    USER=$(grep ^Uid\\: /proc/${PID}/status | cut -f 2)\n \
+		    while [ \"${USER}\" = \"0\" ] ; do\n \
+		    PID=$(grep ^PPid\\: /proc/${PID}/status | cut -f 2)\n \
+		    USER=$(grep ^Uid\\: /proc/${PID}/status | cut -f 2)\n \
+		    done\n \
+		    awk -F: \'{if ($3==\"\'${USER}\'\"){print $1}}\' /etc/passwd` -c \
+		\"x-www-browser ${LINK}\" &");
+		
 }

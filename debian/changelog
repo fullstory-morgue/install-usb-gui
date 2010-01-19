@@ -1,8 +1,13 @@
 install-usb-gui (0.2.32) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 17 Dec 2009 10:47:45 +0100
+  [ Nikolas Poniros ]
+  * do not call x-www-browser as root. thx bfree for providing the code
+    to detect the correct user
+
+ -- Nikolas Poniros <edhunter@sidux.com>  Tue, 19 Jan 2010 06:34:03 +0100
 
 install-usb-gui (0.2.31) unstable; urgency=low
 
