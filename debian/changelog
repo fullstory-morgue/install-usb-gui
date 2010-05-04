@@ -1,8 +1,11 @@
-install-usb-gui (0.2.33) UNRELEASED; urgency=low
+install-usb-gui (0.2.33) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * switch to dpkg-source 3.0 (native) format.
+  * bump standards version to 3.8.4, no changes necessary.
+  * use dh7.
+  * regenerate icon set.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 23 Jan 2010 01:46:57 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 05 May 2010 00:51:49 +0200
 
 install-usb-gui (0.2.32) unstable; urgency=low
 
