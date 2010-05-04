@@ -1,3 +1,9 @@
+install-usb-gui (0.2.34) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 05 May 2010 01:04:12 +0200
+
 install-usb-gui (0.2.33) unstable; urgency=low
 
   * switch to dpkg-source 3.0 (native) format.
