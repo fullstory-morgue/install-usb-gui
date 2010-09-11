@@ -22,8 +22,7 @@ Depends: ${shlibs:Depends},
  ssft,
  gettext,
  fll-iso2usb (>= 0.3.16)
-Recommends: menu,
- zenity
+Recommends: zenity
 Description: gui for fll-iso2usb
  Graphical user interface for fll-iso2usb, for easy installation of a
  FULLSTORY Live Linux distribution to a usb disk drive.
