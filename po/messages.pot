@@ -49,7 +49,7 @@ msgstr ""
 
 #: install-usb-gui.glade:66(property)
 msgid ""
-"<b><big>This tool creates a bootable sidux USB device</big>"
+"<b><big>This tool creates a bootable aptosid USB device</big>"
 "</b>"
 msgstr ""
 

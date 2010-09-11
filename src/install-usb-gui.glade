@@ -64,7 +64,7 @@
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="yalign">0</property>
-            <property name="label" translatable="yes">&lt;b&gt;&lt;big&gt;This tool creates a bootable sidux USB device&lt;/big&gt;&lt;/b&gt;</property>
+            <property name="label" translatable="yes">&lt;b&gt;&lt;big&gt;This tool creates a bootable aptosid USB device&lt;/big&gt;&lt;/b&gt;</property>
             <property name="use_markup">True</property>
             <property name="justify">GTK_JUSTIFY_CENTER</property>
             <property name="wrap">True</property>

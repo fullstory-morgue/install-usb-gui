@@ -174,9 +174,9 @@ on_button_cheat_clicked(GtkButton *button,
 			gpointer user_data)
 {
 
-	system("[ -f \"/usr/share/sidux-manual/en/cheatcodes-en.htm\" ] && \
-		LINK=\"file:///usr/share/sidux-manual/en/cheatcodes-en.htm#cheatcodes\" || \
-		LINK=\"http://manual.sidux.com/en/cheatcodes-en.htm\"; \
+	system("[ -f \"/usr/share/aptosid-manual/en/cheatcodes-en.htm\" ] && \
+		LINK=\"file:///usr/share/aptosid-manual/en/cheatcodes-en.htm#cheatcodes\" || \
+		LINK=\"http://manual.aptosid.com/en/cheatcodes-en.htm\"; \
 		su `#!/bin/sh\n \
 		    PID=$PPID\n \
 		    USER=$(grep ^Uid\\: /proc/${PID}/status | cut -f 2)\n \

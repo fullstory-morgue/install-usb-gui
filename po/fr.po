@@ -53,10 +53,10 @@ msgstr "Dispositif USB"
 
 #: install-usb-gui.glade:66(property)
 msgid ""
-"<b><big>This tool creates a bootable sidux USB device</big>"
+"<b><big>This tool creates a bootable aptosid USB device</big>"
 "</b>"
 msgstr ""
-"<b><big>Ce outil crée un dispostif usb sidux bootable</big>"
+"<b><big>Ce outil crée un dispostif usb aptosid bootable</big>"
 "</b>"
 
 #: install-usb-gui.glade:77(property)

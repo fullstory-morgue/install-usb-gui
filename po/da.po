@@ -3,8 +3,8 @@
 # Copyright (C) 2007 THE install-usb-gui'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the install-usb-gui package.
 #
-# hjt <hjt@sidux.com>, 2007.
-# Horst Tritremmel <hjt@sidux.com>, 2007.
+# hjt <hjt@aptosid.com>, 2007.
+# Horst Tritremmel <hjt@aptosid.com>, 2007.
 # rasmus güllich pørksen <rasmus@greenin.dk>, 2007.
 msgid ""
 msgstr ""
@@ -57,10 +57,10 @@ msgstr "<b>USB Enhed</b>"
 
 #: install-usb-gui.glade:66(property)
 msgid ""
-"<b><big>This tool creates a bootable sidux USB device</big>"
+"<b><big>This tool creates a bootable aptosid USB device</big>"
 "</b>"
 msgstr ""
-"<b><big>Dette værktøj opretter en bootable sidux USB enhed</big>"
+"<b><big>Dette værktøj opretter en bootable aptosid USB enhed</big>"
 "</b>"
 
 #: install-usb-gui.glade:108(property)

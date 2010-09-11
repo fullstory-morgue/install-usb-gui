@@ -1,5 +1,5 @@
 install-usb-gui.bash				usr/bin/
-install-usb-gui.desktop				usr/share/applications/sidux/
+install-usb-gui.desktop				usr/share/applications/aptosid/
 src/*.png					usr/share/install-usb-gui/src/
 icons/hicolor/48x48/apps/install-usb-gui.png	usr/share/install-usb-gui/src/
 icons/hicolor					usr/share/icons/
