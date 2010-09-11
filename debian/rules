@@ -45,3 +45,8 @@ create-icons:
 	mkdir -p icons/pixmaps
 	convert icons/hicolor/32x32/apps/install-usb-gui.png icons/pixmaps/install-usb-gui.xpm
 	convert icons/hicolor/16x16/apps/install-usb-gui.png icons/pixmaps/install-usb-gui-16.xpm
+	
+	inkscape --export-width=160 \
+		 --export-height=51 \
+		 --export-png="$(CURDIR)/src/install-usb-title.png" \
+				$(CURDIR)/icons/install-usb-title.svg ; \

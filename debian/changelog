@@ -1,3 +1,9 @@
+install-usb-gui (0.3.2) unstable; urgency=low
+
+  * fix yet another graphics.
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 01 Sep 2010 01:34:18 +0200
+
 install-usb-gui (0.3.1) unstable; urgency=low
 
   * fix yet another graphics.
