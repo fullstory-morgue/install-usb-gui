@@ -62,7 +62,7 @@ install-usb-gui (0.2.28) unstable; urgency=low
 install-usb-gui (0.2.27) unstable; urgency=low
 
   * protect iso name against spaces in the pathname.
-    start terminal with dbus-launch, otherwise call  of fll-iso2usb can fail 
+    start terminal with dbus-launch, otherwise call  of fll-iso2usb can fail
     if install-usb-gui.bash is called in a root terminal.
 
  -- Joaquim Boura <x-un-i@sidux.com>  Fri, 21 Aug 2009 22:38:25 +0200
@@ -79,7 +79,7 @@ install-usb-gui (0.2.25) unstable; urgency=low
   * update art for 2009-02
   * convert all bitmaps to new svg art
   * update copyright for new art
-  * vacuum defs for svg icons 
+  * vacuum defs for svg icons
 
   [ Stefan Lippers-Hollmann ]
   * generate binary artwork.
@@ -117,7 +117,7 @@ install-usb-gui (0.2.21) unstable; urgency=low
 install-usb-gui (0.2.20) unstable; urgency=low
 
   * de.po fix
-  * netbook user info (cheatcode vga=788) added 
+  * netbook user info (cheatcode vga=788) added
 
  -- Horst Tritremmel <hjt@sidux.com>  Tue, 16 Dec 2008 08:51:31 +0100
 
@@ -125,7 +125,7 @@ install-usb-gui (0.2.19) unstable; urgency=low
 
   * typos, text changed
   * po file fixes
-  * typos again 
+  * typos again
 
  -- Horst Tritremmel <hjt@sidux.com>  Fri, 13 Jun 2008 19:59:31 +0200
 
