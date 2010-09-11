@@ -1,8 +1,8 @@
-install-usb-gui (0.2.35) UNRELEASED; urgency=low
+install-usb-gui (0.2.35) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * switch to compat level 8.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 03 Aug 2010 22:18:14 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 08 Aug 2010 04:42:18 +0200
 
 install-usb-gui (0.2.34) unstable; urgency=low
 
