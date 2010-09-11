@@ -1,8 +1,8 @@
-install-usb-gui (0.3.3) UNRELEASED; urgency=low
+install-usb-gui (0.3.3) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * import revised icons from detaos.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 01 Sep 2010 01:35:09 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 09 Sep 2010 04:33:30 +0200
 
 install-usb-gui (0.3.2) unstable; urgency=low
 
