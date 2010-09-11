@@ -1,3 +1,9 @@
+install-usb-gui (0.2.35) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 03 Aug 2010 22:18:14 +0200
+
 install-usb-gui (0.2.34) unstable; urgency=low
 
   * bump standards version to 3.9.1, no changes necessary.
