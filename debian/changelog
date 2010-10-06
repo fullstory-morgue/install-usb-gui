@@ -1,8 +1,8 @@
-install-usb-gui (0.3.5) UNRELEASED; urgency=low
+install-usb-gui (0.3.5) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * fix hjt's mail address.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 06 Oct 2010 14:58:23 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 06 Oct 2010 16:50:39 +0200
 
 install-usb-gui (0.3.4) unstable; urgency=low
 
@@ -154,14 +154,14 @@ install-usb-gui (0.2.21) unstable; urgency=low
 
   * format combobox hidden, format info added instead
 
- -- Horst Tritremmel <hjt@sidux.com>  Wed, 17 Dec 2008 14:27:25 +0100
+ -- Horst Tritremmel <hjt@users.berlios.de>  Wed, 17 Dec 2008 14:27:25 +0100
 
 install-usb-gui (0.2.20) unstable; urgency=low
 
   * de.po fix
   * netbook user info (cheatcode vga=788) added
 
- -- Horst Tritremmel <hjt@sidux.com>  Tue, 16 Dec 2008 08:51:31 +0100
+ -- Horst Tritremmel <hjt@users.berlios.de>  Tue, 16 Dec 2008 08:51:31 +0100
 
 install-usb-gui (0.2.19) unstable; urgency=low
 
@@ -169,7 +169,7 @@ install-usb-gui (0.2.19) unstable; urgency=low
   * po file fixes
   * typos again
 
- -- Horst Tritremmel <hjt@sidux.com>  Fri, 13 Jun 2008 19:59:31 +0200
+ -- Horst Tritremmel <hjt@users.berlios.de>  Fri, 13 Jun 2008 19:59:31 +0200
 
 install-usb-gui (0.2.18) unstable; urgency=low
 
@@ -183,7 +183,7 @@ install-usb-gui (0.2.18) unstable; urgency=low
   [ Stefan Lippers-Hollmann ]
   * bump standards version to 3.8.0, no changes necessary.
 
- -- Horst Tritremmel <hjt@sidux.com>  Wed, 11 Jun 2008 12:23:08 +0200
+ -- Horst Tritremmel <hjt@users.berlios.de>  Wed, 11 Jun 2008 12:23:08 +0200
 
 install-usb-gui (0.2.17) unstable; urgency=low
 
@@ -223,7 +223,7 @@ install-usb-gui (0.2.14) unstable; urgency=low
   [ Horst Tritremmel ]
   * file_chooser default dir changed to /
 
- -- Horst Tritremmel <hjt@sidux.com>  Fri, 04 Apr 2008 11:34:05 +0200
+ -- Horst Tritremmel <hjt@users.berlios.de>  Fri, 04 Apr 2008 11:34:05 +0200
 
 install-usb-gui (0.2.13) unstable; urgency=low
 
@@ -250,7 +250,7 @@ install-usb-gui (0.2.10) unstable; urgency=low
 
   * install-usb-title.png changed for nyx
 
- -- Horst Tritremmel <hjt@sidux.com>  Thu, 20 Mar 2008 21:26:06 +0100
+ -- Horst Tritremmel <hjt@users.berlios.de>  Thu, 20 Mar 2008 21:26:06 +0100
 
 install-usb-gui (0.2.9) unstable; urgency=low
 
@@ -362,13 +362,13 @@ install-usb-gui (0.1.1) unstable; urgency=low
 
   * debug option for installation removed
 
- -- Horst Tritremmel <hjt@sidux.com>  Thu, 08 Nov 2007 09:16:34 +0100
+ -- Horst Tritremmel <hjt@users.berlios.de>  Thu, 08 Nov 2007 09:16:34 +0100
 
 install-usb-gui (0.1.0) unstable; urgency=low
 
   * add isofile chooser if cheatcode toram is given
 
- -- Horst Tritremmel <hjt@sidux.com>  Wed, 31 Oct 2007 08:12:53 +0100
+ -- Horst Tritremmel <hjt@users.berlios.de>  Wed, 31 Oct 2007 08:12:53 +0100
 
 install-usb-gui (0.0.13) unstable; urgency=low
 
@@ -386,7 +386,7 @@ install-usb-gui (0.0.12) unstable; urgency=low
   * de.po updated
   * new po files fixed
 
- -- Horst Tritremmel <hjt@sidux.com>  Tue, 16 Oct 2007 13:43:08 +0200
+ -- Horst Tritremmel <hjt@users.berlios.de>  Tue, 16 Oct 2007 13:43:08 +0200
 
 install-usb-gui (0.0.11) unstable; urgency=low
 
@@ -509,7 +509,7 @@ install-usb-gui (0.0.3) unstable; urgency=low
   * "install sidux-scripts package" message removed
   * sidux-usb-icon.png changed, thx to cathbard
 
- -- Horst Tritremmel <hjt@sidux.com>  Mon, 10 Sep 2007 20:35:10 +0200
+ -- Horst Tritremmel <hjt@users.berlios.de>  Mon, 10 Sep 2007 20:35:10 +0200
 
 install-usb-gui (0.0.2) unstable; urgency=low
 

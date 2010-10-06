@@ -3,8 +3,8 @@
 # Copyright (C) 2007 THE install-usb-gui'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the install-usb-gui package.
 #
-# hjt <hjt@aptosid.com>, 2007.
-# Horst Tritremmel <hjt@aptosid.com>, 2007.
+# hjt <hjt@users.berlios.de>, 2007.
+# Horst Tritremmel <hjt@users.berlios.de>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: de.po_[rVLbgc]\n"
