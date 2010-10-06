@@ -1,8 +1,8 @@
-install-usb-gui (0.3.4) UNRELEASED; urgency=low
+install-usb-gui (0.3.4) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * fix x-un-i's mail address.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 09 Sep 2010 04:34:04 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 06 Oct 2010 14:58:03 +0200
 
 install-usb-gui (0.3.3) unstable; urgency=low
 
@@ -68,7 +68,7 @@ install-usb-gui (0.2.31) unstable; urgency=low
 
   * actualized the debian/copyright file with all bits.
 
- -- Joaquim Boura <x-un-i@sidux.com>  Sun, 13 Dec 2009 22:05:27 +0100
+ -- Joaquim Boura <x-un-i@berlios.de>  Sun, 13 Dec 2009 22:05:27 +0100
 
 install-usb-gui (0.2.30) unstable; urgency=low
 
@@ -101,7 +101,7 @@ install-usb-gui (0.2.27) unstable; urgency=low
     start terminal with dbus-launch, otherwise call  of fll-iso2usb can fail
     if install-usb-gui.bash is called in a root terminal.
 
- -- Joaquim Boura <x-un-i@sidux.com>  Fri, 21 Aug 2009 22:38:25 +0200
+ -- Joaquim Boura <x-un-i@berlios.de>  Fri, 21 Aug 2009 22:38:25 +0200
 
 install-usb-gui (0.2.26) unstable; urgency=low
 
@@ -193,13 +193,13 @@ install-usb-gui (0.2.16) unstable; urgency=low
 
   * copy memtest86+.bin into the usb device, and make an entry in the grub
 
- -- Joaquim Boura <x-un-i@sidux.com>  Tue, 15 Apr 2008 22:45:03 +0200
+ -- Joaquim Boura <x-un-i@berlios.de>  Tue, 15 Apr 2008 22:45:03 +0200
 
 install-usb-gui (0.2.15) unstable; urgency=low
 
   * fixed pt language file.
 
- -- Joaquim Boura <x-un-i@sidux.com>  Mon, 07 Apr 2008 22:45:48 +0200
+ -- Joaquim Boura <x-un-i@berlios.de>  Mon, 07 Apr 2008 22:45:48 +0200
 
 install-usb-gui (0.2.14) unstable; urgency=low
 
@@ -250,27 +250,27 @@ install-usb-gui (0.2.9) unstable; urgency=low
 
   * fixed the way as booted_device and fll_booted_dir as gotten on the live CD
 
- -- Joaquim Boura <x-un-i@sidux.com>  Mon, 17 Mar 2008 21:54:39 +0100
+ -- Joaquim Boura <x-un-i@berlios.de>  Mon, 17 Mar 2008 21:54:39 +0100
 
 install-usb-gui (0.2.8) unstable; urgency=low
 
   * fixed fr translation. thanks to alphad.
   * corrected the pt language files. Thanks to Rui Umbelino (VaMPiRiC_CRoW)
 
- -- Joaquim Boura <x-un-i@sidux.com>  Sun, 09 Mar 2008 17:36:42 +0100
+ -- Joaquim Boura <x-un-i@berlios.de>  Sun, 09 Mar 2008 17:36:42 +0100
 
 install-usb-gui (0.2.7) unstable; urgency=low
 
   * on live dont use /fll directly but get that directory from the default
     mountpoint.
 
- -- Joaquim Boura <x-un-i@sidux.com>  Tue, 04 Mar 2008 07:39:19 +0100
+ -- Joaquim Boura <x-un-i@berlios.de>  Tue, 04 Mar 2008 07:39:19 +0100
 
 install-usb-gui (0.2.6) unstable; urgency=low
 
   * translation by muchan
 
- -- Joaquim Boura <x-un-i@sidux.com>  Tue, 26 Feb 2008 21:16:07 +0100
+ -- Joaquim Boura <x-un-i@berlios.de>  Tue, 26 Feb 2008 21:16:07 +0100
 
 install-usb-gui (0.2.5) unstable; urgency=low
 
@@ -326,13 +326,13 @@ install-usb-gui (0.1.6) unstable; urgency=low
 
   * enhanced install_fromiso_into_USB to support multiarch
 
- -- Joaquim Boura <x-un-i@sidux.com>  Wed, 26 Dec 2007 17:16:37 +0100
+ -- Joaquim Boura <x-un-i@berlios.de>  Wed, 26 Dec 2007 17:16:37 +0100
 
 install-usb-gui (0.1.5) unstable; urgency=low
 
   * Translation thanks to RoEn
 
- -- Joaquim Boura <x-un-i@sidux.com>  Tue, 18 Dec 2007 13:23:51 +0100
+ -- Joaquim Boura <x-un-i@berlios.de>  Tue, 18 Dec 2007 13:23:51 +0100
 
 install-usb-gui (0.1.4) unstable; urgency=low
 
@@ -468,7 +468,7 @@ install-usb-gui (0.0.6) unstable; urgency=low
     - when booted into toram force input from iso
     - created a man page.
 
- -- Joaquim Boura <x-un-i@sidux.com>  Fri, 12 Oct 2007 19:14:55 +0200
+ -- Joaquim Boura <x-un-i@berlios.de>  Fri, 12 Oct 2007 19:14:55 +0200
 
 install-usb-gui (0.0.5) unstable; urgency=low
 
@@ -538,5 +538,5 @@ install-usb-gui (0.0.1) unstable; urgency=low
   * use a random name for the image
   * fixed random name
 
- -- Joaquim Boura <x-un-i@sidux.com>  Fri, 31 Aug 2007 23:07:18 +0200
+ -- Joaquim Boura <x-un-i@berlios.de>  Fri, 31 Aug 2007 23:07:18 +0200
 
