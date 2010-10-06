@@ -1,18 +1,18 @@
-This package was debianized by Horst Tritremmel <hjt@sidux.com> on
+This package was debianized by Horst Tritremmel <hjt@users.berlios.de> on
 Wed, 29 Aug 2007 16:45:17 +0200.
 
-Upstream Author: Horst Tritremmel <hjt@sidux.com>
+Upstream Author: Horst Tritremmel <hjt@users.berlios.de>
 
-Copyright: Horst Tritremmel <hjt@sidux.com>, Joaquim Boura <x-un-i@sidux.com>
+Copyright: Horst Tritremmel <hjt@users.berlios.de>, Joaquim Boura <x-un-i@berlios.de>
 
 License:
 
-The Debian packaging is © 2007, Horst Tritremmel <hjt@sidux.com> and
+The Debian packaging is © 2007, Horst Tritremmel <hjt@users.berlios.de> and
 is licensed under the GPL, see `/usr/share/common-licenses/GPL-2'.
 
 Files: install-usb-gui.bash
 	install-usb-gui.desktop
-Copyright:  © Horst Tritremmel <hjt@sidux.com>, Joaquim Boura <x-un-i@sidux.com>
+Copyright:  © Horst Tritremmel <hjt@users.berlios.de>, Joaquim Boura <x-un-i@berlios.de>
 
 Files: src/*
 	callbacks.c
@@ -23,14 +23,14 @@ Files: src/*
 	Makefile.am
 	Makefile.in
 	no_usb.glade
-Copyright: © 2007,208 Horst Tritremmel <hjt@sidux.com>
+Copyright: © 2007,208 Horst Tritremmel <hjt@users.berlios.de>
 
 Files:	src/install-usb-title.png
 Copyright: © 2008 Bernard Gray <bernard.gray@gmail.com>
            © 2008 David Creedy <djcreedy@iinet.net.au>
 
 Files: debian/*
-Copyright: © 2007-2008 Horst Tritremmel <peter_weber69@gmx.at>
+Copyright: © 2007-2008 Horst Tritremmel <hjt@users.berlios.de>
            © 2007-2008 Stefan Lippers-Hollmann <s.l-h@gmx.de>
 License: GPL-2
   The Debian packaging information is licensed under the GNU General
@@ -49,7 +49,7 @@ License: GPL-2
   Public License, version 2.
 
 Files: po/de.po:
-Copyright: © 2007,2008 Horst Tritremmel <hjt@sidux.com>
+Copyright: © 2007,2008 Horst Tritremmel <hjt@users.berlios.de>
 License: GPL-2
   The Debian packaging information is licensed under the GNU General
   Public License, version 2.
@@ -91,7 +91,7 @@ License: GPL-2
   Public License, version 2.
 
 Files: po/pt.po:
-Copyright: © 2007,2008 Joaquim Boura <x-un-i@sidux.com>
+Copyright: © 2007,2008 Joaquim Boura <x-un-i@berlios.de>
 	   © 2007,2008 Rui Umbelino (VaMPiRiC_CRoW)
 License: GPL-2
   The Debian packaging information is licensed under the GNU General

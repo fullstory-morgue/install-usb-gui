@@ -1,7 +1,7 @@
 #!/bin/bash
 # install-usb-gui.bash
-# Copyright (C) Horst Tritremmel 2007 <hjt@sidux.com>
-#           (C) Joaquim Boura    2009 <x-un-i@sidux.com>
+# Copyright (C) Horst Tritremmel 2007 <hjt@users.berlios.de>
+#           (C) Joaquim Boura    2009 <x-un-i@berlios.de>
 # 
 # install-usb-gui.bash is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the

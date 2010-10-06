@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * callbacks.c
- * Copyright (C) Horst Tritremmel 2007 <hjt@sidux.com>
+ * Copyright (C) Horst Tritremmel 2007 <hjt@users.berlios.de>
  * 
  * callbacks.c is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
