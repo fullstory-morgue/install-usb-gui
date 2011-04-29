@@ -43,7 +43,7 @@ License: GPL-2
   Public License, version 2.
 
 Files: po/el.po:
-Copyright: © 2007,2008 Nikolas Poniros <edhunter@sidux.gr>
+Copyright: © 2007,2008 Nikolas Poniros <edhunter@users.berlios.de>
 License: GPL-2
   The Debian packaging information is licensed under the GNU General
   Public License, version 2.
@@ -67,7 +67,7 @@ License: GPL-2
   Public License, version 2.
 
 Files: po/hr.po:
-Copyright: © 2007,2008 Dinko Sabo <cobra@sidux.com>
+Copyright: © 2007,2008 Dinko Sabo <cobrasbyte@gmx.de>
 License: GPL-2
   The Debian packaging information is licensed under the GNU General
   Public License, version 2.
@@ -98,7 +98,7 @@ License: GPL-2
   Public License, version 2.
 
 Files: po/ru.po:
-Copyright: © 2007,2008 Roland Engert <roen@sidux.com>
+Copyright: © 2007,2008 Roland Engert <Roland.Engert@web.de>
 License: GPL-2
   The Debian packaging information is licensed under the GNU General
   Public License, version 2.
