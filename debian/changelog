@@ -1,8 +1,13 @@
 install-usb-gui (0.3.7) UNRELEASED; urgency=low
 
+  [ Stefan Lippers-Hollmann ]
   * NOT RELEASED YET
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Fri, 29 Apr 2011 04:54:04 +0200
+  [ Niall Walsh ]
+  * Fix lang handling to use lang=ll_CC not just lang=ll and for example to
+    not turn en_DE.utf8 into lang=de or de_AT.utf8 into lang=de
+
+ -- Niall Walsh <niallwalsh@users.berlios.de>  Fri, 29 Apr 2011 13:29:49 +0100
 
 install-usb-gui (0.3.6) unstable; urgency=low
 

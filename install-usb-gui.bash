@@ -78,13 +78,10 @@ for d in /dev/disk/by-id/usb-*; do
 done
 
 
-# language cheatcode, special handling of en_* lang cheatcodes
+# language cheatcode
 case ${LANG%.*} in
-	en_*)
-		LANG_DEFAULT="lang=$(echo ${LANG%.*} | cut -d_ -f2 | tr [[:upper:]] [[:lower:]])"
-		;;
 	*_*)
-		LANG_DEFAULT="lang=$(echo ${LANG%.*} | cut -d_ -f1)"
+		LANG_DEFAULT="lang=$(echo ${LANG%.*})"
 		;;
 esac
 export LANG_DEFAULT=${LANG_DEFAULT}
