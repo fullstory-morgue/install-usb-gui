@@ -1,8 +1,10 @@
-install-usb-gui (0.3.8) UNRELEASED; urgency=low
+install-usb-gui (0.3.8) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * switch build-dependency from hardcoded automake1.10 to autmake (which 
+    corresponds to 1.11 at the moment).
+  * link with --as-needed.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 01 May 2011 00:34:21 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 30 Nov 2011 22:41:53 +0100
 
 install-usb-gui (0.3.7) unstable; urgency=low
 

@@ -5,7 +5,7 @@ Maintainer: Joaquim Boura <x-un-i@berlios.de>
 Uploaders: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Build-Depends: debhelper (>= 8),
  autotools-dev,
- automake1.10,
+ automake,
  libgtk2.0-dev (>= 2.8.0),
  libglade2-dev (>= 2.6.0),
  intltool,
