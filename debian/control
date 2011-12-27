@@ -1,7 +1,7 @@
 Source: install-usb-gui
 Section: admin
 Priority: extra
-Maintainer: Joaquim Boura <x-un-i@berlios.de>
+Maintainer: Joaquim Boura <x-un-i@sapo.pt>
 Uploaders: Stefan Lippers-Hollmann <s.l-h@gmx.de>
 Build-Depends: debhelper (>= 8),
  autotools-dev,
