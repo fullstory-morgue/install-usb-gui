@@ -1,9 +1,5 @@
-install-usb-gui (0.3.9) UNRELEASED; urgency=low
+install-usb-gui (0.3.9) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
   * added ukrainian language and some corrections on russian one. thks polix
 
  -- Joaquim Boura <x-un-i@sapo.pt>  Tue, 27 Dec 2011 19:20:05 +0100
