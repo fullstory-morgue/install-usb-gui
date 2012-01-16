@@ -3,7 +3,7 @@ Section: admin
 Priority: extra
 Maintainer: Joaquim Boura <x-un-i@sapo.pt>
 Uploaders: Stefan Lippers-Hollmann <s.l-h@gmx.de>
-Build-Depends: debhelper (>= 8),
+Build-Depends: debhelper (>= 9.20120115),
  autotools-dev,
  automake,
  libgtk2.0-dev (>= 2.8.0),
