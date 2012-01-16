@@ -1,8 +1,8 @@
-install-usb-gui (0.3.11) UNRELEASED; urgency=low
+install-usb-gui (0.3.11) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * update icons.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 16 Jan 2012 01:45:29 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Mon, 16 Jan 2012 03:46:02 +0100
 
 install-usb-gui (0.3.10) unstable; urgency=low
 
