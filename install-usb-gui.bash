@@ -152,6 +152,8 @@ test -e /tmp/.fll-iso2usb && rm -f /tmp/.fll-iso2usb
 # launch terminal and the backend
 x-terminal-emulator -e ${tmpfil}
 
+# wait a bit till the backend starts
+sleep 3
 # loop until fll-iso2usb is done
 while true; do  cnt=$(ps ax | grep -v grep |grep -e iso2usb  |wc -l); if [ $cnt -eq  0 ]; then  break; else sleep 3; sync; fi; done
 
