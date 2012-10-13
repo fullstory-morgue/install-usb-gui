@@ -1,10 +1,6 @@
-install-usb-gui (0.3.14) UNRELEASED; urgency=low
+install-usb-gui (0.3.14) unstable; urgency=low
 
-  [ Stefan Lippers-Hollmann ]
-  * NOT RELEASED YET
-
-  [ Joaquim Boura ]
-  * pause a few seconds till the backens starts his work
+  * pause a few seconds till the backend starts its work.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 08 May 2012 00:15:13 +0200
 
