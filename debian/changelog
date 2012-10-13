@@ -1,3 +1,9 @@
+install-usb-gui (0.3.15) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 13 Oct 2012 04:11:31 +0200
+
 install-usb-gui (0.3.14) unstable; urgency=low
 
   * pause a few seconds till the backend starts its work.
