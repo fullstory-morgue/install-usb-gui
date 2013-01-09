@@ -10,20 +10,11 @@ License:
 The Debian packaging is © 2007, Horst Tritremmel <hjt@users.berlios.de> and
 is licensed under the GPL, see `/usr/share/common-licenses/GPL-2'.
 
-Files: install-usb-gui.bash
-	install-usb-gui.desktop
+Files: install-usb-gui.bash install-usb-gui.desktop
 Copyright:  © Horst Tritremmel <hjt@users.berlios.de>, Joaquim Boura <x-un-i@berlios.de>
 
-Files: src/*
-	callbacks.c
-	callbacks.h
-	install-usb-gui.glade
-	install_warning.glade
-	main.c
-	Makefile.am
-	Makefile.in
-	no_usb.glade
-Copyright: © 2007,208 Horst Tritremmel <hjt@users.berlios.de>
+Files: src/* callbacks.c callbacks.h install-usb-gui.glade install_warning.glade main.c Makefile.am Makefile.in no_usb.glade
+Copyright: © 2007,2008 Horst Tritremmel <hjt@users.berlios.de>
 
 Files:	src/install-usb-title.png
 Copyright: © 2008 Bernard Gray <bernard.gray@gmail.com>
@@ -31,7 +22,7 @@ Copyright: © 2008 Bernard Gray <bernard.gray@gmail.com>
 
 Files: debian/*
 Copyright: © 2007-2008 Horst Tritremmel <hjt@users.berlios.de>
-           © 2007-2012 Stefan Lippers-Hollmann <s.l-h@gmx.de>
+           © 2007-2013 Stefan Lippers-Hollmann <s.l-h@gmx.de>
 License: GPL-2
   The Debian packaging information is licensed under the GNU General
   Public License, version 2.
