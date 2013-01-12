@@ -1,8 +1,17 @@
-install-usb-gui (0.3.15) UNRELEASED; urgency=low
+install-usb-gui (0.3.16) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * bump standards version to 3.9.4, no changes necessary.
+  * update FSF postal address to be URLs.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 13 Oct 2012 04:11:31 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Jan 2013 03:15:44 +0100
+
+install-usb-gui (0.3.15) unstable; urgency=low
+
+  * update copyright.
+  * appease lintian a little bit:
+    - W: hardening-no-relro usr/bin/install-usb-gui
+
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 09 Jan 2013 17:51:32 +0100
 
 install-usb-gui (0.3.14) unstable; urgency=low
 
