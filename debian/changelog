@@ -1,8 +1,8 @@
-install-usb-gui (0.3.17) UNRELEASED; urgency=low
+install-usb-gui (0.3.17) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * use dh9 based hardening.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sat, 12 Jan 2013 03:16:11 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 16 Jan 2013 22:58:05 +0100
 
 install-usb-gui (0.3.16) unstable; urgency=low
 
