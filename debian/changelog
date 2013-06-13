@@ -1,8 +1,8 @@
-install-usb-gui (0.3.18) UNRELEASED; urgency=low
+install-usb-gui (0.3.18) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * rebuild with gcc-4.8.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Wed, 16 Jan 2013 22:58:43 +0100
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 13 Jun 2013 19:13:55 +0200
 
 install-usb-gui (0.3.17) unstable; urgency=low
 
