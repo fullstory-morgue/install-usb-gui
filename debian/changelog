@@ -1,8 +1,9 @@
-install-usb-gui (0.3.19) UNRELEASED; urgency=low
+install-usb-gui (0.3.19) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * bump standards version to 3.9.5, no changes necessary.
+  * debian/control: switch Vcs tags to github.
 
- -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Thu, 13 Jun 2013 19:14:19 +0200
+ -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Sun, 13 Apr 2014 23:26:44 +0200
 
 install-usb-gui (0.3.18) unstable; urgency=low
 
