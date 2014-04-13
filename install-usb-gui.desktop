@@ -2,7 +2,6 @@
 Type=Application
 Exec=/usr/bin/install-usb-gui.bash
 Icon=install-usb-gui
-
 Name=install-aptosid-to-usb
 Name[de]=install-aptosid-to-usb
 Name[pt]=Instalar em USB
@@ -13,5 +12,5 @@ Comment[de]=Install aptosid to usb stick
 Comment[pt]=Instalar o aptosid como fromiso em USB
 Comment[pt_BR]=Instalar o aptosid como fromiso em USB
 Comment[ru]=Инсталляция aptosid на флэшк
-
 Categories=System;
+Keywords=USB;installer;
