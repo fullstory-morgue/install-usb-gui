@@ -2,6 +2,7 @@ install-usb-gui (0.3.21) ORPHANED; urgency=medium
 
   * NOT RELEASED YET
   * ORPHAN PACKAGE
+  * refresh SVG graphics, shut up inkscape's migration from old versions.
 
  -- Stefan Lippers-Hollmann <s.l-h@gmx.de>  Tue, 12 Aug 2014 21:02:59 +0200
 
